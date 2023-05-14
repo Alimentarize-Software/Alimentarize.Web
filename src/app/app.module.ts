@@ -9,10 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginModule } from './pages/login/login.module';
 import { RouterModule } from '@angular/router';
 import { RegisterModule } from './pages/register/register.module';
-import { LeftBarModule } from './shared/left-bar/left-bar.module';
-import { HeaderModule } from './shared/header/header.module';
-import { CardModule } from './shared/card/card.module';
 import { ReceiverModule } from './pages/receiver/receiver.module';
+import { MainModule } from './pages/main/main.module';
 
 @NgModule({
   declarations: [AppComponent, GiverComponent, FoodConsultingComponent],
@@ -25,6 +23,7 @@ import { ReceiverModule } from './pages/receiver/receiver.module';
     RouterModule,
     RegisterModule,
     ReceiverModule,
+    MainModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

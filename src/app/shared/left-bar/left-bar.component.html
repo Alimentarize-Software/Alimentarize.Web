@@ -1,8 +1,44 @@
 <div class="container-left-bar">
-  <div class="item">
-    <img src="assets/icons/home.svg" alt="" />
-    <span [routerLink]="['/routePath']" routerLinkActive="router-link-active"
-      >Dashboard</span
-    >
+  <div class="box-itens">
+    <div class="item">
+      <img src="assets/icons/home.svg" alt="" />
+      <span [routerLink]="['/routePath']" routerLinkActive="router-link-active"
+        >Dashboard</span
+      >
+    </div>
+
+    <div class="item item-active-span">
+      <img src="assets/icons/wallet.svg" alt="" />
+      <span [routerLink]="['/routePath']" routerLinkActive="router-link-active"
+        >Consultorias</span
+      >
+    </div>
+
+    <div class="item item-active-span">
+      <img src="assets/icons/setting.svg" alt="" />
+      <span [routerLink]="['/routePath']" routerLinkActive="router-link-active"
+        >Configurações</span
+      >
+    </div>
+  </div>
+
+  <div class="box-close">
+    <h1>Perfil</h1>
+    <div class="box-image-profile">
+      <img src="assets/images/ordones.png" alt="" />
+      <div class="box-name-and-email">
+        <span>{{ nameUser }}</span>
+        <span>{{ emailUser }}</span>
+      </div>
+    </div>
+
+    <div class="box-button">
+      <app-button
+        tipo="primary"
+        pathIcon="assets/icons/logout.svg"
+        (click)="logout()"
+        >Sair</app-button
+      >
+    </div>
   </div>
 </div>

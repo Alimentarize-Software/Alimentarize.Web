@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="header">
+    <app-header></app-header>
+  </div>
+  <div class="box-main">
+    <div class="left-bar">
+      <app-left-bar
+        nameUser="Carneiro do ordones"
+        emailUser="carneirodoordones@gmail.com"
+      ></app-left-bar>
+    </div>
+    <div class="main">
+      <div class="title-and-button">
+        <h1>Histórico de doações</h1>
+        <div class="box-button">
+          <app-button pathIcon="assets/icons/add.svg" tipo="primary"
+            >Agendar doação</app-button
+          >
+        </div>
+      </div>
+      <div class="cards">
+        <app-card title="Quantidade de doações" number="16"></app-card>
+        <app-card title="Pessoas alimentadas" number="120"></app-card>
+        <app-card title="Moedas adquiridas" number="$20"></app-card>
+      </div>
+    </div>
+  </div>
+</div>

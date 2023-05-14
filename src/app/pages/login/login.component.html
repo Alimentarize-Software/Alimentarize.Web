@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container" *ngIf="!loading; else isLoading">
   <div class="box-image">
     <img src="assets/images/banner-login.png" alt="" />
   </div>
 
-  <div class="box-forms">
+  <form class="box-forms">
     <img class="logo" src="assets/icons/logo.svg" alt="" />
     <p class="slogan">
       <span>Alimentos </span>
@@ -15,12 +15,14 @@
         placeholder="E-mail"
         name="email"
         ngDefaultControl
+        [(ngModel)]="user.email"
       ></app-input>
       <app-input
         type="password"
         placeholder="Senha"
         name="senha"
         ngDefaultControl
+        [(ngModel)]="user.password"
       ></app-input>
     </div>
     <div class="box-remember">
@@ -37,7 +39,7 @@
     </div>
 
     <div class="box-button">
-      <app-button tipo="primary" width="360px" routerLink="/home"
+      <app-button tipo="primary" width="360px" (click)="login()"
         >Login</app-button
       >
     </div>
@@ -46,5 +48,9 @@
       <span>Ainda não tem conta?</span>
       <a routerLink="/cadastrar">Criar conta</a>
     </div>
-  </div>
+  </form>
 </div>
+
+<ng-template #isLoading>
+  <app-loading></app-loading>
+</ng-template>
