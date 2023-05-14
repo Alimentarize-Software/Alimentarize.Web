@@ -9,9 +9,15 @@
       <span>Alimentos </span>
       doados, comunidades alimentadas
     </p>
-    <div class="inputs">
+    <form class="inputs" action="/form" autocomplete="off">
       <app-input
         type="email"
+        placeholder="E-mail"
+        name="email"
+        ngDefaultControl
+      ></app-input>
+      <app-input
+        type="Confirmar email"
         placeholder="E-mail"
         name="email"
         ngDefaultControl
@@ -22,29 +28,19 @@
         name="senha"
         ngDefaultControl
       ></app-input>
-    </div>
-    <div class="box-remember">
-      <div class="remember">
-        <input type="checkbox" />
-        <span>Lembrar-me</span>
-      </div>
-      <a
-        [routerLink]="['/cadastrar']"
-        routerLinkActive="active"
-        class="remeber-password"
-        >Esqueceu a senha?</a
-      >
-    </div>
+      <app-input
+        type="password"
+        placeholder="Senha"
+        name="Confirmar Senha"
+        ngDefaultControl
+      ></app-input>
+    </form>
 
-    <div class="box-button">
-      <app-button tipo="primary" width="360px" routerLink="/home"
+    <div class="box-buttons">
+      <app-button tipo="primary" width="360px">Criar conta</app-button>
+      <app-button tipo="secondary" width="360px" [routerLink]="['/']"
         >Login</app-button
       >
-    </div>
-
-    <div class="box-register">
-      <span>Ainda não tem conta?</span>
-      <a routerLink="/cadastrar">Criar conta</a>
     </div>
   </div>
 </div>

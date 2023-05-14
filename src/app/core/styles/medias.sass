@@ -1,0 +1,32 @@
+$galaxy-fold-width: 280px
+$iphone-width: 390px
+$surface-width: 540px
+$ipad-width: 740px
+$desktop-width: 1224px
+$large-desktop-width: 1600px
+
+
+@mixin galaxyFold()
+  @media (min-width: #{$galaxy-fold-width}) and (max-width: #{$iphone-width})
+    @content
+
+@mixin iphoneSize()
+  @media (min-width: #{$iphone-width}) and (max-width: #{$surface-width})
+    @content
+
+@mixin surfaceSize()
+  @media (min-width: #{$surface-width}) and (max-width: #{$ipad-width})
+    @content
+
+@mixin ipadSize()
+  @media (min-width: #{$ipad-width}) and (max-width: #{$desktop-width})
+    @content
+
+@mixin desktop()
+  @media (min-width: #{$desktop-width}) and (max-width: #{$large-desktop-width})
+    @content
+
+@mixin largeDesktop()
+  @media (min-width: #{$large-desktop-width}) and (max-width: 4000px)
+    @content
+

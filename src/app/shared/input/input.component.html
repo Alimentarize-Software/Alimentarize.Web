@@ -1,0 +1,29 @@
+<div class="container" [ngClass]="activeFocus">
+  <input
+    [type]="chooseType"
+    [placeholder]="placeholder"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+    (keyup)="handleChangeModel($event)"
+    [name]="name"
+    [(ngModel)]="model"
+    autocomplete="off"
+  />
+  <div class="box-icon" *ngIf="showIcon">
+    <img
+      [src]="iconPath"
+      alt=""
+      #icon
+      id="icon"
+      (click)="showHidePassword()"
+      (mouseover)="mouseOver()"
+      (mouseout)="mouseOut()"
+    />
+  </div>
+</div>
+<p
+  *ngIf="errorMensagem != ''"
+  style="font-size: 10px; color: red; margin-bottom: 5px"
+>
+  error
+</p>

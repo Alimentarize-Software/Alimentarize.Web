@@ -1,0 +1,141 @@
+@import ./../../core/styles/variables
+@import ./../../core/styles/medias
+
+.button
+  width: 100%
+  cursor: pointer
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: center
+  transition: 0.1s
+  height: 36px
+  border: none
+  border-radius: 8px
+  font-size: 1rem
+
+.container
+  height: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+
+  // @include galaxyFold()
+  //   width: 130px
+
+  // @include iphoneSize()
+  //   width: 140px
+
+  // @include surfaceSize()
+  //   width: 195px
+
+  // @include ipadSize()
+  //   width: 135px
+
+  // @include desktop()
+  //   width: 175px
+  //   font-size: 15px
+
+  // @include largeDesktop()
+  //   width: 195px
+  //   font-size: 16px
+
+  .icon
+    margin-right: 6px
+
+.content
+  font-weight: 600
+
+.botao-primario
+  color: $color-white
+  background-color: $color-primary
+
+  &:hover
+    opacity: .8
+
+  // &:focus
+  //   background-color: $color-primary
+  //   box-shadow: 0px 0px 12px $color-tertiary
+
+  // &:disabled
+  //   background-color: $color-disabled
+  //   color: $color-primary-dark
+  //   cursor: not-allowed
+
+.botao-secundario
+  color: $color-primary
+  background-color: $color-white
+  border: $color-primary
+
+  &:hover
+    opacity: .8
+
+  // &:focus
+  //   box-shadow: 0px 0px 12px $color-primary-light
+
+  // &:disabled
+  //   background-color: $color-disabled
+  //   color: $color-primary-dark
+  //   cursor: not-allowed
+
+.botao-terciario
+  background-color: $color-white
+  color: $color-white
+  opacity: .9
+
+  // &:hover
+  //   opacity: 1
+
+  // &:focus
+  //   background-color: $color-secondary
+  //   box-shadow: 0px 0px 4px $color-secondary
+
+  // &:disabled
+  //   background-color: $color-disabled
+  //   color: $color-primary-dark
+  //   cursor: not-allowed
+
+.only-icon
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: center
+  background-color: $color-white
+  width: 26px
+  border-radius: 100%
+
+  .icon
+    width: 100%
+    margin-right: 10px
+
+
+// .load
+//   text-align: center
+
+// .notification
+//   -moz-animation: glowing 2000ms infinite
+//   animation: glowing 2000ms infinite
+
+// @-moz-keyframes glowing
+//   0%
+//     -moz-box-shadow: 0 0 3px $color-white, 100%
+//   25%
+//     -moz-box-shadow: 0 0 5px $color-feedback-medium-error, 50%
+//   50%
+//     -moz-box-shadow: 0 0 10px $color-feedback-medium-error
+//   75%
+//     -moz-box-shadow: 0 0 5px $color-feedback-medium-error, 50%
+//   100%
+//     -moz-box-shadow: 0 0 3px $color-white, 100%
+
+// @keyframes glowing
+//   0%
+//     box-shadow: 0 0 3px $color-white, 100%
+//   25%
+//     box-shadow: 0 0 5px $color-feedback-medium-error, 50%
+//   50%
+//     box-shadow: 0 0 10px $color-feedback-medium-error
+//   75%
+//     box-shadow: 0 0 5px $color-feedback-medium-error, 50%
+//   100%
+//     box-shadow: 0 0 3px $color-white, 100%
