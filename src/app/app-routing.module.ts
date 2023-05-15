@@ -10,7 +10,7 @@ import { RedefinePasswordComponent } from './pages/redefine-password/redefine-pa
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: '',
     component: LoginComponent,
   },
   {

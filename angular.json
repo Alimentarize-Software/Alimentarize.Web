@@ -25,10 +25,7 @@
             "inlineStyleLanguage": "sass",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.sass"],
-            "scripts": [],
-            "glob": "_redirects",
-            "input": "src",
-            "output": "/"
+            "scripts": []
           },
           "configurations": {
             "production": {
