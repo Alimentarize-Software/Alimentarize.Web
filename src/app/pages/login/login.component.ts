@@ -33,9 +33,13 @@ export class LoginComponent implements OnInit {
           'token',
           'GDSJGLSMGOHNRO3450U2350GLKGLDLGFHSDFGY04T'
         );
+        localStorage.setItem(
+          'token',
+          'GDSJGLSMGOHNRO3450U2350GLKGLDLGFHSDFGY04T'
+        );
         this.router.navigateByUrl('/home');
         this.loading = false;
-      }, 5000);
+      }, 1000);
     } else {
       alert('deu ruim');
     }
