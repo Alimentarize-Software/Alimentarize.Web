@@ -13,8 +13,8 @@ import { MainModule } from './pages/main/main.module';
 import { PageNotFoundModule } from './pages/page-not-found/page-not-found.module';
 import { RememberPasswordModule } from './pages/remember-password/remember-password.module';
 import { RedefinePasswordModule } from './pages/redefine-password/redefine-password.module';
-import { GiverComponent } from './pages/giver/giver.component';
 import { GiverModule } from './pages/giver/giver.module';
+import { TableModule } from './shared/table/table.module';
 
 @NgModule({
   declarations: [AppComponent, FoodConsultingComponent],
@@ -32,6 +32,7 @@ import { GiverModule } from './pages/giver/giver.module';
     RememberPasswordModule,
     RedefinePasswordModule,
     GiverModule,
+    TableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
