@@ -43,5 +43,9 @@ export class LoginComponent implements OnInit {
     } else {
       alert('deu ruim');
     }
+
+    this.authService.auth(this.user).subscribe((data) => {
+      console.log('Data');
+    });
   }
 }

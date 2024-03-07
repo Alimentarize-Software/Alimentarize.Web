@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  web:
+    image: nginx:latest
+    container_name: alimentarizeweb
+    ports:
+      - "8080:80"
+    volumes:
+      - "./app/dist/alimentarize.web:/usr/share/nginx/html"
+    command: ["nginx", "-g", "daemon off;"]
+    restart: always

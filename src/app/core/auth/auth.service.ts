@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -5,7 +6,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private httpClient: HttpClient) {}
 
   public isLogin(): boolean {
     const token = localStorage.getItem('token');
@@ -16,6 +17,10 @@ export class AuthService {
       this.router.navigateByUrl('');
       return false;
     }
+  }
+
+  public auth(user: any) {
+    return this.httpClient.post('http://localhost:3000/users', user);
   }
 
   canActivate(currentUser: number): boolean {

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FoodConsultingComponent } from './pages/food-consulting/food-consulting.component';
@@ -33,6 +33,7 @@ import { TableModule } from './shared/table/table.module';
     RedefinePasswordModule,
     GiverModule,
     TableModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
