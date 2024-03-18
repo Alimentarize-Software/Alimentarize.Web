@@ -29,7 +29,6 @@ export class InputComponent implements OnInit {
 
   @Output() modelChange = new EventEmitter<any>();
   @Output() onKeyPress = new EventEmitter<any>();
-  teste: string;
 
   iconPath = 'assets/icons/eye.svg';
   focus = false;

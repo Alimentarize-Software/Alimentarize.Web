@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./button.component.sass'],
 })
 export class ButtonComponent implements OnInit {
-  @Output() acao = new EventEmitter();
+  @Output() click = new EventEmitter();
   @Input() carregando = false;
   @Input() disabled = false;
   @Input() exibeEmBloco = false;
@@ -20,9 +20,9 @@ export class ButtonComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public disparaAcao(): void {
+  public onClick(): void {
     if (!this.disabled) {
-      this.acao.emit({});
+      this.click.emit({});
     }
   }
 

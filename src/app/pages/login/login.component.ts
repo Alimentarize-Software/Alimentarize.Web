@@ -21,31 +21,36 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login() {
-    if (
-      this.user.email == 'alimentarize@gmail.com' &&
-      this.user.password == 'Alimentarize123'
-    ) {
-      console.log(this.user);
-      this.loading = true;
+    // if (
+    //   this.user.email == 'alimentarize@gmail.com' &&
+    //   this.user.password == 'Alimentarize123'
+    // ) {
+    //   console.log(this.user);
+    //   this.loading = true;
 
-      setTimeout(() => {
-        localStorage.setItem(
-          'token',
-          'GDSJGLSMGOHNRO3450U2350GLKGLDLGFHSDFGY04T'
-        );
-        localStorage.setItem(
-          'token',
-          'GDSJGLSMGOHNRO3450U2350GLKGLDLGFHSDFGY04T'
-        );
-        this.router.navigateByUrl('/home');
-        this.loading = false;
-      }, 1000);
-    } else {
-      alert('deu ruim');
-    }
+    //   setTimeout(() => {
+    //     localStorage.setItem(
+    //       'token',
+    //       'GDSJGLSMGOHNRO3450U2350GLKGLDLGFHSDFGY04T'
+    //     );
+    //     localStorage.setItem(
+    //       'token',
+    //       'GDSJGLSMGOHNRO3450U2350GLKGLDLGFHSDFGY04T'
+    //     );
+    //     this.router.navigateByUrl('/home');
+    //     this.loading = false;
+    //   }, 1000);
+    // } else {
+    //   alert('deu ruim');
+    // }
 
-    this.authService.auth(this.user).subscribe((data) => {
-      console.log('Data');
-    });
+    this.authService.auth(this.user).subscribe(
+      (data) => {
+        console.log('Authenticator', data);
+      },
+      (err) => {
+        console.log('Deu ruim');
+      }
+    );
   }
 }

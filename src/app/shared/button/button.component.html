@@ -2,7 +2,8 @@
   [disabled]="disabled"
   class="button"
   [ngClass]="tema"
-  (click)="disparaAcao()"
+  (click)="onClick()"
+  id="buttonSelector"
 >
   <ng-container *ngIf="carregando; else conteudoBotao">
     <!-- <load-solid [visivel]="true" tipo="solido" tamanho="load-xs-pequeno" class="load">
