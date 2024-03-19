@@ -33,7 +33,7 @@ import { TableModule } from './shared/table/table.module';
     RedefinePasswordModule,
     GiverModule,
     TableModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

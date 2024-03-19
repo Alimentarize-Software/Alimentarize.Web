@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.development';
+import { AuthResponse } from '../model/user';
 @Injectable({
   providedIn: 'root',
 })
@@ -20,7 +21,10 @@ export class AuthService {
   }
 
   public auth(user: any) {
-    return this.httpClient.post(`${environment.baseUrl}/auth/login`, user);
+    return this.httpClient.post<AuthResponse>(
+      `${environment.baseUrl}/auth/login`,
+      user
+    );
   }
 
   canActivate(currentUser: number): boolean {
