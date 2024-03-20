@@ -23,6 +23,6 @@ export class CardInstitutionComponent {
   }
 
   redirect(id: string) {
-    this.router.navigate(['/instituition']);
+    this.router.navigate([`/instituicoes/instituicao`, id]);
   }
 }
