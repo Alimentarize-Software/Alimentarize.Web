@@ -15,7 +15,7 @@ export class AuthService {
       console.log('entrou');
       return true;
     } else {
-      this.router.navigateByUrl('');
+      this.router.navigateByUrl('/login');
       return false;
     }
   }

@@ -14,7 +14,7 @@ import { PageNotFoundModule } from './pages/page-not-found/page-not-found.module
 import { RememberPasswordModule } from './pages/remember-password/remember-password.module';
 import { RedefinePasswordModule } from './pages/redefine-password/redefine-password.module';
 import { GiverModule } from './pages/giver/giver.module';
-import { TableModule } from './shared/table/table.module';
+import { HomeModule } from './pages/home/home.module';
 
 @NgModule({
   declarations: [AppComponent, FoodConsultingComponent],
@@ -32,8 +32,8 @@ import { TableModule } from './shared/table/table.module';
     RememberPasswordModule,
     RedefinePasswordModule,
     GiverModule,
-    TableModule,
     HttpClientModule,
+    HomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

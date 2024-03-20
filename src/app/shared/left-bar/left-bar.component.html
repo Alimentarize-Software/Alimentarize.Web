@@ -3,25 +3,34 @@
     <img src="assets/icons/logo.svg" alt="" class="logo" />
   </div>
   <div class="box-itens">
-    <div class="item">
+    <div
+      class="item"
+      routerLinkActive="router-link-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/']"
+    >
       <img src="assets/icons/home.svg" alt="" />
-      <span [routerLink]="['/home']" routerLinkActive="router-link-active"
-        >Dashboard</span
-      >
+      <span>Dashboard</span>
     </div>
 
-    <div class="item item-active-span">
-      <img src="assets/icons/wallet.svg" alt="" />
-      <span [routerLink]="['/home']" routerLinkActive="router-link-active"
-        >Consultorias</span
-      >
+    <div
+      class="item"
+      routerLinkActive="router-link-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/instituicoes']"
+    >
+      <img src="assets/icons/house.svg" alt="" />
+      <span>Instituições</span>
     </div>
 
-    <div class="item item-active-span">
+    <div
+      class="item"
+      routerLinkActive="router-link-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/routePath']"
+    >
       <img src="assets/icons/setting.svg" alt="" />
-      <span [routerLink]="['/routePath']" routerLinkActive="router-link-active"
-        >Configurações</span
-      >
+      <span>Configurações</span>
     </div>
   </div>
 

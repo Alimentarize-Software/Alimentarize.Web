@@ -14,6 +14,6 @@ export class LeftBarComponent {
 
   public logout() {
     localStorage.removeItem('token');
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/login');
   }
 }

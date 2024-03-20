@@ -1,0 +1,21 @@
+<div class="container-card">
+  <div
+    class="box-image"
+    [style.backgroundImage]="'url(' + card.image + ')'"
+    (click)="redirect(card.id)"
+  ></div>
+
+  <div class="box-texts">
+    <h1 class="name-institution">{{ card.name }}</h1>
+    <div class="box-category">
+      <ng-container *ngFor="let category of card.categories">
+        <div
+          class="flag"
+          [style.backgroundColor]="themeCard(category.category)"
+        >
+          <span class="flag">{{ category.name }}</span>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -7,10 +7,18 @@ import { authGuard } from './core/guard/auth.guard';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { RememberPasswordComponent } from './pages/remember-password/remember-password.component';
 import { RedefinePasswordComponent } from './pages/redefine-password/redefine-password.component';
+import { InstitutionsComponent } from './pages/institutions/institutions.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   pathMatch: 'full',
+  //   redirectTo: 'inicio'
+  // },
   {
-    path: '',
+    path: 'login',
+    pathMatch: 'full',
     component: LoginComponent,
   },
   {
@@ -18,8 +26,23 @@ const routes: Routes = [
     component: RegisterComponent,
   },
   {
-    path: 'home',
+    path: '',
     component: MainComponent,
+    children: [
+      {
+        path: '',
+        component: HomeComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'instituicoes',
+        loadChildren: () =>
+          import('./pages/institutions/institutions.module').then(
+            (m) => m.InstitutionsModule
+          ),
+        component: InstitutionsComponent,
+      },
+    ],
     canActivate: [authGuard],
   },
   {

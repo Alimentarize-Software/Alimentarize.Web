@@ -4,6 +4,7 @@
   [ngClass]="tema"
   (click)="onClick()"
   id="buttonSelector"
+  data-cy="button-component"
 >
   <ng-container *ngIf="carregando; else conteudoBotao">
     <!-- <load-solid [visivel]="true" tipo="solido" tamanho="load-xs-pequeno" class="load">
