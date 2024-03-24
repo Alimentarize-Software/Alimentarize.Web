@@ -26,9 +26,11 @@ export class InputComponent implements OnInit {
   @Input() chooseType = '';
   @Input() placeholder = '';
   @Input() errorMensagem = '';
+  @Input() value = '';
 
   @Output() modelChange = new EventEmitter<any>();
   @Output() onKeyPress = new EventEmitter<any>();
+  @Output() onBlur = new EventEmitter<any>();
 
   iconPath = 'assets/icons/eye.svg';
   focus = false;
@@ -83,8 +85,9 @@ export class InputComponent implements OnInit {
     this.focus = !this.focus;
   }
 
-  onBlur() {
+  onBlurEmit(event: any) {
     this.focus = !this.focus;
+    this.onBlur.emit(event.value);
   }
 
   public get activeFocus() {

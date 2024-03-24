@@ -15,6 +15,8 @@ import { RememberPasswordModule } from './pages/remember-password/remember-passw
 import { RedefinePasswordModule } from './pages/redefine-password/redefine-password.module';
 import { GiverModule } from './pages/giver/giver.module';
 import { HomeModule } from './pages/home/home.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './core/interceptor/interpcetor.interceptor';
 
 @NgModule({
   declarations: [AppComponent, FoodConsultingComponent],
@@ -35,7 +37,9 @@ import { HomeModule } from './pages/home/home.module';
     HttpClientModule,
     HomeModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

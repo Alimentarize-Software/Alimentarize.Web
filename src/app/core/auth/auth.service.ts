@@ -12,7 +12,6 @@ export class AuthService {
   public isLogin(): boolean {
     const token = localStorage.getItem('token');
     if (token) {
-      console.log('entrou');
       return true;
     } else {
       this.router.navigateByUrl('/login');

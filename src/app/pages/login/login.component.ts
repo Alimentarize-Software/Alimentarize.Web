@@ -15,12 +15,13 @@ export class LoginComponent implements OnInit {
   };
 
   loading: boolean = false;
-
+  loadingButton: boolean = false;
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
   login() {
+    this.loadingButton = true;
     this.authService.auth(this.user).subscribe({
       next: (data) => {
         this.loading = true;
@@ -28,10 +29,11 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', data.token);
           this.router.navigateByUrl('/');
           this.loading = false;
-        }, 1000);
+        }, 2000);
       },
       error: (err) => {
         console.log('Deu ruim');
+        this.loadingButton = false;
       },
     });
   }

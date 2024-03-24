@@ -1,13 +1,21 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.sass'],
 })
-export class ButtonComponent implements OnInit {
+export class ButtonComponent implements OnInit, OnChanges {
   @Output() click = new EventEmitter();
-  @Input() carregando = false;
+  @Input() loading = false;
   @Input() disabled = false;
   @Input() exibeEmBloco = false;
   @Input() tipo = '';
@@ -20,6 +28,9 @@ export class ButtonComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('Mudou', changes);
+  }
   public onClick(): void {
     if (!this.disabled) {
       this.click.emit({});

@@ -3,11 +3,12 @@
     [type]="chooseType"
     [placeholder]="placeholder"
     (focus)="onFocus()"
-    (blur)="onBlur()"
+    (blur)="onBlurEmit($event.target)"
     (keyup)="handleChangeModel($event)"
     [name]="name"
     [(ngModel)]="model"
     autocomplete="off"
+    [value]="value"
   />
   <div class="box-icon" *ngIf="showIcon">
     <img
