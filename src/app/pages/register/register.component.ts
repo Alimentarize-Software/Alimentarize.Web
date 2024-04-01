@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CepService } from 'src/app/core/services/cep/cep.service';
 import { UserService } from 'src/app/core/services/user/user.service';
 
+type typeInstitution = 'receiver ' | 'donor';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -9,25 +11,25 @@ import { UserService } from 'src/app/core/services/user/user.service';
 })
 export class RegisterComponent {
   currentTab = 'tab1';
+  typeInstitution: typeInstitution = {} as typeInstitution;
 
   user = {
-    typeInstitution: '',
-    name: '',
     email: '',
+    name: '',
+    password: '',
+    cnpj: '',
+    address: '',
+    phoneNumber: '',
+    addressAlias: '',
+    legalPurpose: '',
+    legalDateCreate: '',
+    legalNature: '',
+    complement: '',
     cep: '',
     numberAddress: 0,
     city: '',
     state: '',
     neighborhood: '',
-    address: '',
-    cnpj: '',
-    legalPurpose: '',
-    dateCreateInstitution: '',
-    legalNature: '',
-    phoneNumber: '',
-    password: '',
-    complement: '',
-    addressAlias: '',
   };
 
   confirmPassword = '';
@@ -55,13 +57,13 @@ export class RegisterComponent {
   }
 
   register() {
-    if (this.user.typeInstitution === 'donor') {
+    if (this.typeInstitution === 'donor') {
       this.userService.createUser(this.user, 'donor').subscribe({
         next: (res) => {
           console.log('Res donor');
         },
       });
-    } else if (this.user.typeInstitution === 'receiver') {
+    } else {
       this.userService.createUser(this.user, 'receiver').subscribe({
         next: (res) => {
           console.log('Res receiver');

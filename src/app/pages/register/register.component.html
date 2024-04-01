@@ -47,24 +47,24 @@
           </h1>
           <div class="box-options">
             <div class="box-checkbox">
-              <span>Serei um doador</span>
-              <input
-                type="radio"
-                name="institution"
-                id="institution"
-                value="receiver"
-                [(ngModel)]="user.typeInstitution"
-              />
-            </div>
-
-            <div class="box-checkbox">
               <span>Serei uma instituição</span>
               <input
                 type="radio"
                 name="institution"
                 id="institution"
+                value="receiver"
+                [(ngModel)]="typeInstitution"
+              />
+            </div>
+
+            <div class="box-checkbox">
+              <span>Serei um doador</span>
+              <input
+                type="radio"
+                name="institution"
+                id="institution"
                 value="donor"
-                [(ngModel)]="user.typeInstitution"
+                [(ngModel)]="typeInstitution"
               />
             </div>
           </div>
@@ -217,8 +217,8 @@
                   placeholder="Data de criação da instituição"
                   name="estado"
                   ngDefaultControl
-                  [(ngModel)]="user.dateCreateInstitution"
-                  [value]="user.dateCreateInstitution"
+                  [(ngModel)]="user.legalDateCreate"
+                  [value]="user.legalDateCreate"
                 ></app-input>
               </div>
               <div class="box-item three-itens">

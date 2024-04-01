@@ -6,7 +6,7 @@
   <form class="box-forms">
     <img class="logo" src="assets/icons/logo.svg" alt="" />
     <p class="slogan">
-      <span>Alimentos </span>
+      <span>Alimentos</span>
       doados, vidas alimentadas
     </p>
     <div class="inputs">
@@ -16,6 +16,7 @@
         name="email"
         ngDefaultControl
         [(ngModel)]="user.email"
+        data-cy="email"
       ></app-input>
       <app-input
         type="password"
@@ -23,6 +24,7 @@
         name="senha"
         ngDefaultControl
         [(ngModel)]="user.password"
+        data-cy="password"
       ></app-input>
     </div>
     <div class="box-remember">
@@ -44,6 +46,7 @@
         [loading]="loadingButton"
         width="360px"
         (click)="login()"
+        data-cy="button-login"
         >Login</app-button
       >
     </div>
