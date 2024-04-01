@@ -1,0 +1,20 @@
+name: pipeline - dev
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Using Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.x
+
+      - name: run install, build and test
+        run: npm install, npm run build, npx cypress run
