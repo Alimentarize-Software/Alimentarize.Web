@@ -1,4 +1,4 @@
-<div class="container" *ngIf="!loading; else isLoading">
+<!-- <div class="container" *ngIf="!loading; else isLoading">
   <div class="box-image">
     <img src="assets/images/banner-login.png" alt="" />
   </div>
@@ -56,7 +56,58 @@
       <a routerLink="/cadastrar">Criar conta</a>
     </div>
   </form>
-</div>
+</div> -->
+
+<app-layout-image-forms *ngIf="!loading; else isLoading">
+  <form class="box-forms">
+    <div class="inputs">
+      <app-input
+        type="email"
+        placeholder="E-mail"
+        name="email"
+        ngDefaultControl
+        [(ngModel)]="user.email"
+        data-cy="email"
+      ></app-input>
+      <app-input
+        type="password"
+        placeholder="Senha"
+        name="senha"
+        ngDefaultControl
+        [(ngModel)]="user.password"
+        data-cy="password"
+      ></app-input>
+    </div>
+    <div class="box-remember">
+      <div class="remember">
+        <input type="checkbox" />
+        <span>Lembrar-me</span>
+      </div>
+      <a
+        [routerLink]="['/esqueci-senha']"
+        routerLinkActive="active"
+        class="remeber-password"
+        >Esqueceu a senha?</a
+      >
+    </div>
+
+    <div class="box-button">
+      <app-button
+        tipo="primary"
+        [loading]="loadingButton"
+        width="360px"
+        (click)="login()"
+        data-cy="button-login"
+        >Login</app-button
+      >
+    </div>
+
+    <div class="box-register">
+      <span>Ainda não tem conta?</span>
+      <a routerLink="/cadastrar">Criar conta</a>
+    </div>
+  </form>
+</app-layout-image-forms>
 
 <ng-template #isLoading>
   <app-loading></app-loading>

@@ -1,141 +1,101 @@
-@import './../../core/styles/variables'
+@import 'variables'
 
-.container
+.inputs
   width: 100%
-  height: 100%
-  padding:  2% 6% 2% 6%
-  box-sizing: border-box
+  margin-top: 16px
   display: flex
-  justify-content: space-between
-  align-items: center
-  background: #ffffff
+  flex-direction: column
+  height: 350px
 
-  .box-image
-    width: 40%
-    height: 100%
-
-    img
-      width: 100%
-      height: 100%
-
-  .box-forms
-    width: 45%
-    height: 100%
+  .tabs
+    width: 100%
     display: flex
-    flex-direction: column
+    justify-content: space-between
     align-items: center
+    border-bottom: 1px solid #292d323f
+    font-size: 14px
+    margin-bottom: 12px
 
-    .logo
-      height: 50px
-
-    .slogan
-      width: 70%
-      font-weight: 600
-      font-size: 14px
-      text-align: center
-      color: $color-primary
-      margin-top: 6px
-
+    div
+      width: 100%
+      display: flex
+      align-items: center
+      justify-content: center
+      height: 34px
 
       span
+        cursor: pointer
+
+  .tab-content
+    height: auto
+
+    .first-step-title
+      font-size: 22px
+      color: $color-primary
+      text-align: center
+      margin: 30px 0
+      font-weight: bold
+
+      .alimentarize
+        font-size: 18px
+        font-weight: bold
         color: $color-secondary
 
-    .inputs
+    .box-options
       width: 100%
-      margin-top: 16px
       display: flex
-      flex-direction: column
-      height: 350px
-
-      .tabs
-        width: 100%
-        display: flex
-        justify-content: space-between
-        align-items: center
-        border-bottom: 1px solid #292d323f
-        font-size: 14px
-        margin-bottom: 12px
-
-        div
-          width: 100%
-          display: flex
-          align-items: center
-          justify-content: center
-          height: 34px
-
-          span
-            cursor: pointer
-
-      .tab-content
-        height: auto
-
-        .first-step-title
-          font-size: 22px
-          color: $color-primary
-          text-align: center
-          margin: 30px 0
-          font-weight: bold
-
-          .alimentarize
-            font-size: 18px
-            font-weight: bold
-            color: $color-secondary
-
-        .box-options
-          width: 100%
-          display: flex
-          align-items: center
-          justify-content: space-between
-          margin-top: 10px
-
-          .box-checkbox
-            width: 46%
-            display: flex
-            align-items: center
-            height: 30px
-
-            span
-              margin-right: 20px
-              font-size: 20px
-
-            input
-              cursor: pointer
-
-        .box-address
-          display: flex
-          flex-direction: column
-
-          .box-item, .box-cep
-            display: flex
-            flex-direction: column
-            width: 49%
-
-            span
-              margin-bottom: 6px
-              font-size: 16px
-              font-weight: 600
-
-          .box-cep, .box-cnpj
-            width: 100%
-
-          .box-address, .box-complement
-            width: 100%
-
-          .three-itens
-            width: 32%
-
-        .row
-          width: 100%
-          display: flex
-          justify-content: space-between
-
-    .box-buttons
-      width: 100%
-      height: 80px
-      display: flex
-      flex-direction: column
+      align-items: center
       justify-content: space-between
-      margin-top: 16px
+      margin-top: 10px
+
+      .box-checkbox
+        width: 46%
+        display: flex
+        align-items: center
+        height: 30px
+
+        span
+          margin-right: 20px
+          font-size: 20px
+
+        input
+          cursor: pointer
+
+    .box-address
+      display: flex
+      flex-direction: column
+
+      .box-item, .box-cep
+        display: flex
+        flex-direction: column
+        width: 49%
+
+        span
+          margin-bottom: 6px
+          font-size: 16px
+          font-weight: 600
+
+      .box-cep, .box-cnpj
+        width: 100%
+
+      .box-address, .box-complement
+        width: 100%
+
+      .three-itens
+        width: 32%
+
+    .row
+      width: 100%
+      display: flex
+      justify-content: space-between
+
+.box-buttons
+  width: 100%
+  height: 80px
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  margin-top: 16px
 
 
 

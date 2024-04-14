@@ -1,5 +1,5 @@
 $galaxy-fold-width: 280px
-$iphone-width: 390px
+$mobile-width: 390px
 $surface-width: 540px
 $ipad-width: 740px
 $desktop-width: 1224px
@@ -7,11 +7,11 @@ $large-desktop-width: 1600px
 
 
 @mixin galaxyFold()
-  @media (min-width: #{$galaxy-fold-width}) and (max-width: #{$iphone-width})
+  @media (min-width: #{$galaxy-fold-width}) and (max-width: #{$mobile-width})
     @content
 
-@mixin iphoneSize()
-  @media (min-width: #{$iphone-width}) and (max-width: #{$surface-width})
+@mixin mobile()
+  @media (min-width: #{$mobile-width}) and (max-width: #{$surface-width})
     @content
 
 @mixin surfaceSize()

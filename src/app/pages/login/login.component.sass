@@ -1,97 +1,171 @@
-@import './../../core/styles/variables'
-.container
+@import "variables"
+@import "medias"
+
+// .container
+//   width: 100%
+//   height: 100%
+//   padding: 4% 12% 4% 12%
+//   box-sizing: border-box
+//   display: flex
+//   justify-content: space-between
+//   align-items: center
+//   background: #ffffff
+
+//   @include mobile
+//     flex-direction: column
+//     padding: 2%
+
+//   .box-image
+//     width: 40%
+//     height: 100%
+
+//     img
+//       width: 100%
+//       height: 100%
+
+//   .box-forms
+//     width: 40%
+//     height: 80%
+//     display: flex
+//     flex-direction: column
+//     align-items: center
+
+//     @include mobile
+//       width: 100%
+//       height: 50%
+
+//     .logo
+//       height: 80px
+
+//     .slogan
+//       width: 70%
+//       font-weight: 600
+//       font-size: 24px
+//       text-align: center
+//       color: $color-primary
+//       margin-top: 23px
+
+
+//       span
+//         color: $color-secondary
+
+//     .inputs
+//       width: 100%
+//       height: 23%
+//       margin-top: 30px
+//       display: flex
+//       flex-direction: column
+//       justify-content: space-between
+
+//     .box-remember, .box-register
+//       width: 100%
+//       display: flex
+//       justify-content: space-between
+//       margin-top: 20px
+
+//       .remember
+//         display: flex
+//         align-items: flex-end
+
+//         input
+//           margin-right: 12px
+//           width: 20px
+//           height: 20px
+//           cursor: pointer
+
+
+//         span
+//           font-weight: 600
+//           font-size: 14px
+//           color: #032D23
+
+//       .remeber-password
+//         color: $color-secondary
+//         font-size: 14px
+//         cursor: pointer
+//         font-weight: 600
+
+
+//     .box-button
+//       width: 100%
+//       margin-top: 55px
+
+//     .box-register
+//       span, a
+//         color: $color-primary
+//         font-weight: 400
+//         font-size: 16px
+//         font-weight: 600
+
+//       a
+//         color: $color-secondary
+//         cursor: pointer
+
+
+
+
+.box-forms
   width: 100%
-  height: 100%
-  padding: 4% 12% 4% 12%
-  box-sizing: border-box
+  height: 80%
   display: flex
-  justify-content: space-between
+  flex-direction: column
   align-items: center
-  background: #ffffff
 
-  .box-image
-    width: 40%
-    height: 100%
+  @include mobile
+    width: 100%
+    height: 50%
 
-    img
-      width: 100%
-      height: 100%
+    span
+      color: $color-secondary
 
-  .box-forms
-    width: 40%
-    height: 80%
+  .inputs
+    width: 100%
+    height: 23%
+    margin-top: 30px
     display: flex
     flex-direction: column
-    align-items: center
+    justify-content: space-between
 
-    .logo
-      height: 80px
+  .box-remember, .box-register
+    width: 100%
+    display: flex
+    justify-content: space-between
+    margin-top: 30px
 
-    .slogan
-      width: 70%
-      font-weight: 600
-      font-size: 24px
-      text-align: center
-      color: $color-primary
-      margin-top: 23px
+    .remember
+      display: flex
+      align-items: flex-end
+
+      input
+        margin-right: 12px
+        width: 20px
+        height: 20px
+        cursor: pointer
 
 
       span
-        color: $color-secondary
-
-    .inputs
-      width: 100%
-      height: 23%
-      margin-top: 30px
-      display: flex
-      flex-direction: column
-      justify-content: space-between
-
-    .box-remember, .box-register
-      width: 100%
-      display: flex
-      justify-content: space-between
-      margin-top: 20px
-
-      .remember
-        display: flex
-        align-items: flex-end
-
-        input
-          margin-right: 12px
-          width: 20px
-          height: 20px
-          cursor: pointer
-
-
-        span
-          font-weight: 600
-          font-size: 14px
-          color: #032D23
-
-      .remeber-password
-        color: $color-secondary
+        font-weight: 600
         font-size: 14px
-        cursor: pointer
-        font-weight: 600
+        color: #032D23
+
+    .remeber-password
+      color: $color-secondary
+      font-size: 14px
+      cursor: pointer
+      font-weight: 600
 
 
-    .box-button
-      width: 100%
-      margin-top: 55px
+  .box-button
+    width: 100%
+    margin-top: 35px
 
-    .box-register
-      span, a
-        color: $color-primary
-        font-weight: 400
-        font-size: 16px
-        font-weight: 600
+  .box-register
+    span, a
+      color: $color-primary
+      font-weight: 400
+      font-size: 16px
+      font-weight: 600
 
-      a
-        color: $color-secondary
-        cursor: pointer
-
-
-
-
-
+    a
+      color: $color-secondary
+      cursor: pointer

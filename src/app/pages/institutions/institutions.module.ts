@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { InstitutionsRoutingModule } from './institutions-routing.module';
 import { InstitutionsComponent } from './institutions.component';
-import { LeftBarModule } from 'src/app/shared/left-bar/left-bar.module';
-import { HeaderModule } from 'src/app/shared/header/header.module';
-import { CardInstitutionModule } from 'src/app/shared/card-institution/card-institution.module';
+import { LeftBarModule } from 'src/app/shared/components/left-bar/left-bar.module';
+import { HeaderModule } from 'src/app/shared/components/header/header.module';
+import { CardInstitutionModule } from 'src/app/shared/components/card-institution/card-institution.module';
 
 @NgModule({
   declarations: [InstitutionsComponent],

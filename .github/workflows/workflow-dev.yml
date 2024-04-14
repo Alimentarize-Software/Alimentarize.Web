@@ -1,11 +1,10 @@
-name: pipeline - dev
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+name: CI-CD
 on:
   push:
     branches:
       - develop
 jobs:
-  build:
+  CI:
     runs-on: windows-latest
     steps:
       - name: Checkout code
@@ -20,3 +19,7 @@ jobs:
         run: npm install
           npm run build
           npx cypress run
+
+  CD:
+    runs-on: windows-latest
+    steps:
