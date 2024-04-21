@@ -5,6 +5,8 @@ import { LeftBarModule } from 'src/app/shared/components/left-bar/left-bar.modul
 import { HeaderModule } from 'src/app/shared/components/header/header.module';
 import { CardModule } from 'src/app/shared/components/card/card.module';
 import { ButtonModule } from 'src/app/shared/components/button/button.module';
+import { ReceiverRoutingModule } from './receiver-routing.module';
+import { ConfigurationComponent } from './pages/configuration/configuration.component';
 
 @NgModule({
   declarations: [ReceiverComponent],
@@ -14,6 +16,7 @@ import { ButtonModule } from 'src/app/shared/components/button/button.module';
     HeaderModule,
     CardModule,
     ButtonModule,
+    ReceiverRoutingModule,
   ],
   exports: [ReceiverComponent],
 })

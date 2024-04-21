@@ -7,15 +7,10 @@ import { authGuard } from './core/guard/auth.guard';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { RememberPasswordComponent } from './pages/remember-password/remember-password.component';
 import { RedefinePasswordComponent } from './pages/redefine-password/redefine-password.component';
-import { InstitutionsComponent } from './pages/institutions/institutions.component';
-import { HomeComponent } from './pages/home/home.component';
+import { donorGuard } from './core/guard/donor.guard';
+import { institutionGuard } from './core/guard/institution.guard';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   pathMatch: 'full',
-  //   redirectTo: 'inicio'
-  // },
   {
     path: 'login',
     pathMatch: 'full',
@@ -28,22 +23,23 @@ const routes: Routes = [
   {
     path: '',
     component: MainComponent,
+    canActivate: [authGuard],
     children: [
       {
-        path: '',
-        component: HomeComponent,
-        canActivate: [authGuard],
+        path: 'instituicao',
+        loadChildren: () =>
+          import('./pages/receiver/receiver.module').then(
+            (m) => m.ReceiverModule
+          ),
+        canActivate: [institutionGuard],
       },
       {
-        path: 'instituicoes',
+        path: 'doador',
         loadChildren: () =>
-          import('./pages/institutions/institutions.module').then(
-            (m) => m.InstitutionsModule
-          ),
-        component: InstitutionsComponent,
+          import('./pages/giver/giver.module').then((m) => m.GiverModule),
+        canActivate: [donorGuard],
       },
     ],
-    canActivate: [authGuard],
   },
   {
     path: 'esqueci-senha',

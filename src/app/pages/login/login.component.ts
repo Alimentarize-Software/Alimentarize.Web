@@ -25,11 +25,19 @@ export class LoginComponent implements OnInit {
     this.authService.auth(this.user).subscribe({
       next: (data) => {
         this.loading = true;
-        setTimeout(() => {
-          localStorage.setItem('token', data.token);
-          this.router.navigateByUrl('/');
-          this.loading = false;
-        }, 2000);
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('typeUser', 'donor');
+
+        let typeUser = localStorage.getItem('typeUser');
+        if (typeUser === 'donor') {
+          console.log('Doador');
+          this.router.navigateByUrl('doador');
+        } else if (typeUser === 'institution') {
+          console.log('instituicao');
+          this.router.navigateByUrl('instituicao');
+        }
+
+        this.loading = false;
       },
       error: (err) => {
         console.log('Deu ruim');

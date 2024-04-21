@@ -3,47 +3,19 @@
     <img src="assets/icons/logo.svg" alt="" class="logo" />
   </div>
   <div class="box-itens">
-    <div
-      class="item"
-      routerLinkActive="router-link-active"
-      [routerLinkActiveOptions]="{ exact: true }"
-      [routerLink]="['/']"
-    >
-      <img src="assets/icons/home.svg" alt="" />
-      <span>Dashboard</span>
-    </div>
-
-    <div
-      class="item"
-      routerLinkActive="router-link-active"
-      [routerLinkActiveOptions]="{ exact: true }"
-      [routerLink]="['/instituicoes']"
-    >
-      <img src="assets/icons/house.svg" alt="" />
-      <span>Instituições</span>
-    </div>
-
-    <div
-      class="item"
-      routerLinkActive="router-link-active"
-      [routerLinkActiveOptions]="{ exact: true }"
-      [routerLink]="['/routePath']"
-    >
-      <img src="assets/icons/setting.svg" alt="" />
-      <span>Configurações</span>
-    </div>
-  </div>
-
-  <div class="box-close">
-    <!-- <h1>Perfil</h1>
-    <div class="box-image-profile">
-      <img src="assets/images/ordones.png" alt="" />
-      <div class="box-name-and-email">
-        <span>{{ nameUser }}</span>
-        <span>{{ emailUser }}</span>
+    <ng-container *ngFor="let option of menuOptions">
+      <div
+        class="item"
+        routerLinkActive="router-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        [routerLink]="[option.path]"
+      >
+        <img [src]="option.src" alt="" />
+        <span>{{ option.label }}</span>
       </div>
-    </div> -->
-
+    </ng-container>
+  </div>
+  <div class="box-close">
     <div class="box-button">
       <app-button
         tipo="primary"

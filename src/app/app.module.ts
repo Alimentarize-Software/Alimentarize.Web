@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FoodConsultingComponent } from './pages/food-consulting/food-consulting.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginModule } from './pages/login/login.module';
 import { RouterModule } from '@angular/router';
@@ -19,7 +18,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptor/interpcetor.interceptor';
 
 @NgModule({
-  declarations: [AppComponent, FoodConsultingComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
