@@ -16,7 +16,7 @@ describe('Test E2E Login', () => {
       .find('img')
       .should('have.attr', 'src', 'assets/images/banner-login.png');
 
-    cy.get('.slogan').should('contain', 'doados, vidas alimentadas');
+    cy.get('.slogan').should('contain', 'doados, comunidades alimentadas');
     cy.get('.slogan').find('span').should('have.text', 'Alimentos');
     cy.get('[data-cy=email]').should('have.attr', 'placeholder', 'E-mail');
     cy.get('[data-cy=password]').should('have.attr', 'placeholder', 'Senha');

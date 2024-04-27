@@ -4,25 +4,22 @@
 .container
   width: 100%
   height: 100%
-  padding: 3% 12% 3% 12%
-  box-sizing: border-box
   display: flex
-  justify-content: space-between
   align-items: center
   background: #ffffff
 
-  @include mobile
+  @include desktop
     justify-content: center
 
-  @include mobile
+  @include desktop
     flex-direction: column
     padding: 2%
 
   .box-image
-    width: 40%
-    height: 100%
+    width: 50%
+    height: 100vh
 
-    @include mobile
+    @include desktop
       width: 100%
       height: 40%
       display: none
@@ -32,18 +29,18 @@
       height: 100%
 
   .container-forms
-    width: 40%
-    height: 80%
+    width: 50%
+    height: 100vh
     display: flex
     flex-direction: column
     align-items: center
     justify-content: center
 
-    @include mobile
+    @include desktop
       width: 100%
 
     .logo
-      height: 80px
+      height: 6rem
 
     .slogan
       width: 70%
@@ -57,6 +54,6 @@
         color: $color-secondary
         font-weight: 600
 
-      @include mobile
-        font-size: 16px
+      @include desktop
+        font-size: 18px
         margin-top: 16px
