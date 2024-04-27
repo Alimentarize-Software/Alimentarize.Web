@@ -7,6 +7,7 @@ import { CardModule } from 'src/app/shared/components/card/card.module';
 import { ButtonModule } from 'src/app/shared/components/button/button.module';
 import { TableModule } from 'src/app/shared/components/table/table.module';
 import { RouterModule } from '@angular/router';
+import { BreadcrumbModule } from 'src/app/shared/components/breadcrumb/breadcrumb.module';
 
 @NgModule({
   declarations: [MainComponent],
@@ -18,6 +19,7 @@ import { RouterModule } from '@angular/router';
     ButtonModule,
     TableModule,
     RouterModule,
+    BreadcrumbModule,
   ],
   exports: [MainComponent],
 })

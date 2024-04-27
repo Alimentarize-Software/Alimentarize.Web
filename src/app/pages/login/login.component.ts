@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
         this.loading = false;
       },
       error: (err) => {
-        console.log('Deu ruim');
         this.loadingButton = false;
       },
     });

@@ -29,7 +29,7 @@ export class ButtonComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('Mudou', changes);
+    // console.log('Mudou', changes);
   }
   public onClick(): void {
     if (!this.disabled) {

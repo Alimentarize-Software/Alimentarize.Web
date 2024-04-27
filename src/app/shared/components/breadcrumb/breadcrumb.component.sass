@@ -1,0 +1,87 @@
+ul li
+  list-style-type: none
+  display: inline
+  font-size: 10px
+  font-weight: 300
+
+a
+  text-decoration: none
+  color: black
+
+
+.last
+  font-weight: 400
+
+
+.link-pages
+  margin-bottom: 10px
+
+
+.breadcrumb-item
+  display: flex
+
+  // The separator between breadcrumbs (by default, a forward-slash: "/")
+  + .breadcrumb-item
+    padding-left: 0.2rem
+
+    &::before
+      display: inline-block // Suppress underlining of the separator in modern browsers
+      padding-right: 0.2rem
+      content: ">"
+
+
+
+  + .breadcrumb-item:hover::before
+    text-decoration: underline
+
+  // stylelint-disable-next-line no-duplicate-selectors
+  + .breadcrumb-item:hover::before
+    text-decoration: none
+
+
+  &.active
+    color: #0056b3
+
+
+
+.container-breadcrumbs
+  width: 100%
+  margin-bottom: 30px
+
+
+.navigation
+  font-size: 10px
+
+
+.title-breadcrumbs
+  font-weight: 300
+  font-size: 24px
+  line-height: 20px
+  color: #1D1D1B
+
+
+@media only screen and (max-width: 690px)
+  .container-breadcrumbs
+    padding: 20.51px 0 20px 28px
+    position: fixed
+    top: 71.17px
+    left: 0
+
+    margin-bottom: 200px
+
+    z-index: 9
+    background-color: white
+
+  .title-breadcrumbs
+    font-size: 18px
+
+
+
+@media only screen and (min-width: 690px)
+  .container-breadcrumbs
+    padding-left: 60px
+
+  .title-breadcrumbs
+    font-size: 24px
+
+
