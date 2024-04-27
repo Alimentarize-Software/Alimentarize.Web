@@ -1,4 +1,21 @@
 <div class="search-container">
-  <input type="text" placeholder="Pesquisar instituição" />
+  <input
+    type="text"
+    placeholder="Pesquisar instituição"
+    (change)="changeValueInput($event)"
+  />
   <img src="assets/icons/search.svg" alt="" />
+
+  <ng-container *ngIf="results.length > 0">
+    <ng-container *ngFor="let result of results">
+      <div class="box-results">
+        <ul>
+          <li>Iprede</li>
+          <li>São Francisco</li>
+          <li>Iprede</li>
+          <li>São Francisco</li>
+        </ul>
+      </div>
+    </ng-container>
+  </ng-container>
 </div>
