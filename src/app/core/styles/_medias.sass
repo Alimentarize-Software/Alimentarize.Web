@@ -1,32 +1,46 @@
-$galaxy-fold-width: 280px
-$mobile-width: 360px
-$surface-width: 540px
-$ipad-width: 740px
-$desktop-width: 1224px
-$large-desktop-width: 1600px
+@use "sass:map"
+
+$small-mobile: 280px
+$mobile: 490px
+$tablet: 740px
+$medium-tablet: 1040px
+$desktop: 1224px
+$large-desktop: 1600px
+
+
+$breakpoints: ("small-mobile": $small-mobile, "mobile": $mobile, "tablet": $tablet, "medium-tablet": $medium-tablet, "$desktop": $desktop, "$large-desktop": $large-desktop)
 
 
 @mixin galaxyFold()
-  @media (min-width: #{$galaxy-fold-width}) and (max-width: #{$mobile-width})
+  @media (min-width: #{$small-mobile}) and (max-width: #{$mobile})
     @content
 
 @mixin mobile()
-  @media (min-width: #{$mobile-width}) and (max-width: #{$surface-width})
+  @media (min-width: #{$mobile}) and (max-width: #{$tablet})
     @content
 
 @mixin surfaceSize()
-  @media (min-width: #{$surface-width}) and (max-width: #{$ipad-width})
+  @media (min-width: #{$tablet}) and (max-width: #{$medium-tablet})
     @content
 
 @mixin ipadSize()
-  @media (min-width: #{$ipad-width}) and (max-width: #{$desktop-width})
+  @media (min-width: #{$medium-tablet}) and (max-width: #{$desktop})
     @content
 
 @mixin desktop()
-  @media (min-width: #{$desktop-width}) and (max-width: #{$large-desktop-width})
+  @media (min-width: #{$desktop}) and (max-width: #{$large-desktop})
     @content
 
 @mixin largeDesktop()
-  @media (min-width: #{$large-desktop-width}) and (max-width: 4000px)
+  @media (min-width: #{$large-desktop}) and (max-width: 4000px)
     @content
+
+@mixin media($keys...)
+  @each $key in $keys
+    @media (max-width: map.get($breakpoints, $key))
+      @content
+
+
+
+
 
