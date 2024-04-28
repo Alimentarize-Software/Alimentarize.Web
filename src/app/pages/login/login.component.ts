@@ -26,17 +26,25 @@ export class LoginComponent implements OnInit {
       next: (data) => {
         this.loading = true;
         localStorage.setItem('token', data.token);
-        localStorage.setItem('typeUser', 'donor');
 
-        let typeUser = localStorage.getItem('typeUser');
-        if (typeUser === 'donor') {
-          console.log('Doador');
-          this.router.navigateByUrl('doador');
-        } else if (typeUser === 'institution') {
-          console.log('instituicao');
-          this.router.navigateByUrl('instituicao');
+        if (data.type === 'donor') {
+          this.authService.getInfoUser('donor', this.user.email).subscribe({
+            next: (data) => {
+              console.log('Dados do doador: ', data);
+              localStorage.setItem('typeUser', 'donor');
+              this.router.navigateByUrl('doador');
+            },
+          });
+        } else if (data.type === 'receiver') {
+          this.authService.getInfoUser('receiver', this.user.email).subscribe({
+            next: (data) => {
+              console.log('Dados da instituição: ', data);
+              this.router.navigateByUrl('instituicao');
+              localStorage.setItem('typeUser', 'receiver');
+              console.log('Dveria ter chamado');
+            },
+          });
         }
-
         this.loading = false;
       },
       error: (err) => {
