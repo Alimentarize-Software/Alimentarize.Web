@@ -6,6 +6,7 @@
   height: 100%
   display: flex
   align-items: center
+  justify-content: space-between
   background: #ffffff
 
   @include media(medium-tablet)
@@ -16,8 +17,8 @@
     padding: 2%
 
   .box-image
-    width: 50%
-    height: 100vh
+    height: 98vh
+    width: 49%
 
     @include media(medium-tablet)
       width: 100%
@@ -29,7 +30,7 @@
       height: 100%
 
   .container-forms
-    width: 50%
+    width: 49%
     height: 100vh
     display: flex
     justify-content: center
@@ -38,6 +39,8 @@
     overflow-y: scroll
     margin-right: 3rem
     margin-left: 3rem
+    padding-right: 16px
+    box-sizing: border-box
 
     @include media(medium-tablet)
       width: 100%
