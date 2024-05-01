@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.development';
 import { AuthResponse } from '../model/user';
+
+type UserType = 'donor' | 'receiver';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -28,5 +31,10 @@ export class AuthService {
 
   canActivate(currentUser: number): boolean {
     return this.isLogin();
+  }
+
+  getInfoUser(type: string, email: string) {
+    const endpoint = type === 'receiver' ? 'receiver' : 'donor';
+    return this.httpClient.get(`${environment.baseUrl}/${endpoint}/${email}`);
   }
 }
