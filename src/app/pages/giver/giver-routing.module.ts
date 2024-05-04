@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { InstitutionsComponent } from './pages/institutions/institutions.component';
 import { GiverComponent } from './giver.component';
 
 const routes: Routes = [
   {
     path: '',
+    data: { breadcrumb: 'Home' },
     children: [
       {
         path: '',
@@ -14,8 +14,10 @@ const routes: Routes = [
       },
       {
         path: 'instituicoes',
-        component: InstitutionsComponent,
-      },
+        loadChildren: () =>
+          import('./pages/institutions/institutions.module').then((m) => m.InstitutionsModule),
+          data: { breadcrumb: 'Instituições' }
+      }
     ],
   },
 ];

@@ -27,9 +27,10 @@ export class BreadcrumbComponent implements OnInit {
           childrenRoutes.forEach((routes: any) => {
             if (routes.outlet === 'primary') {
               const routeSnapshot = routes.snapshot;
-              url +=
-                '/' +
-                routeSnapshot.url.map((segment: any) => segment.path).join('/');
+              const segments = routeSnapshot.url.map((segment: any) => segment.path);
+              if (segments.length > 0) {
+                url += '/' + segments.join('/');
+              }
               if (routes.snapshot.data.breadcrumb !== undefined) {
                 let status = true;
                 if (routes.snapshot.data.status !== undefined) {
@@ -48,6 +49,8 @@ export class BreadcrumbComponent implements OnInit {
             }
           });
         } while (currentRoute);
+        console.log(this.breadcrumbs)
+
       }
     });
   }

@@ -1,3 +1,42 @@
 <div class="container-institution">
-  <h1>TESTE DE INSTITUIÇÃO</h1>
+  <div>
+    <h3>Filtros</h3>
+    <div class="filter">
+      <div class="filter-options">
+        <div class="option">
+          <input type="checkbox" />
+          <span>Crianças</span>
+        </div>
+        <div class="option">
+          <input type="checkbox" />
+          <span>Adolescentes</span>
+        </div>
+        <div class="option">
+          <input type="checkbox" />
+          <span>Mulheres</span>
+        </div>
+        <div class="option">
+          <input type="checkbox" />
+          <span>Idosos</span>
+        </div>
+        <div class="option">
+          <input type="checkbox" />
+          <span>Autistas</span>
+        </div>
+      </div>
+      <div class="show-more">
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="15" height="15" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" d="M 11 2 L 11 11 L 2 11 L 2 13 L 11 13 L 11 22 L 13 22 L 13 13 L 22 13 L 22 11 L 13 11 L 13 2 Z"></path>
+        </svg>
+        <button>
+          Mostrar mais
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="cards">
+    <ng-container *ngFor="let institution of institutions.data">
+      <app-card-institution [card]="institution"></app-card-institution>
+    </ng-container>
+  </div>
 </div>

@@ -6,6 +6,7 @@ import { InstitutionsComponent } from './institutions.component';
 import { LeftBarModule } from 'src/app/shared/components/left-bar/left-bar.module';
 import { HeaderModule } from 'src/app/shared/components/header/header.module';
 import { CardInstitutionModule } from 'src/app/shared/components/card-institution/card-institution.module';
+import { BreadcrumbModule } from 'src/app/shared/components/breadcrumb/breadcrumb.module';
 
 @NgModule({
   declarations: [InstitutionsComponent],
@@ -15,6 +16,7 @@ import { CardInstitutionModule } from 'src/app/shared/components/card-institutio
     LeftBarModule,
     HeaderModule,
     CardInstitutionModule,
+    BreadcrumbModule,
   ],
   exports: [InstitutionsComponent],
 })

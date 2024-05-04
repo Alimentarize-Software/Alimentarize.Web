@@ -24,8 +24,6 @@ export class LeftBarComponent implements OnInit {
     } else if (userType === 'institution') {
       this.menuOptions = InstitutionMenu;
     }
-
-    console.log(this.menuOptions);
   }
   public logout() {
     localStorage.removeItem('token');

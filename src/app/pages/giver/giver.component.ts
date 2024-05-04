@@ -11,7 +11,7 @@ export class GiverComponent implements OnInit {
   constructor(private giverService: GiverService) {}
   institutions: InstitutionResponse = {} as InstitutionResponse;
   ngOnInit(): void {
-    this.giverService.getLatestIntitution().subscribe({
+    this.giverService.getLatestInstitution().subscribe({
       next: (data: InstitutionResponse) => {
         this.institutions = data;
       },

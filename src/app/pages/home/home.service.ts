@@ -12,7 +12,7 @@ export class HomeService {
 
   constructor(private router: Router) {}
 
-  getLatestIntitution() {
+  getLatestInstitution() {
     this.$mock.next(mock);
 
     return this.$mock;

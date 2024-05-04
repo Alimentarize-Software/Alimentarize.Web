@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
   constructor(private homeService: HomeService) {}
   institutions: InstitutionResponse = {} as InstitutionResponse;
   ngOnInit(): void {
-    this.homeService.getLatestIntitution().subscribe({
+    this.homeService.getLatestInstitution().subscribe({
       next: (data: InstitutionResponse) => {
         this.institutions = data;
       },
