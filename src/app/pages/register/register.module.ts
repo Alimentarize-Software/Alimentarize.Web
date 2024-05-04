@@ -4,7 +4,7 @@ import { InputModule } from 'src/app/shared/components/input/input.module';
 import { ButtonModule } from 'src/app/shared/components/button/button.module';
 import { RouterModule } from '@angular/router';
 import { RegisterComponent } from './register.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutImageFormsModule } from 'src/app/shared/layout/layout-image-forms/layout-image-forms.module';
 
 @NgModule({
@@ -16,6 +16,8 @@ import { LayoutImageFormsModule } from 'src/app/shared/layout/layout-image-forms
     RouterModule,
     FormsModule,
     LayoutImageFormsModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   exports: [RegisterComponent],
 })
