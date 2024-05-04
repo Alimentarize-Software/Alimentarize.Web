@@ -1,6 +1,11 @@
 <app-layout-image-forms>
   <div class="box-forms">
-    <form class="inputs" action="/form" autocomplete="off">
+    <form
+      [formGroup]="control"
+      class="inputs"
+      action="/form"
+      autocomplete="off"
+    >
       <div class="tabs">
         <div
           (click)="setCurrentTab('tab1')"
@@ -37,10 +42,11 @@
             <div class="box-checkbox">
               <input
                 type="radio"
-                name="institution"
-                id="institution"
+                name="typeInstitution"
+                id="receiver"
                 value="receiver"
-                [(ngModel)]="typeInstitution"
+                formControlName="typeInstitution"
+                checked
               />
               <span>Serei uma instituição</span>
             </div>
@@ -48,10 +54,11 @@
             <div class="box-checkbox">
               <input
                 type="radio"
-                name="institution"
-                id="institution"
+                id="donor"
+                name="typeInstitution"
+                id="typeInstitution"
                 value="donor"
-                [(ngModel)]="typeInstitution"
+                formControlName="typeInstitution"
               />
               <span>Serei um doador</span>
             </div>
@@ -63,35 +70,40 @@
             placeholder="Nome da instituição"
             name="name"
             ngDefaultControl
-            [(ngModel)]="user.name"
+            formControlName="name"
+            [model]="control.get('name')?.value"
           ></app-input>
           <app-input
             type="text"
             placeholder="Telefone"
-            name="number"
+            name="phoneNumber"
             ngDefaultControl
-            [(ngModel)]="user.phoneNumber"
+            formControlName="phoneNumber"
+            [model]="control.get('phoneNumber')?.value"
           ></app-input>
           <app-input
             type="Email"
             placeholder="E-mail"
             name="email"
             ngDefaultControl
-            [(ngModel)]="user.email"
+            formControlName="email"
+            [model]="control.get('email')?.value"
           ></app-input>
           <app-input
             type="password"
             placeholder="Confirmar senha"
-            name="senha"
+            name="password"
             ngDefaultControl
-            [(ngModel)]="user.password"
+            formControlName="password"
+            [model]="control.get('password')?.value"
           ></app-input>
           <app-input
             type="password"
             placeholder="Senha"
-            name="Confirmar Senha"
+            name="confirmPassword"
             ngDefaultControl
-            [(ngModel)]="confirmPassword"
+            formControlName="confirmPassword"
+            [model]="control.get('confirmPassword')?.value"
           ></app-input>
         </ng-container>
         <ng-container *ngIf="currentTab === 'tab3'">
@@ -103,8 +115,9 @@
                   placeholder="CEP"
                   name="cep"
                   ngDefaultControl
-                  [(ngModel)]="user.cep"
+                  formControlName="cep"
                   (onBlur)="onBlur($event)"
+                  [model]="control.get('cep')?.value"
                 ></app-input>
               </div>
             </div>
@@ -113,30 +126,30 @@
                 <app-input
                   type="text"
                   placeholder="Cidade"
-                  name="cidade"
+                  name="city"
                   ngDefaultControl
-                  [(ngModel)]="user.city"
-                  [value]="user.city"
+                  formControlName="city"
+                  [model]="control.get('city')?.value"
                 ></app-input>
               </div>
               <div class="box-item three-itens">
                 <app-input
                   type="text"
                   placeholder="Estado"
-                  name="estado"
+                  name="state"
                   ngDefaultControl
-                  [(ngModel)]="user.state"
-                  [value]="user.state"
+                  formControlName="state"
+                  [model]="control.get('state')?.value"
                 ></app-input>
               </div>
               <div class="box-item three-itens">
                 <app-input
                   type="text"
                   placeholder="Bairro"
-                  name="bairro"
+                  name="neighborhood"
                   ngDefaultControl
-                  [(ngModel)]="user.neighborhood"
-                  [value]="user.neighborhood"
+                  formControlName="neighborhood"
+                  [model]="control.get('neighborhood')?.value"
                 ></app-input>
               </div>
             </div>
@@ -146,10 +159,10 @@
                 <app-input
                   type="text"
                   placeholder="Endereço"
-                  name="endereço"
+                  name="address"
                   ngDefaultControl
-                  [(ngModel)]="user.address"
-                  [value]="user.address"
+                  formControlName="address"
+                  [model]="control.get('address')?.value"
                 ></app-input>
               </div>
             </div>
@@ -158,9 +171,10 @@
               <app-input
                 type="text"
                 placeholder="Complemento"
-                name="complemento"
+                name="addressAlias"
                 ngDefaultControl
-                [(ngModel)]="user.addressAlias"
+                formControlName="addressAlias"
+                [model]="control.get('addressAlias')?.value"
               ></app-input>
             </div>
           </div>
@@ -175,8 +189,9 @@
                   placeholder="Digite o número"
                   name="legalPurpose"
                   ngDefaultControl
-                  [(ngModel)]="user.legalPurpose"
+                  formControlName="legalPurpose"
                   (onBlur)="onBlur($event)"
+                  [model]="control.get('legalPurpose')?.value"
                 ></app-input>
               </div>
             </div>
@@ -188,8 +203,8 @@
                   placeholder="CNPJ"
                   name="cnpj"
                   ngDefaultControl
-                  [(ngModel)]="user.cnpj"
-                  [value]="user.cnpj"
+                  formControlName="cnpj"
+                  [model]="control.get('cnpj')?.value"
                 ></app-input>
               </div>
               <div class="box-item">
@@ -197,10 +212,10 @@
                 <app-input
                   type="text"
                   placeholder="Data de criação"
-                  name="estado"
+                  name="legalDateCreate"
                   ngDefaultControl
-                  [(ngModel)]="user.legalDateCreate"
-                  [value]="user.legalDateCreate"
+                  formControlName="legalDateCreate"
+                  [model]="control.get('legalDateCreate')?.value"
                 ></app-input>
               </div>
             </div>
@@ -212,8 +227,8 @@
                   placeholder="Digite a natureza jurídica da instituição"
                   name="legalNature"
                   ngDefaultControl
-                  [(ngModel)]="user.legalNature"
-                  [value]="user.legalNature"
+                  formControlName="legalNature"
+                  [model]="control.get('legalNature')?.value"
                 ></app-input>
               </div>
             </div>
@@ -221,7 +236,11 @@
         </ng-container>
       </div>
       <div class="box-buttons">
-        <app-button tipo="primary" width="360px" (click)="register()"
+        <app-button
+          tipo="primary"
+          width="360px"
+          (click)="register()"
+          [disabled]="!formIsValid"
           >Criar conta</app-button
         >
         <app-button tipo="secondary" width="360px" [routerLink]="['/']"

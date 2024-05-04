@@ -39,10 +39,14 @@ export class ButtonComponent implements OnInit, OnChanges {
 
   public get tema() {
     return {
-      'botao-primario': this.tipo.toLowerCase() === 'primary',
-      'botao-secundario': this.tipo.toLowerCase() === 'secondary',
-      'botao-terciario': this.tipo.toLowerCase() === 'tertiary',
+      'botao-primario':
+        this.tipo.toLowerCase() === 'primary' && this.disabled === false,
+      'botao-secundario':
+        this.tipo.toLowerCase() === 'secondary' && this.disabled === false,
+      'botao-terciario':
+        this.tipo.toLowerCase() === 'tertiary' && this.disabled === false,
       'exibe-em-bloco': this.exibeEmBloco === true,
+      disabled: this.disabled === true,
       notification: this.notificacao > 0,
     };
   }

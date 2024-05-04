@@ -9,7 +9,7 @@ export const DonorMenu: Menu[] = [
   {
     label: 'Instituições',
     path: '/doador/instituicoes',
-    src: 'assets/icons/home.svg',
+    src: 'assets/icons/house.svg',
   },
 ];
 
