@@ -6,11 +6,19 @@ import { InstitutionComponent } from './components/institution/institution.compo
 const routes: Routes = [
   {
     path: '',
-    component: InstitutionsComponent,
     children: [
       {
+        path: '',
+        component: InstitutionsComponent,
+      },
+
+      {
         path: 'instituicao/:id',
-        component: InstitutionComponent,
+        loadChildren: () =>
+          import('./components/institution/institution.module').then(
+            (m) => m.InstitutionModule
+          ),
+        data: { breadcrumb: 'Instituição' },
       },
     ],
   },

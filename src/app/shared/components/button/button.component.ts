@@ -7,6 +7,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { CustomColor } from './button';
 
 @Component({
   selector: 'app-button',
@@ -18,11 +19,13 @@ export class ButtonComponent implements OnInit, OnChanges {
   @Input() loading = false;
   @Input() disabled = false;
   @Input() exibeEmBloco = false;
-  @Input() tipo = '';
+  @Input() theme = '';
   @Input() width = '130px';
   @Input() pathIcon = '';
+  @Input() suffixIcon: string | null = null;
   @Input() onlyIcon = false;
   @Input() notificacao = 0;
+  @Input() customColor = {} as CustomColor;
 
   constructor() {}
 
@@ -40,11 +43,11 @@ export class ButtonComponent implements OnInit, OnChanges {
   public get tema() {
     return {
       'botao-primario':
-        this.tipo.toLowerCase() === 'primary' && this.disabled === false,
+        this.theme.toLowerCase() === 'primary' && this.disabled === false,
       'botao-secundario':
-        this.tipo.toLowerCase() === 'secondary' && this.disabled === false,
+        this.theme.toLowerCase() === 'secondary' && this.disabled === false,
       'botao-terciario':
-        this.tipo.toLowerCase() === 'tertiary' && this.disabled === false,
+        this.theme.toLowerCase() === 'tertiary' && this.disabled === false,
       'exibe-em-bloco': this.exibeEmBloco === true,
       disabled: this.disabled === true,
       notification: this.notificacao > 0,

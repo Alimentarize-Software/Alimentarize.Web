@@ -1,0 +1,158 @@
+@import "variables"
+@import "medias"
+
+.container-intitution
+  width: 100%
+  background: $color-white
+  display: flex
+  flex-direction: column
+  align-items: center
+  position: relative
+  padding: 32px 88px 32px 32px
+  box-sizing: border-box
+  border-radius: 8px
+
+  .media
+    position: absolute
+    top: 26px
+    right: 10px
+    display: flex
+    flex-direction: column
+
+    img
+      cursor: pointer
+      opacity: 0.85
+
+      &:hover
+        opacity: 1
+
+  .box-header
+    width: 100%
+    display: flex
+    justify-content: space-between
+
+    .box-infos
+      display: flex
+
+      img
+        width: 48px
+        height: 48px
+        margin-right: 16px
+
+      .box-name-and-tags
+        display: flex
+        flex-direction: column
+
+        .name-institution
+          font-size: 16px
+          font-weight: bold
+
+        .box-tags
+          display: flex
+
+        .tag
+          margin-right: 8px
+          color: $color-text-gray
+
+    .box-button
+      width: 108px
+
+  .box-carousel
+    width: 100%
+    margin-top: 24px
+    display: flex
+    flex-direction: column
+    align-items: center
+
+    .box-image
+      height: 611px
+      width: 100%
+
+      @media screen screen and (max-width: 2000px), screen and (max-height: 1000px)
+        height: 90vh
+
+
+      img
+        height: 100%
+        width: 100%
+
+    .box-options-images
+      width: 241px
+      height: 60px
+      margin-top: 24px
+      display: flex
+      justify-content: space-between
+
+      .box-image
+        width: 70px
+        height: 60px
+        border-radius: 8px
+
+        &:first-child
+          border: 2px solid $color-primary
+
+
+        &:hover
+          transform: scale(1.05)
+          cursor: pointer
+
+        img
+          width: 100%
+          height: 100%
+          border-radius: 8px
+
+  .container-about
+    width: 100%
+    display: flex
+    flex-direction: column
+    margin-top: 80px
+
+    .what-have-we-done, .our-projects
+      display: flex
+      justify-content: center
+      align-items: center
+      background: $color-secondary
+      color: $color-white
+      width: 354px
+      height: 56px
+      border-radius: 96px
+
+    .our-impact
+      color: $color-primary
+      font-weight: bold
+      font-size: 54px
+      margin-top: 24px
+
+    .impact-description
+      font-size: 16px
+      margin-top: 16px
+      color: $color-black
+
+    .our-projects
+      background: $color-primary
+      margin-top: 24px
+
+    .box-projects
+      margin-top: 40px
+      display: flex
+      flex-direction: column
+
+      .project
+        width: 100%
+        display: flex
+        justify-content: space-between
+        margin-bottom: 32px
+        height: 400px
+
+        img
+          width: 50%
+
+        .box-title-and-description
+          width: 49%
+
+          h1
+            font-size: 32px
+            font-weight: bold
+            margin-bottom: 16px
+            line-height: 26px
+
