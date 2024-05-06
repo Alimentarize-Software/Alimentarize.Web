@@ -1,7 +1,7 @@
 <div class="donation-container">
     <div class="donation-filter">
         <div class="filter-left">
-            <h4>Alimentos que esta instituição necessita:</h4>
+            <h3>Alimentos que esta instituição necessita:</h3>
             <div class="filter-options">
                 <div class="filter-option">
                     <input type="checkbox" id="option1" name="option1" value="option1">
@@ -59,26 +59,60 @@
                         <label for="quantity">Nome do alimento</label>
                         <!-- image -->
                     </div>
-                    <input type="number" id="quantity" name="quantity">
+                    <app-input
+                        type="food-name"
+                        placeholder="Banana prata"
+                        name="food-name"
+                        ngDefaultControl
+                        data-cy="food-name"
+                    ></app-input>
                 </div>
                 <div class="weight">
                     <div class="weight-title">
-                        <label for="weigth">Peso</label>
+                        <label for="weight">Peso</label>
                         <!-- image -->
                     </div>
-                    <input type="number" id="weigth" name="weigth">
+                    <app-input
+                        type="food-weight"
+                        placeholder="25.7 Kg"
+                        name="food-weight"
+                        ngDefaultControl
+                        data-cy="food-weight"
+                    ></app-input>
                 </div>
             </div>
             <div class="buttons">
-                <app-button>Adicionar Alimento</app-button>
-                <app-button>Finalizar Doação</app-button>
+                <app-button 
+                theme="secondary"
+                width="360px"
+                data-cy="button-add-food">Adicionar Alimento</app-button>
+                <app-button 
+                theme="primary"
+                width="360px"
+                data-cy="button-end-donation">Finalizar Doação</app-button>
             </div>
         </div>
         <div class="right-box">
             <img src="../../../../../../../assets/images/donation-background-list.svg" alt="">
         </div>
     </div>
-    <div class="donation-subtitles">
-
+    <div class="filter-subtitles">
+        <div class="subtitles">
+            <p>Legenda</p>
+            <div class="filter-options">
+                <div class="filter-option">
+                    <input type="checkbox" id="option1" name="option1" value="option1">
+                    <label for="option1">Urgente</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="option1" name="option1" value="option1">
+                    <label for="option1">Urgente</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="option1" name="option1" value="option1">
+                    <label for="option1">Urgente</label>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
