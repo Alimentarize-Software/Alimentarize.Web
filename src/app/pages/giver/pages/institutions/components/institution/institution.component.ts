@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CustomColor } from 'src/app/shared/components/button/button';
 
 @Component({
@@ -59,13 +59,15 @@ export class InstitutionComponent {
     backgroundColor: '#A9320C',
   };
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   redirect(url: string) {
     window.open(url, '_blanck');
   }
 
   redirectPage() {
-    this.router.navigate([`/doador/instituicoes/doacao`]);
+    const currentId = this.route.snapshot.paramMap.get('id');
+ 
+    this.router.navigate([`/doador/instituicoes/instituicao/${currentId}/doacao`]);
   }
 }
