@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CustomColor } from 'src/app/shared/components/button/button';
 
 @Component({
@@ -58,7 +59,13 @@ export class InstitutionComponent {
     backgroundColor: '#A9320C',
   };
 
+  constructor(private router: Router) {}
+
   redirect(url: string) {
     window.open(url, '_blanck');
+  }
+
+  redirectPage() {
+    this.router.navigate([`/doador/instituicoes/doacao`]);
   }
 }

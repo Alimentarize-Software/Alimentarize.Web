@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-donation',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./donation.component.sass']
 })
 export class DonationComponent {
+  
+  constructor(private router: Router) {}
 
+  
 }

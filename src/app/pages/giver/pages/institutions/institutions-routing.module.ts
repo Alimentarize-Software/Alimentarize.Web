@@ -20,7 +20,7 @@ const routes: Routes = [
         data: { breadcrumb: 'Instituição' },
       },
       {
-        path: 'doacao/:id',
+        path: 'doacao',
         loadChildren: () =>
           import('./components/donation/donation.module').then(
             (m) => m.DonationModule
