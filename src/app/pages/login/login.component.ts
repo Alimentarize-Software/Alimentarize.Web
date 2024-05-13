@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/core/types/user';
+import { isValidEmail } from '../../utils/utils';
 
 @Component({
   selector: 'app-login',
@@ -52,4 +53,9 @@ export class LoginComponent implements OnInit {
       },
     });
   }
+
+  isValidEmail(): boolean {
+    return isValidEmail(this.user.email);
+  }
+
 }

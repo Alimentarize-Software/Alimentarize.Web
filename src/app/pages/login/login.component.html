@@ -94,6 +94,7 @@
     <div class="box-button">
       <app-button
         theme="primary"
+        [disabled]="!isValidEmail()"
         [loading]="loadingButton"
         width="360px"
         (click)="login()"
