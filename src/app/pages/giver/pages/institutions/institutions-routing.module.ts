@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InstitutionsComponent } from './institutions.component';
-import { InstitutionComponent } from './components/institution/institution.component';
 
 const routes: Routes = [
   {
@@ -19,6 +18,14 @@ const routes: Routes = [
             (m) => m.InstitutionModule
           ),
         data: { breadcrumb: 'Instituição' },
+      },
+      {
+        path: 'instituicao/:id/doacao',
+        loadChildren: () =>
+          import('./components/donation/donation.module').then(
+            (m) => m.DonationModule
+          ),
+        data: { breadcrumb: 'Doação' },
       },
     ],
   },
