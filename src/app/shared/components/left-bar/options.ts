@@ -2,14 +2,16 @@ import { Menu } from 'src/app/core/model/menuOptions';
 
 export const DonorMenu: Menu[] = [
   {
-    label: 'Dashboard',
-    path: '/doador',
+    label: 'Início',
+    path: '/doador/home',
     src: 'assets/icons/home.svg',
+    srcActive: 'assets/icons/home-white.svg',
   },
   {
     label: 'Instituições',
     path: '/doador/instituicoes',
     src: 'assets/icons/house.svg',
+    srcActive: 'assets/icons/house-white.svg',
   },
 ];
 
@@ -18,10 +20,12 @@ export const InstitutionMenu: Menu[] = [
     label: 'Dashboard',
     path: '/instituicao',
     src: 'assets/icons/home.svg',
+    srcActive: 'assets/icons/home-white.svg',
   },
   {
     label: 'Configurações',
     path: '/instituicao/configuracoes',
     src: 'assets/icons/setting.svg',
+    srcActive: 'assets/icons/home-white.svg',
   },
 ];

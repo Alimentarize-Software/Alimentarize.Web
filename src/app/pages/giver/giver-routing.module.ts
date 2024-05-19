@@ -5,20 +5,17 @@ import { GiverComponent } from './giver.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     data: { breadcrumb: 'Home' },
-    children: [
-      {
-        path: '',
-        component: GiverComponent,
-      },
-      {
-        path: 'instituicoes',
-        loadChildren: () =>
-          import('./pages/institutions/institutions.module').then((m) => m.InstitutionsModule),
-          data: { breadcrumb: 'Instituições' }
-      }
-    ],
+    component: GiverComponent,
+  },
+  {
+    path: 'instituicoes',
+    loadChildren: () =>
+      import('./pages/institutions/institutions.module').then(
+        (m) => m.InstitutionsModule
+      ),
+    data: { breadcrumb: 'Instituições' },
   },
 ];
 @NgModule({

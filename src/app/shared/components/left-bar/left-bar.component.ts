@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { Menu } from 'src/app/core/model/menuOptions';
 import { DonorMenu, InstitutionMenu } from './options';
 
@@ -13,10 +13,18 @@ export class LeftBarComponent implements OnInit {
   @Input() emailUser = '';
 
   menuOptions: Menu[] = [];
+  activePath: string;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.activePath = this.getActiveRootPath(event.urlAfterRedirects);
+      }
+    });
+  }
 
   ngOnInit(): void {
+    this.activePath = this.getActiveRootPath(this.router.url);
     const userType = localStorage.getItem('typeUser');
 
     if (userType === 'donor') {
@@ -25,6 +33,21 @@ export class LeftBarComponent implements OnInit {
       this.menuOptions = InstitutionMenu;
     }
   }
+
+  setActiveOption(path: string): void {
+    this.activePath = path;
+  }
+
+  isActiveOption(path: string): boolean {
+    console.log(`${this.activePath} === ${path}: `, this.activePath === path);
+    return this.activePath === path;
+  }
+
+  private getActiveRootPath(url: string): string {
+    const segments = url.split('/');
+    return '/' + segments[1] + (segments[2] ? '/' + segments[2] : '');
+  }
+
   public logout() {
     localStorage.removeItem('token');
     this.router.navigateByUrl('/login');

@@ -12,7 +12,6 @@ import { InputModule } from 'src/app/shared/components/input/input.module';
   imports: [
     CommonModule,
     InputModule,
-    ButtonModule,
     RouterModule,
     FormsModule,
     LoadingModule,

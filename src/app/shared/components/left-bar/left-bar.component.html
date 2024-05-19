@@ -7,10 +7,13 @@
       <div
         class="item"
         routerLinkActive="router-link-active"
-        [routerLinkActiveOptions]="{ exact: true }"
         [routerLink]="[option.path]"
+        [routerLinkActiveOptions]="{ exact: false }"
       >
-        <img [src]="option.src" alt="" />
+        <img
+          [src]="isActiveOption(option.path) ? option.srcActive : option.src"
+          alt=""
+        />
         <span>{{ option.label }}</span>
       </div>
     </ng-container>
