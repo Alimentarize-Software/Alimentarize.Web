@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
             next: (data) => {
               console.log('Dados do doador: ', data);
               localStorage.setItem('typeUser', 'donor');
-              this.router.navigateByUrl('doador');
+              this.router.navigateByUrl('doador/home');
             },
           });
         } else if (data.type === 'receiver') {
@@ -57,5 +57,4 @@ export class LoginComponent implements OnInit {
   isValidEmail(): boolean {
     return isValidEmail(this.user.email);
   }
-
 }
