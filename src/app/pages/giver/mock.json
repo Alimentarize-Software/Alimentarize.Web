@@ -3,7 +3,7 @@
     {
       "id": "FFFSFGFASGG4RWRFSFDSFSDFSF",
       "name": "Iprede",
-      "image": "assets/images/iprede.png",
+      "profileImage": "assets/images/iprede.png",
       "categories": [
         {
           "name": "Crianças",
@@ -22,7 +22,7 @@
     {
       "id": "FFFSFGFASGG4RWRFSFDSFSDFSF",
       "name": "Lar Francisco de Assis",
-      "image": "assets/images/francisco-de-assis.jpg",
+      "profileImage": "assets/images/francisco-de-assis.jpg",
       "categories": [
         {
           "name": "Idosos",
@@ -33,7 +33,7 @@
     {
       "id": "FFFSFGFASGG4RWRFSFDSFSDFSF",
       "name": "Lar Três Irmãs",
-      "image": "assets/images/lar-tres-irmas.jpg",
+      "profileImage": "assets/images/lar-tres-irmas.jpg",
       "categories": [
         {
           "name": "Idosos",
@@ -44,7 +44,7 @@
     {
       "id": "FFFSFGFASGG4RWRFSFDSFSDFSF",
       "name": "Lar Amigos de Jesus",
-      "image": "assets/images/lar-amigos-de-jesus.jpg",
+      "profileImage": "assets/images/lar-amigos-de-jesus.jpg",
       "categories": [
         {
           "name": "Crianças",
@@ -55,7 +55,7 @@
     {
       "id": "FFFSFGFASGG4RWRFSFDSFSDFSF",
       "name": "Lar Amigos de Jesus",
-      "image": "assets/images/lar-amigos-de-jesus.jpg",
+      "profileImage": "assets/images/lar-amigos-de-jesus.jpg",
       "categories": [
         {
           "name": "Crianças",
@@ -66,7 +66,7 @@
     {
       "id": "FFFSFGFASGG4RWRFSFDSFSDFSF",
       "name": "Lar Amigos de Jesus",
-      "image": "assets/images/lar-amigos-de-jesus.jpg",
+      "profileImage": "assets/images/lar-amigos-de-jesus.jpg",
       "categories": [
         {
           "name": "Crianças",
@@ -77,7 +77,7 @@
     {
       "id": "FFFSFGFASGG4RWRFSFDSFSDFSF",
       "name": "Lar Amigos de Jesus",
-      "image": "assets/images/lar-amigos-de-jesus.jpg",
+      "profileImage": "assets/images/lar-amigos-de-jesus.jpg",
       "categories": [
         {
           "name": "Crianças",

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AboutProject, Institution } from 'src/app/core/model/institution';
+import { GiverService } from 'src/app/pages/giver/giver.service';
 import { CustomColor } from 'src/app/shared/components/button/button';
 
 @Component({
@@ -7,7 +9,7 @@ import { CustomColor } from 'src/app/shared/components/button/button';
   templateUrl: './institution.component.html',
   styleUrls: ['./institution.component.sass'],
 })
-export class InstitutionComponent {
+export class InstitutionComponent implements OnInit {
   tags = ['crianças', 'mulheres', 'idosos'];
   socialMedias = [
     {
@@ -59,15 +61,52 @@ export class InstitutionComponent {
     backgroundColor: '#A9320C',
   };
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  currentId = '';
+  institution: Institution = {} as Institution;
+
+  banners: string[] = [];
+  currentImage = '';
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private giverService: GiverService
+  ) {}
+
+  ngOnInit(): void {
+    this.currentId = this.route.snapshot.paramMap.get('id') || '';
+    this.giverService.getInstitution(this.currentId).subscribe((data) => {
+      console.log('Deu certo');
+      this.institution = data;
+      this.banners = this.getBanners(data.AboutProjects);
+      this.currentImage = this.banners[0];
+    });
+  }
 
   redirect(url: string) {
     window.open(url, '_blanck');
   }
 
   redirectPage() {
-    const currentId = this.route.snapshot.paramMap.get('id');
- 
-    this.router.navigate([`/doador/instituicoes/instituicao/${currentId}/doacao`]);
+    this.router.navigate([
+      `/doador/instituicoes/instituicao/${this.currentId}/doacao`,
+    ]);
+  }
+
+  convertBase64ToImageUrl(base64Data: string): string {
+    return `data:image/jpeg;base64,${base64Data}`;
+  }
+
+  getBanners(project: AboutProject[]) {
+    const images: string[] = [];
+    project.forEach((project) => {
+      images.push(project.image);
+    });
+    return images;
+  }
+
+  handleImage(image: string) {
+    console.log('Image: ', image);
+    this.currentId = image;
   }
 }

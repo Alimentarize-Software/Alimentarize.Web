@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
             next: (data) => {
               console.log('Dados do doador: ', data);
               localStorage.setItem('typeUser', 'donor');
+              localStorage.setItem('user', JSON.stringify(data));
               this.router.navigateByUrl('doador/home');
             },
           });

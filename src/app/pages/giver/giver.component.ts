@@ -14,6 +14,7 @@ export class GiverComponent implements OnInit {
     this.giverService.getLatestInstitution().subscribe({
       next: (data: InstitutionResponse) => {
         this.institutions = data;
+        console.log('RES: ', this.institutions);
       },
     });
   }

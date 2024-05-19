@@ -2,17 +2,22 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import mock from './mock.json';
 import mock2 from './mock2.json';
-import { InstitutionResponse } from 'src/app/core/model/institution';
+import {
+  Institution,
+  InstitutionResponse,
+} from 'src/app/core/model/institution';
 import { Router } from '@angular/router';
-
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class GiverService {
   $mock = new BehaviorSubject<InstitutionResponse>({ data: [] });
   $mock2 = new BehaviorSubject<InstitutionResponse>({ data: [] });
+  baseUrl = environment.baseUrl;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private httpClient: HttpClient) {}
 
   getLatestInstitution() {
     this.$mock.next(mock);
@@ -20,9 +25,26 @@ export class GiverService {
     return this.$mock;
   }
 
-  getInstitutions() {
-    this.$mock.next(mock2);
+  getInstitution(receiverId: string) {
+    return this.httpClient.get<Institution>(
+      `${this.baseUrl}/receiver/get-about/${receiverId}`
+    );
+  }
 
-    return this.$mock;
+  getInstitutions(page: number, limit: number) {
+    // this.$mock.next(mock2);
+
+    // return this.$mock;
+
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('limit', limit.toString());
+
+    return this.httpClient.get<InstitutionResponse>(
+      `${this.baseUrl}/receiver/get-receivers/`,
+      {
+        params,
+      }
+    );
   }
 }

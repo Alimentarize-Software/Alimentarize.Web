@@ -37,4 +37,9 @@ export class AuthService {
     const endpoint = type === 'receiver' ? 'receiver' : 'donor';
     return this.httpClient.get(`${environment.baseUrl}/${endpoint}/${email}`);
   }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigateByUrl('/login');
+  }
 }

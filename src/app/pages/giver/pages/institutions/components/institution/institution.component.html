@@ -8,7 +8,7 @@
     <div class="box-infos">
       <img src="assets/icons/iprede.svg" alt="" />
       <div class="box-name-and-tags">
-        <h1 class="name-institution">Iprede</h1>
+        <h1 class="name-institution">{{ institution.name }}</h1>
         <div class="box-tags">
           <ng-container *ngFor="let tag of tags">
             <span class="tag">#{{ tag }}</span>
@@ -29,70 +29,49 @@
 
   <div class="box-carousel">
     <div class="box-image">
-      <img src="assets/images/iprede-entrada.png" alt="" />
+      <img [src]="convertBase64ToImageUrl(currentImage)" alt="" />
     </div>
 
     <div class="box-options-images">
-      <ng-container *ngFor="let image of images; let i = index">
-        <div class="box-image">
-          <img [src]="image" alt="" />
+      <ng-container *ngFor="let image of banners; let i = index">
+        <div class="box-image" (click)="handleImage(image)">
+          <img [src]="convertBase64ToImageUrl(image)" alt="" />
         </div>
       </ng-container>
     </div>
   </div>
 
   <div class="container-about">
-    <div class="what-have-we-done">
-      <h1>O que temos feito</h1>
-    </div>
+    <ng-container *ngIf="institution.About !== null">
+      <div class="what-have-we-done">
+        <h1>O que temos feito</h1>
+      </div>
 
-    <h1 class="our-impact">Nosso Impacto</h1>
+      <h1 class="our-impact">Nosso Impacto</h1>
 
-    <p class="impact-description">
-      Só a solidariedade nos une. Desta troca, nasce o projeto, a Instituição, a
-      ação, a casa que acolhe e cuida, que dá esperança. Para as barrigas vazias
-      e mãos estendidas, queremos dar o pão, o circo, a escola, o brinquedo, o
-      afeto, o livro, a canção, a dança, a vida, a esperança viver bem a vida,
-      desde a primeira infância.Nossa missão é acolher e cuidar do
-      desenvolvimento da primeira infância com os conhecimentos da neurociência,
-      oferecendo saúde de excelência, arte, cultura e educação para nossas
-      crianças.Promovemos o fortalecimento de mulheres através da educação para
-      o desenvolvimento de potencial, gerando inclusão produtiva e social.
-      Criamos redes de apoio para a mulher, impactando famílias e seu contexto,
-      tornando a mulher protagonista e agente de transformação.Favorecemos a
-      segurança alimentar com tecnologias de aproveitamento integral de
-      alimentos doados, formação de cozinhas comunitárias e criação de uma rede
-      colaborativa de combate à fome.
-    </p>
+      <p class="impact-description">
+        {{ institution.About.text }}
+      </p>
+    </ng-container>
 
     <div class="our-projects">
       <h1>Nossos Projetos</h1>
     </div>
     <div class="box-projects">
-      <ng-container *ngFor="let project of projects; let i = index">
+      <ng-container
+        *ngFor="let project of institution.AboutProjects; let i = index"
+      >
         <div
           class="project"
           [style.flexDirection]="i % 2 === 0 ? 'row' : 'row-reverse'"
         >
-          <img [src]="project.img" alt="" />
+          <img [src]="convertBase64ToImageUrl(project.image)" alt="" />
           <div class="box-title-and-description">
             <h1 [style.color]="i % 2 === 0 ? '#FFC107' : '#2196F3'">
               {{ project.title }}
             </h1>
             <p>
-              Só a solidariedade nos une. Desta troca, nasce o projeto, a
-              Instituição, a ação, a casa que acolhe e cuida, que dá esperança.
-              Para as barrigas vazias e mãos estendidas, queremos dar o pão, o
-              circo, a escola, o brinquedo, o afeto, o livro, a canção, a dança,
-              a vida, a esperança – viver bem a vida, desde a primeira
-              infância. Nossa missão é acolher e cuidar do desenvolvimento da
-              primeira infância com os conhecimentos da neurociência, oferecendo
-              saúde de excelência, arte, cultura e educação para nossas
-              crianças.  Promovemos o fortalecimento de mulheres através da
-              educação para o desenvolvimento de potencial, gerando inclusão
-              produtiva e social. Criamos redes de apoio para a mulher,
-              impactando famílias e seu contexto, tornando a mulher protagonista
-              e agente de transformação.
+              {{ institution.About.text }}
             </p>
           </div>
         </div>

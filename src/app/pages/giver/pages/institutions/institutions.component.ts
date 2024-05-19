@@ -11,9 +11,10 @@ export class InstitutionsComponent implements OnInit {
   constructor(private giverService: GiverService) {}
   institutions: InstitutionResponse = {} as InstitutionResponse;
   ngOnInit(): void {
-    this.giverService.getInstitutions().subscribe({
+    this.giverService.getInstitutions(1, 10).subscribe({
       next: (data: InstitutionResponse) => {
         this.institutions = data;
+        this.institutions;
       },
     });
   }

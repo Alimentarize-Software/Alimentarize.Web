@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Institution } from 'src/app/core/model/institution';
+import { InstitutionCard } from 'src/app/core/model/institution';
 
 @Component({
   selector: 'app-card-institution',
@@ -8,7 +8,7 @@ import { Institution } from 'src/app/core/model/institution';
   styleUrls: ['./card-institution.component.sass'],
 })
 export class CardInstitutionComponent {
-  @Input() card: Institution = {} as Institution;
+  @Input() card: InstitutionCard = {} as InstitutionCard;
 
   theme = {
     mulheres: '#FFB6B6',
