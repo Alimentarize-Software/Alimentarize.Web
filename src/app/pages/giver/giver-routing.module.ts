@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { GiverComponent } from './giver.component';
 import { MyProfileComponent } from '../my-profile/my-profile.component';
+import { ConfigurationComponent } from '../receiver/pages/configuration/configuration.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'meu-perfil',
       component: MyProfileComponent,
+  },
+  {
+    path: 'configuracoes',
+    component: ConfigurationComponent,
   },
 ];
 @NgModule({
