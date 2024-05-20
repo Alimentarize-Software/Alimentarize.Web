@@ -39,7 +39,7 @@ export class LeftBarComponent implements OnInit {
   }
 
   isActiveOption(path: string): boolean {
-    console.log(`${this.activePath} === ${path}: `, this.activePath === path);
+    // console.log(`${this.activePath} === ${path}: `, this.activePath === path);
     return this.activePath === path;
   }
 

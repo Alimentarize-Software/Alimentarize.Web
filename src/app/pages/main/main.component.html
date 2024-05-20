@@ -6,7 +6,7 @@
     ></app-left-bar>
   </div>
   <div class="box-main">
-    <div class="header">
+    <div class="header" *ngIf="checkHeader()">
       <app-header></app-header>
       <app-breadcrumb></app-breadcrumb>
     </div>

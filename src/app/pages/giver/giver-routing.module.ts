@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { GiverComponent } from './giver.component';
+import { MyProfileComponent } from '../my-profile/my-profile.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
         (m) => m.InstitutionsModule
       ),
     data: { breadcrumb: 'Instituições' },
+  },
+  {
+    path: 'meu-perfil',
+      component: MyProfileComponent,
   },
 ];
 @NgModule({
