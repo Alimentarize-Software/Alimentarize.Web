@@ -19,6 +19,12 @@ export const DonorMenu: Menu[] = [
     src: 'assets/icons/profile.svg',
     srcActive: 'assets/icons/profile-white.svg',
   },
+  {
+    label: 'Configurações',
+    path: '/doador/configuracoes',
+    src: 'assets/icons/settings.svg',
+    srcActive: 'assets/icons/settings-white.svg',
+  },
 ];
 
 export const InstitutionMenu: Menu[] = [
@@ -39,5 +45,11 @@ export const InstitutionMenu: Menu[] = [
     path: '/instituicao/meu-perfil',
     src: 'assets/icons/profile.svg',
     srcActive: 'assets/icons/profile-white.svg',
+  },
+  {
+    label: 'Configurações',
+    path: '/instituicao/configuracoes',
+    src: 'assets/icons/settings.svg',
+    srcActive: 'assets/icons/settings-white.svg',
   },
 ];

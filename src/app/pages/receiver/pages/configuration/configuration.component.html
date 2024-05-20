@@ -1,1 +1,70 @@
-<p>configuration works!</p>
+<div class="configuration-box-about">
+    <div class="configuration-header">
+        <h3>Configurações</h3>
+        <div class="edit-button">
+            <app-button
+                theme="primary"
+                width="230px"
+                data-cy="button-editar-perfil"
+                >Editar Configurações</app-button>
+        </div>
+    </div>
+    <div class="tabs">
+        <div class="tab" (click)="handleTabClick($event)">
+            Sobre
+        </div>
+        <div class="tab" (click)="handleTabClick($event)">
+            Projetos
+        </div>
+        <div class="border"></div>
+    </div>
+    <div class="about-content" *ngIf="isAboutSelected()">
+        <div class="text">
+            <h4>Nosso impacto</h4>
+            <textarea name="" id="">
+
+            </textarea>
+        </div>
+        <div class="filters">
+            <div class="filter-title">
+                <h4>Nossas causas</h4>
+            </div>
+            <div class="option">
+                <p>Adolescentes</p>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <div class="toggle-switch-background">
+                    <div class="toggle-switch-handle"></div>
+                    </div>
+                </label>
+            </div>
+            <div class="option">
+                <p>Mulheres</p>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <div class="toggle-switch-background">
+                    <div class="toggle-switch-handle"></div>
+                    </div>
+                </label>
+            </div>
+            <div class="option">
+                <p>Crianças</p>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <div class="toggle-switch-background">
+                    <div class="toggle-switch-handle"></div>
+                    </div>
+                </label>
+            </div>
+            <div class="option">
+                <p>Idosos</p>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <div class="toggle-switch-background">
+                    <div class="toggle-switch-handle"></div>
+                    </div>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
