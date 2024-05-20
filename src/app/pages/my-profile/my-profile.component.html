@@ -1,6 +1,134 @@
 <div class="my-profile-box">
     <div class="my-profile-header">
         <h3>Meu Perfil</h3>
-        <app-button>Doar</app-button>
+        <div class="edit-button">
+            <app-button
+                theme="primary"
+                width="230px"
+                data-cy="button-editar-perfil"
+                >Editar Perfil</app-button>
+        </div>
+    </div>
+    <div class="profile-content">
+        <div class="profile-image">
+            <img style="width: 120px; height: 120px;" src="assets/icons/logo.svg" alt="" />
+            <div class="image-buttons">
+                <div style="width: 130px;">
+                    <app-button
+                        theme="primary"
+                        width="130px"
+                        data-cy="button-editar-perfil"
+                        >Alterar Imagem</app-button
+                    >
+                </div>
+                <app-button
+                    theme="tertiary"
+                    width="80px"
+                    data-cy="button-editar-perfil"
+                    style="width: 80px;"
+                    >Remover</app-button
+                >
+            </div>
+        </div>
+        <div class="profile-inputs">
+            <div class="input-item">
+                <label for="apelido">Apelido</label>
+                <app-input
+                    type="apelido"
+                    placeholder="Apelido"
+                    name="apelido"
+                    ngDefaultControl
+                    data-cy="apelido"
+                ></app-input>
+            </div>
+            <div class="input-item">
+                <label for="nome-da-instituicao">Nome da Instituição</label>
+                <app-input
+                    type="nome-instituicao"
+                    placeholder="Nome da Instituição"
+                    name="nome-instituicao"
+                    ngDefaultControl
+                    data-cy="nome-instituicao"
+                    style="width: 366px;"
+                ></app-input>
+            </div>
+            <div class="input-item">
+                <label for="cep">CEP</label>
+                <app-input
+                    type="cep"
+                    placeholder="Cep"
+                    name="cep"
+                    ngDefaultControl
+                    data-cy="cep"
+                    style="width: 366px;"
+                ></app-input>
+            </div>
+            <div class="input-item">
+                <label for="bairros">Bairro</label>
+                <app-input
+                    type="bairro"
+                    placeholder="Bairro"
+                    name="bairro"
+                    ngDefaultControl
+                    data-cy="bairro"
+                    style="width: 366px;"
+                ></app-input>
+            </div>
+        </div>
+        <div class="large-input-item">
+            <label for="endereco">Endereço</label>
+            <app-input
+                type="endereco"
+                placeholder="Endereço"
+                name="endereco"
+                ngDefaultControl
+                data-cy="endereco"
+            ></app-input>
+        </div>
+        <div class="profile-inputs">
+            <div class="input-item">
+                <label for="cidade">Cidade</label>
+                <app-input
+                    type="cidade"
+                    placeholder="Cidade"
+                    name="cidade"
+                    ngDefaultControl
+                    data-cy="cidade"
+                    style="width: 366px;"
+                ></app-input>
+            </div>
+            <div class="input-item">
+                <label for="estado">Estado</label>
+                <app-input
+                    type="estado"
+                    placeholder="Estado"
+                    name="estado"
+                    ngDefaultControl
+                    data-cy="estado"
+                    style="width: 366px;"
+                ></app-input>
+            </div>
+            <div class="input-item">
+                <label for="telefone">Telefone</label>
+                <app-input
+                    type="telefone"
+                    placeholder="Telefone"
+                    name="telefone"
+                    ngDefaultControl
+                    data-cy="telefone"
+                    style="width: 366px;"
+                ></app-input>
+            </div>
+            <div class="input-item">
+                <label for="email">E-mail</label>
+                <app-input
+                    type="email"
+                    placeholder="E-mail"
+                    name="email"
+                    ngDefaultControl
+                    data-cy="email"
+                    style="width: 366px;"
+                ></app-input>
+            </div>
     </div>
 </div>

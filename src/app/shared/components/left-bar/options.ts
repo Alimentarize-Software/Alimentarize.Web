@@ -34,4 +34,10 @@ export const InstitutionMenu: Menu[] = [
     src: 'assets/icons/setting.svg',
     srcActive: 'assets/icons/home-white.svg',
   },
+  {
+    label: 'Meu Perfil',
+    path: '/instituicao/meu-perfil',
+    src: 'assets/icons/profile.svg',
+    srcActive: 'assets/icons/profile-white.svg',
+  },
 ];
