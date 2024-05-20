@@ -13,6 +13,12 @@ export const DonorMenu: Menu[] = [
     src: 'assets/icons/house.svg',
     srcActive: 'assets/icons/house-white.svg',
   },
+  {
+    label: 'Meu Perfil',
+    path: '/doador/meu-perfil',
+    src: 'assets/icons/profile.svg',
+    srcActive: 'assets/icons/profile-white.svg',
+  },
 ];
 
 export const InstitutionMenu: Menu[] = [
