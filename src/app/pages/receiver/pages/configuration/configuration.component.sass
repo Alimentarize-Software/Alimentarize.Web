@@ -1,0 +1,218 @@
+.configuration-box-about
+    display: flex
+    flex-direction: column
+    padding: 0 5rem
+    box-sizing: border-box
+
+.configuration-header
+    font-size: 20px
+    font-weight: bold
+    display: flex
+    justify-content: space-between
+    font-style: bold
+    margin-bottom: 40px
+
+    h3
+        font-size: 24px
+        font-weight: bold
+        color: #252525
+
+.edit-button
+    width: 199px
+
+.tabs
+    display: flex
+    margin-bottom: 40px
+    border-bottom: 1px solid #292D32
+
+.tab
+    font-size: 20px
+    font-weight: bold
+    color: #6F7482
+    cursor: pointer
+    width: 186px
+    text-align: center
+
+    &:hover
+        color: #2196F3
+        background-color: rgba(33, 150, 243, 0.2)
+        border-top-left-radius: 10px
+        border-top-right-radius: 10px
+
+.tab.hover-active
+    color: #2196F3
+    background-color: rgba(33, 150, 243, 0.2)
+    border-top-left-radius: 10px
+    border-top-right-radius: 10px
+
+
+.about-content
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+.text
+    text-weight: bold
+
+    textarea
+        width: 630px
+        height: 355px
+        border: none
+        border-radius: 5px
+
+        &:focus
+            box-shadow: 0px 0px 5px #2196F3
+            outline: none
+    
+    h4
+        margin-top: 20px
+        margin-bottom: 5px
+
+.filters
+    display: flex
+    flex-direction: column
+    width: 199px
+    height: 383px
+    background-color: white
+    align-items: center
+    border-radius: 5px
+
+    h4
+        margin-top: 20px
+        margin-bottom: 5px
+
+.filter-title
+    width: 80%
+    text-align: center
+    border-bottom: 1px solid #292D32
+    margin-bottom: 20px
+
+.option
+    display: flex
+    justify-content: space-between
+    width: 100%
+    padding: 0 20px
+    box-sizing: border-box
+    margin-bottom: 14px
+
+.toggle-switch 
+    position: relative
+    display: inline-block
+    width: 30px
+    height: 18px
+    cursor: pointer
+
+.toggle-switch input[type="checkbox"] 
+    display: none
+
+.toggle-switch-background 
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-color: #ddd
+    border-radius: 20px
+    box-shadow: inset 0 0 0 2px #ccc
+    transition: background-color 0.3s ease-in-out
+
+.toggle-switch-handle 
+    position: absolute
+    top: 2px
+    left: 5px
+    width: 12px
+    height: 12px
+    background-color: #fff
+    border-radius: 50%
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2)
+    transition: transform 0.3s ease-in-out
+
+.toggle-switch::before 
+    content: ""
+    position: absolute
+    top: -25px
+    right: -35px
+    font-size: 12px
+    font-weight: bold
+    color: #aaa
+    text-shadow: 1px 1px #fff
+    transition: color 0.3s ease-in-out
+
+.toggle-switch input[type="checkbox"]:checked + .toggle-switch-handle 
+    transform: translateX(15px)
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 0 0 3px #2196F3
+
+.toggle-switch input[type="checkbox"]:checked + .toggle-switch-background 
+    background-color: #2196F3
+    box-shadow: inset 0 0 0 2px #2196F3
+
+.toggle-switch input[type="checkbox"]:checked + .toggle-switch:before 
+    content: "On"
+    color: #2196F3
+    right: -15px
+
+.toggle-switch input[type="checkbox"]:checked + .toggle-switch-background .toggle-switch-handle 
+    transform: translateX(10px)
+
+.project-content
+    display: flex
+    flex-direction: column
+
+.card
+    display: flex
+    background-color: white
+    border-radius: 10px
+    width: 947px
+    height: 244px
+    align-items: center
+    padding: 18px
+    border-sizing: border-box
+
+    img
+        // border: 3px solid #2196F3
+
+.card-content
+    display: flex
+    align-items: center
+
+    h4
+        margin-bottom: 10px
+
+.card-left
+    margin-left: 20px
+    margin-right: 20px
+
+    p
+        font-size: 14px
+
+.card-right
+    a
+        font-size: 14px
+
+.link-instagram
+    margin-bottom: 20px
+
+    p
+        margin-bottom: 5px
+
+.link-whatsapp
+    p
+        margin-bottom: 5px
+
+.add-card
+    display: flex
+    width: 100%
+    height: 32px
+    border: 3px dotted #292D32
+    justify-content: center
+    border-spacing: 5px
+    margin-top: 20px
+    align-items: center
+    background: none
+    cursor: pointer
+
+    &:hover
+        opacity: 0.6
+
+    p
+        margin-left: 5px

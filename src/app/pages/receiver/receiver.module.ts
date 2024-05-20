@@ -7,6 +7,7 @@ import { CardModule } from 'src/app/shared/components/card/card.module';
 import { ButtonModule } from 'src/app/shared/components/button/button.module';
 import { ReceiverRoutingModule } from './receiver-routing.module';
 import { ConfigurationComponent } from './pages/configuration/configuration.component';
+import { ConfigurationModule } from './pages/configuration/configuration.module';
 
 @NgModule({
   declarations: [ReceiverComponent],
@@ -17,6 +18,7 @@ import { ConfigurationComponent } from './pages/configuration/configuration.comp
     CardModule,
     ButtonModule,
     ReceiverRoutingModule,
+    ConfigurationModule,
   ],
   exports: [ReceiverComponent],
 })
