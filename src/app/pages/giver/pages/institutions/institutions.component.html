@@ -43,10 +43,17 @@
     </div>
   </div>
   <div class="cards">
-    <ng-container *ngFor="let institution of institutions.data">
-      <div class="card">
-        <app-card-institution [card]="institution"></app-card-institution>
-      </div>
+    <ng-container *ngIf="loading; else content">
+      <ng-container *ngFor="let placeholder of placeholders">
+        <app-skeleton></app-skeleton>
+      </ng-container>
     </ng-container>
+    <ng-template #content>
+      <ng-container *ngFor="let institution of institutions.data">
+        <div class="card">
+          <app-card-institution [card]="institution"></app-card-institution>
+        </div>
+      </ng-container>
+    </ng-template>
   </div>
 </div>

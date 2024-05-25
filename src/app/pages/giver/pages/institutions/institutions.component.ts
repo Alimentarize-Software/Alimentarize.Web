@@ -10,12 +10,18 @@ import { GiverService } from '../../giver.service';
 export class InstitutionsComponent implements OnInit {
   constructor(private giverService: GiverService) {}
   institutions: InstitutionResponse = {} as InstitutionResponse;
+  loading: boolean = true;
+  placeholders: any[] = new Array(8);
+
   ngOnInit(): void {
     this.giverService.getInstitutions(1, 10).subscribe({
       next: (data: InstitutionResponse) => {
         this.institutions = data;
-        this.institutions;
+        this.loading = false;
       },
+      error: (err) => {
+        this.loading = false;
+      }
     });
   }
 }
