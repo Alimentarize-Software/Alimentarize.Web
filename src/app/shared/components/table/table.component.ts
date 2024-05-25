@@ -7,7 +7,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./table.component.sass'],
 })
 export class TableComponent {
+  showActions: boolean = false;
+
   constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    const userType = localStorage.getItem('typeUser');
+    console.log('user: ', userType);
+
+    if (userType === 'receiver') {
+      this.showActions = true;
+    }
+  }
 
   redirect(phone: string) {
     const url = `https://api.whatsapp.com/send?phone=${phone}`;
