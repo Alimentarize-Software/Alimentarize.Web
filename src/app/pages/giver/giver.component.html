@@ -3,13 +3,20 @@
     <h1>Últimas doações</h1>
   </div>
   <div class="cards">
-    <owl-carousel-o [options]="customOptions">
-      <ng-container *ngFor="let donation of donationHistory.data">
-        <ng-template carouselSlide>
-          <app-card-institution [card]="donation.receiver"></app-card-institution>
-        </ng-template>
+    <ng-container *ngIf="donationHistory.data; else skeleton">
+      <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let donation of donationHistory.data">
+          <ng-template carouselSlide>
+            <app-card-institution [card]="donation.receiver"></app-card-institution>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </ng-container>
+    <ng-template #skeleton>
+      <ng-container *ngFor="let skeleton of skeletons">
+        <app-skeleton></app-skeleton>
       </ng-container>
-    </owl-carousel-o>
+    </ng-template>
   </div>
 
   <div class="title">

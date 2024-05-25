@@ -41,6 +41,8 @@ export class GiverComponent implements OnInit {
     nav: true
   }
   
+  skeletons: any[] = new Array(8);
+
   constructor(private giverService: GiverService) {}
   donationHistory: HistoryDonationResponse = {} as HistoryDonationResponse;
   ngOnInit(): void {

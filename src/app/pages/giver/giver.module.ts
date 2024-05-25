@@ -8,6 +8,7 @@ import { CardInstitutionModule } from 'src/app/shared/components/card-institutio
 import { GiverComponent } from './giver.component';
 import { MyProfileModule } from '../my-profile/my-profile.module';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { SkeletonModule } from 'src/app/shared/components/skeleton/skeleton.module';
 
 @NgModule({
   declarations: [GiverComponent],
@@ -20,6 +21,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     CardInstitutionModule,
     MyProfileModule,
     CarouselModule,
+    SkeletonModule,
   ],
   exports: [GiverComponent],
 })
