@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { AboutProject, Institution } from 'src/app/core/model/institution';
 import { GiverService } from 'src/app/pages/giver/giver.service';
 import { CustomColor } from 'src/app/shared/components/button/button';
@@ -62,10 +63,10 @@ export class InstitutionComponent implements OnInit {
   };
 
   currentId = '';
-  institution: Institution = {} as Institution;
 
   banners: string[] = [];
   currentImage = '';
+  institution$: Observable<Institution>;
 
   constructor(
     private router: Router,
@@ -76,10 +77,16 @@ export class InstitutionComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.currentId = params['id'];
-      this.giverService.getInstitution(this.currentId).subscribe((data) => {
-        console.log('Deu certo');
-        this.institution = data;
-        this.banners = this.getBanners(data.AboutProjects);
+      // this.institution$ = this.giverService.getInstitution(this.currentId).subscribe((data) => {
+      //   console.log('Deu certo');
+      //   this.institution = data;
+      //   this.banners = this.getBanners(data.AboutProjects);
+      //   this.currentImage = this.banners[0];
+      // });
+      this.institution$ = this.giverService.getInstitution(this.currentId);
+      this.institution$.subscribe((data) => {
+        console.log('DAAAAAAAAAAAAAAATA: ', data);
+        this.banners = this.getBanners(data.aboutProjects);
         this.currentImage = this.banners[0];
       });
     });

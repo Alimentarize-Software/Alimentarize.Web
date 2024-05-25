@@ -35,8 +35,8 @@ export interface Institution {
   createdAt: Date;
   profileImage: null;
   donationImage: null;
-  About: About;
-  AboutProjects: AboutProject[];
+  about: About;
+  aboutProjects: AboutProject[];
   categories: Categories[];
 }
 

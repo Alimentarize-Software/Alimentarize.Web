@@ -15,6 +15,8 @@ import {
   styleUrls: ['./giver.component.sass'],
 })
 export class GiverComponent implements OnInit {
+  skeletons: any[] = new Array(8);
+
   constructor(private giverService: GiverService) {}
   donationHistory: HistoryDonationResponse = {} as HistoryDonationResponse;
   ngOnInit(): void {

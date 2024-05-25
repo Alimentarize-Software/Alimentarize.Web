@@ -44,7 +44,7 @@
   </div>
   <div class="cards">
     <ng-container *ngIf="loading; else content">
-      <ng-container *ngFor="let placeholder of placeholders">
+      <ng-container *ngFor="let skeleton of skeletons">
         <app-skeleton></app-skeleton>
       </ng-container>
     </ng-container>

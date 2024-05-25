@@ -11,7 +11,7 @@ export class InstitutionsComponent implements OnInit {
   constructor(private giverService: GiverService) {}
   institutions: InstitutionResponse = {} as InstitutionResponse;
   loading: boolean = true;
-  placeholders: any[] = new Array(8);
+  skeletons: any[] = new Array(8);
 
   ngOnInit(): void {
     this.giverService.getInstitutions(1, 10).subscribe({
@@ -21,7 +21,7 @@ export class InstitutionsComponent implements OnInit {
       },
       error: (err) => {
         this.loading = false;
-      }
+      },
     });
   }
 }

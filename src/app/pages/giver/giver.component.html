@@ -3,9 +3,17 @@
     <h1>Últimas doações</h1>
   </div>
   <div class="cards">
-    <ng-container *ngFor="let donation of donationHistory.data">
-      <app-card-institution [card]="donation.receiver"></app-card-institution>
+    <ng-container *ngIf="donationHistory.data; else skeleton">
+      <ng-container *ngFor="let donation of donationHistory.data">
+        <app-card-institution [card]="donation.receiver"></app-card-institution>
+      </ng-container>
     </ng-container>
+
+    <ng-template #skeleton>
+      <ng-container *ngFor="let skeleton of skeletons">
+        <app-skeleton></app-skeleton>
+      </ng-container>
+    </ng-template>
   </div>
 
   <div class="title">
