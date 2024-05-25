@@ -17,13 +17,10 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class GiverComponent implements OnInit {
   customOptions: OwlOptions = {
-    loop: true,
     mouseDrag: false,
     touchDrag: false,
     pullDrag: false,
-    dots: false,
     navSpeed: 700,
-    navText: ['', ''],
     responsive: {
       0: {
         items: 1
@@ -38,7 +35,8 @@ export class GiverComponent implements OnInit {
         items: 4
       }
     },
-    nav: true
+    autoplay: true,
+    rewind: true,
   }
   
   skeletons: any[] = new Array(8);
