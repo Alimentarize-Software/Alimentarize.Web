@@ -7,6 +7,7 @@ import { TableModule } from 'src/app/shared/components/table/table.module';
 import { CardInstitutionModule } from 'src/app/shared/components/card-institution/card-institution.module';
 import { GiverComponent } from './giver.component';
 import { MyProfileModule } from '../my-profile/my-profile.module';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [GiverComponent],
@@ -18,6 +19,7 @@ import { MyProfileModule } from '../my-profile/my-profile.module';
     TableModule,
     CardInstitutionModule,
     MyProfileModule,
+    CarouselModule,
   ],
   exports: [GiverComponent],
 })
