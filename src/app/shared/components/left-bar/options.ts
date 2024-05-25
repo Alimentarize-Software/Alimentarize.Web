@@ -19,12 +19,6 @@ export const DonorMenu: Menu[] = [
     src: 'assets/icons/profile.svg',
     srcActive: 'assets/icons/profile-white.svg',
   },
-  // {
-  //   label: 'Configurações',
-  //   path: '/doador/configuracoes',
-  //   src: 'assets/icons/settings.svg',
-  //   srcActive: 'assets/icons/settings-white.svg',
-  // },
 ];
 
 export const InstitutionMenu: Menu[] = [
@@ -32,12 +26,6 @@ export const InstitutionMenu: Menu[] = [
     label: 'Dashboard',
     path: '/instituicao',
     src: 'assets/icons/home.svg',
-    srcActive: 'assets/icons/home-white.svg',
-  },
-  {
-    label: 'Configurações',
-    path: '/instituicao/configuracoes',
-    src: 'assets/icons/setting.svg',
     srcActive: 'assets/icons/home-white.svg',
   },
   {

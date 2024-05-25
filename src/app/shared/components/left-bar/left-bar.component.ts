@@ -26,10 +26,11 @@ export class LeftBarComponent implements OnInit {
   ngOnInit(): void {
     this.activePath = this.getActiveRootPath(this.router.url);
     const userType = localStorage.getItem('typeUser');
+    console.log('user: ', userType);
 
     if (userType === 'donor') {
       this.menuOptions = DonorMenu;
-    } else if (userType === 'institution') {
+    } else if (userType === 'receiver') {
       this.menuOptions = InstitutionMenu;
     }
   }
