@@ -12,5 +12,5 @@ export interface HistoryDonation {
 }
 
 export interface HistoryDonationResponse {
-  data: HistoryDonation[];
+  data: { donations: HistoryDonation[] };
 }

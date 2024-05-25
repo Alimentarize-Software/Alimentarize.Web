@@ -45,10 +45,6 @@ export class GiverService {
   }
 
   getLatestInstitution(donorId: number, page: number, limit: number) {
-    // this.$mock.next(mock2);
-
-    // return this.$mock;
-
     const params = new HttpParams()
       .set('page', page.toString())
       .set('limit', limit.toString());

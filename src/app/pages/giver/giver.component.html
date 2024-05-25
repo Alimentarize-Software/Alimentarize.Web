@@ -4,11 +4,14 @@
   </div>
   <div class="cards">
     <ng-container *ngIf="donationHistory.data; else skeleton">
-      <ng-container *ngFor="let donation of donationHistory.data">
-        <app-card-institution [card]="donation.receiver"></app-card-institution>
-      </ng-container>
+      <owl-carousel-o [options]="customOptions" style="width: 100%;">
+        <ng-container *ngFor="let donation of donationHistory.data.donations">
+          <ng-template carouselSlide>
+            <app-card-institution [card]="donation.receiver"></app-card-institution>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
     </ng-container>
-
     <ng-template #skeleton>
       <ng-container *ngFor="let skeleton of skeletons">
         <app-skeleton></app-skeleton>

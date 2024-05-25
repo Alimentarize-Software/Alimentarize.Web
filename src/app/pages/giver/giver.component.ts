@@ -8,6 +8,7 @@ import {
   HistoryDonation,
   HistoryDonationResponse,
 } from 'src/app/core/model/historyDonation';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-giver',
@@ -15,6 +16,29 @@ import {
   styleUrls: ['./giver.component.sass'],
 })
 export class GiverComponent implements OnInit {
+  customOptions: OwlOptions = {
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    navSpeed: 700,
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    autoplay: true,
+    rewind: true,
+  }
+  
   skeletons: any[] = new Array(8);
 
   constructor(private giverService: GiverService) {}

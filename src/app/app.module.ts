@@ -16,6 +16,7 @@ import { GiverModule } from './pages/giver/giver.module';
 import { HomeModule } from './pages/home/home.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptor/interpcetor.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,6 +36,7 @@ import { AuthInterceptor } from './core/interceptor/interpcetor.interceptor';
     GiverModule,
     HttpClientModule,
     HomeModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
