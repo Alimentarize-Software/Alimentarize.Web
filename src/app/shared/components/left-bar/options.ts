@@ -24,7 +24,7 @@ export const DonorMenu: Menu[] = [
 export const InstitutionMenu: Menu[] = [
   {
     label: 'Dashboard',
-    path: '/instituicao',
+    path: '/instituicao/home',
     src: 'assets/icons/home.svg',
     srcActive: 'assets/icons/home-white.svg',
   },

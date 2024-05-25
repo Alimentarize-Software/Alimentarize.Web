@@ -3,20 +3,20 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ConfigurationComponent } from './pages/configuration/configuration.component';
 import { ReceiverComponent } from './receiver.component';
+import { MyProfileComponent } from '../my-profile/my-profile.component';
 
 const routes: Routes = [
   {
-    path: '',
-    children: [
-      {
-        path: '',
-        component: ReceiverComponent,
-      },
-      {
-        path: 'configuracoes',
-        component: ConfigurationComponent,
-      },
-    ],
+    path: 'home',
+    component: ReceiverComponent,
+  },
+  {
+    path: 'meu-perfil',
+    component: MyProfileComponent,
+  },
+  {
+    path: 'configuracoes',
+    component: ConfigurationComponent,
   },
 ];
 
