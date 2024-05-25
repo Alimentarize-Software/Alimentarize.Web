@@ -11,7 +11,7 @@
           <th>Moedas ganhas</th>
           <!-- <th>Destino</th> -->
           <th>Contato</th>
-          <th>Ações</th>
+          <th>{{showActions ? 'Ações' : 'Status'}}</th>
         </tr>
       </thead>
       <tbody>
@@ -31,7 +31,12 @@
             />
           </td>
           <td>
-            <app-dropdown></app-dropdown>
+            <ng-container *ngIf="showActions">
+              <app-dropdown></app-dropdown>
+            </ng-container>
+            <ng-container *ngIf="!showActions">
+              <app-status status="Aprovado"></app-status>
+            </ng-container>
           </td>
         </tr>
         <tr>
@@ -50,7 +55,12 @@
             />
           </td>
           <td>
-            <app-dropdown></app-dropdown>
+            <ng-container *ngIf="showActions">
+              <app-dropdown></app-dropdown>
+            </ng-container>
+            <ng-container *ngIf="!showActions">
+              <app-status status="Aprovado"></app-status>
+            </ng-container>
           </td>
         </tr>
         <tr>
@@ -69,7 +79,12 @@
             />
           </td>
           <td>
-            <app-dropdown></app-dropdown>
+            <ng-container *ngIf="showActions">
+              <app-dropdown></app-dropdown>
+            </ng-container>
+            <ng-container *ngIf="!showActions">
+              <app-status status="Recusado"></app-status>
+            </ng-container>
           </td>
         </tr>
         <tr>
@@ -88,7 +103,12 @@
             />
           </td>
           <td>
-            <app-dropdown></app-dropdown>
+            <ng-container *ngIf="showActions">
+              <app-dropdown></app-dropdown>
+            </ng-container>
+            <ng-container *ngIf="!showActions">
+              <app-status status="Recusado"></app-status>
+            </ng-container>
           </td>
         </tr>
         <tr>
@@ -102,7 +122,12 @@
             <img class="whatsapp" src="assets/icons/whatsapp.svg" alt="" />
           </td>
           <td>
-            <app-dropdown></app-dropdown>
+            <ng-container *ngIf="showActions">
+              <app-dropdown></app-dropdown>
+            </ng-container>
+            <ng-container *ngIf="!showActions">
+              <app-status status="Aprovado"></app-status>
+            </ng-container>
           </td>
         </tr>
       </tbody>

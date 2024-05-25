@@ -1,0 +1,11 @@
+<div class="tag" [ngClass]="{'background-approved': status === 'Aprovado', 'background-denied': status === 'Recusado'}">
+    <ng-container *ngIf="status === 'Aprovado'">
+        <img width="15px" src="../../../../assets/icons/approved-status.svg" alt="">
+    </ng-container>
+    <ng-container *ngIf="status === 'Recusado'">
+        <img width="15px" src="../../../../assets/icons/denied-status.svg" alt="">
+    </ng-container>
+    <div class="tag-text">
+        {{ status }}
+    </div>
+</div>
