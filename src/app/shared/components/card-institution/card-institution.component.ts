@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { InstitutionCard } from 'src/app/core/model/institution';
+import { Institution, InstitutionCard } from 'src/app/core/model/institution';
 
 @Component({
   selector: 'app-card-institution',
@@ -8,7 +8,7 @@ import { InstitutionCard } from 'src/app/core/model/institution';
   styleUrls: ['./card-institution.component.sass'],
 })
 export class CardInstitutionComponent {
-  @Input() card: InstitutionCard = {} as InstitutionCard;
+  @Input() card: Institution = {} as Institution;
 
   theme = {
     mulheres: '#FFB6B6',
@@ -22,7 +22,11 @@ export class CardInstitutionComponent {
     return this.theme[category as keyof typeof this.theme];
   }
 
-  redirect(id: string) {
+  redirect(id: number) {
     this.router.navigate([`/doador/instituicoes/instituicao`, id]);
+  }
+
+  convertBase64ToImageUrl(base64Data: string): string {
+    return `data:image/jpeg;base64,${base64Data}`;
   }
 }

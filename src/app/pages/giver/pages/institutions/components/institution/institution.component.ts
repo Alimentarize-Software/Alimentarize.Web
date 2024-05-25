@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AboutProject, Institution } from 'src/app/core/model/institution';
 import { GiverService } from 'src/app/pages/giver/giver.service';
 import { CustomColor } from 'src/app/shared/components/button/button';
@@ -74,12 +74,14 @@ export class InstitutionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.currentId = this.route.snapshot.paramMap.get('id') || '';
-    this.giverService.getInstitution(this.currentId).subscribe((data) => {
-      console.log('Deu certo');
-      this.institution = data;
-      this.banners = this.getBanners(data.AboutProjects);
-      this.currentImage = this.banners[0];
+    this.route.params.subscribe((params: Params) => {
+      this.currentId = params['id'];
+      this.giverService.getInstitution(this.currentId).subscribe((data) => {
+        console.log('Deu certo');
+        this.institution = data;
+        this.banners = this.getBanners(data.AboutProjects);
+        this.currentImage = this.banners[0];
+      });
     });
   }
 

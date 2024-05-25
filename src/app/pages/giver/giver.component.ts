@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { GiverService } from './giver.service';
-import { InstitutionResponse } from 'src/app/core/model/institution';
+import {
+  Institution,
+  InstitutionResponse,
+} from 'src/app/core/model/institution';
+import {
+  HistoryDonation,
+  HistoryDonationResponse,
+} from 'src/app/core/model/historyDonation';
 
 @Component({
   selector: 'app-giver',
@@ -9,13 +16,17 @@ import { InstitutionResponse } from 'src/app/core/model/institution';
 })
 export class GiverComponent implements OnInit {
   constructor(private giverService: GiverService) {}
-  institutions: InstitutionResponse = {} as InstitutionResponse;
+  donationHistory: HistoryDonationResponse = {} as HistoryDonationResponse;
   ngOnInit(): void {
-    this.giverService.getLatestInstitution().subscribe({
-      next: (data: InstitutionResponse) => {
-        this.institutions = data;
-        console.log('RES: ', this.institutions);
-      },
-    });
+    const object = localStorage.getItem('user');
+    if (object) {
+      const user: Institution = JSON.parse(object);
+      this.giverService.getLatestInstitution(user?.id, 1, 10).subscribe({
+        next: (data: HistoryDonationResponse) => {
+          this.donationHistory = data;
+          console.log('donationHistory: ', this.donationHistory);
+        },
+      });
+    }
   }
 }

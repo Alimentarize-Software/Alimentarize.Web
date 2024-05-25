@@ -1,5 +1,5 @@
 export interface InstitutionResponse {
-  data: InstitutionCard[];
+  data: Institution[];
 }
 
 export interface InstitutionCard {
@@ -10,8 +10,11 @@ export interface InstitutionCard {
 }
 
 export interface Categories {
+  categoryAlias: string;
+  color: string;
+  createdAt: string;
+  id: number;
   name: string;
-  category: string;
 }
 
 export interface Institution {
@@ -24,6 +27,7 @@ export interface Institution {
   city: string;
   state: string;
   neighborhood: string;
+  images: string[];
   address: string;
   phoneNumber: string;
   addressAlias: string;
@@ -33,6 +37,7 @@ export interface Institution {
   donationImage: null;
   About: About;
   AboutProjects: AboutProject[];
+  categories: Categories[];
 }
 
 export interface About {

@@ -3,8 +3,8 @@
     <h1>Últimas doações</h1>
   </div>
   <div class="cards">
-    <ng-container *ngFor="let institution of institutions.data">
-      <app-card-institution [card]="institution"></app-card-institution>
+    <ng-container *ngFor="let donation of donationHistory.data">
+      <app-card-institution [card]="donation.receiver"></app-card-institution>
     </ng-container>
   </div>
 

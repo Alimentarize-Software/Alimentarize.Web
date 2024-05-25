@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class HomeService {
-  $mock = new BehaviorSubject<InstitutionResponse>({ data: [] });
+  $mock = new BehaviorSubject<any>({ data: [] });
 
   constructor(private router: Router) {}
 

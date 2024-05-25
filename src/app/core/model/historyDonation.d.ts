@@ -1,0 +1,16 @@
+import { Institution } from './institution';
+
+export interface HistoryDonation {
+  id: number;
+  donorId: number;
+  receiverId: number;
+  createdAt: string;
+  weight: number;
+  status: string;
+  foodType: string;
+  receiver: Institution;
+}
+
+export interface HistoryDonationResponse {
+  data: HistoryDonation[];
+}
