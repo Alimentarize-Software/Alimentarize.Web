@@ -11,6 +11,7 @@
           <th>Moedas ganhas</th>
           <!-- <th>Destino</th> -->
           <th>Contato</th>
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody>
@@ -29,21 +30,8 @@
               (click)="redirect('0')"
             />
           </td>
-        </tr>
-        <tr>
-          <td>#1</td>
-          <td>Frutas</td>
-          <td>08/05/2023</td>
-          <td>Gabriel Castro</td>
-          <td>$5</td>
-          <!-- <td>Comunidade do Lagamar</td> -->
           <td>
-            <img
-              class="whatsapp"
-              src="assets/icons/whatsapp.svg"
-              alt=""
-              (click)="redirect('0')"
-            />
+            <app-dropdown></app-dropdown>
           </td>
         </tr>
         <tr>
@@ -61,6 +49,9 @@
               (click)="redirect('0')"
             />
           </td>
+          <td>
+            <app-dropdown></app-dropdown>
+          </td>
         </tr>
         <tr>
           <td>#1</td>
@@ -76,6 +67,28 @@
               alt=""
               (click)="redirect('0')"
             />
+          </td>
+          <td>
+            <app-dropdown></app-dropdown>
+          </td>
+        </tr>
+        <tr>
+          <td>#1</td>
+          <td>Frutas</td>
+          <td>08/05/2023</td>
+          <td>Gabriel Castro</td>
+          <td>$5</td>
+          <!-- <td>Comunidade do Lagamar</td> -->
+          <td>
+            <img
+              class="whatsapp"
+              src="assets/icons/whatsapp.svg"
+              alt=""
+              (click)="redirect('0')"
+            />
+          </td>
+          <td>
+            <app-dropdown></app-dropdown>
           </td>
         </tr>
         <tr>
@@ -87,6 +100,9 @@
           <!-- <td>Comunidade do Lagamar</td> -->
           <td>
             <img class="whatsapp" src="assets/icons/whatsapp.svg" alt="" />
+          </td>
+          <td>
+            <app-dropdown></app-dropdown>
           </td>
         </tr>
       </tbody>

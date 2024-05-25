@@ -8,6 +8,7 @@ import { ButtonModule } from 'src/app/shared/components/button/button.module';
 import { ReceiverRoutingModule } from './receiver-routing.module';
 import { ConfigurationComponent } from './pages/configuration/configuration.component';
 import { ConfigurationModule } from './pages/configuration/configuration.module';
+import { TableModule } from 'src/app/shared/components/table/table.module';
 
 @NgModule({
   declarations: [ReceiverComponent],
@@ -19,6 +20,7 @@ import { ConfigurationModule } from './pages/configuration/configuration.module'
     ButtonModule,
     ReceiverRoutingModule,
     ConfigurationModule,
+    TableModule,
   ],
   exports: [ReceiverComponent],
 })
