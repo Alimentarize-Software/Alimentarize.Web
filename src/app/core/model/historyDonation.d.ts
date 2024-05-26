@@ -7,7 +7,7 @@ export interface HistoryDonation {
   createdAt: string;
   weight: number;
   status: string;
-  foodType: string;
+  foodNames: string[];
   receiver: Institution;
 }
 

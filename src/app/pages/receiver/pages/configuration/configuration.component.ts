@@ -7,6 +7,7 @@ import { Component, ElementRef, Renderer2 } from '@angular/core';
 })
 export class ConfigurationComponent {
   hoverClass = 'hover-active';
+  isEditing: boolean = false;
 
   constructor(private renderer: Renderer2, private el: ElementRef) {}
 
@@ -34,4 +35,7 @@ export class ConfigurationComponent {
     return sobreTab ? sobreTab.classList.contains(this.hoverClass) : false;
   }
 
+  public handleEditClick(): void {
+    this.isEditing = !this.isEditing;
+  }
 }

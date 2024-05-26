@@ -15,7 +15,17 @@
       <tbody>
         <tr *ngFor="let donation of data">
           <td>#{{ donation.id }}</td>
-          <td>{{ donation.foodType }}</td>
+          <td class="tooltip-container">
+            <span *ngIf="donation.foodNames.length > 5" (mouseover)="showTooltip($event)" (mouseout)="hideTooltip($event)">
+              {{ getFoodNamesSummary(donation.foodNames).summary }}
+              <div class="tooltip">
+                <div *ngFor="let item of getFoodNamesSummary(donation.foodNames).tooltip">{{ item }}</div>
+              </div>
+            </span>
+            <span *ngIf="donation.foodNames.length <= 5">
+              {{ getFoodNamesSummary(donation.foodNames).summary }}
+            </span>
+          </td>
           <td>{{ donation.createdAt | date }}</td>
           <td>{{ donation.weight }} Kg</td>
           <td>
@@ -30,7 +40,7 @@
             </ng-container>
           </td>
         </tr>
-        <tr>
+        <tr *ngIf="totalPages > 1">
           <td></td>
           <td></td>
           <td></td>

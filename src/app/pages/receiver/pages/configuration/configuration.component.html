@@ -1,12 +1,21 @@
 <div class="configuration-box-about">
     <div class="configuration-header">
         <h3>Configurações</h3>
-        <div class="edit-button">
+        <div class="edit-button" *ngIf="isAboutSelected()">
             <app-button
+                *ngIf="!isEditing"
                 theme="primary"
                 width="230px"
                 data-cy="button-editar-perfil"
-                >Editar Configurações</app-button>
+                (click)="handleEditClick()"
+            >Editar Configurações</app-button>
+            <app-button
+                *ngIf="isEditing"
+                theme="primary"
+                width="230px"
+                data-cy="button-editar-perfil"
+                (click)="handleEditClick()"
+            >Salvar</app-button>
         </div>
     </div>
     <div class="tabs">
@@ -21,7 +30,7 @@
     <div class="about-content" *ngIf="isAboutSelected()">
         <div class="text">
             <h4>Nosso impacto</h4>
-            <textarea name="" id="">
+            <textarea name="" id="" [disabled]="!isEditing">
 
             </textarea>
         </div>
@@ -31,8 +40,8 @@
             </div>
             <div class="option">
                 <p>Adolescentes</p>
-                <label class="toggle-switch">
-                    <input type="checkbox">
+                <label [ngClass]="{'toggle-switch': true, 'disabled': !isEditing}">
+                    <input type="checkbox" [disabled]="!isEditing">
                     <div class="toggle-switch-background">
                     <div class="toggle-switch-handle"></div>
                     </div>
@@ -40,8 +49,8 @@
             </div>
             <div class="option">
                 <p>Mulheres</p>
-                <label class="toggle-switch">
-                    <input type="checkbox">
+                <label [ngClass]="{'toggle-switch': true, 'disabled': !isEditing}">
+                    <input type="checkbox" [disabled]="!isEditing">
                     <div class="toggle-switch-background">
                     <div class="toggle-switch-handle"></div>
                     </div>
@@ -49,8 +58,8 @@
             </div>
             <div class="option">
                 <p>Crianças</p>
-                <label class="toggle-switch">
-                    <input type="checkbox">
+                <label [ngClass]="{'toggle-switch': true, 'disabled': !isEditing}">
+                    <input type="checkbox" [disabled]="!isEditing">
                     <div class="toggle-switch-background">
                     <div class="toggle-switch-handle"></div>
                     </div>
@@ -58,8 +67,8 @@
             </div>
             <div class="option">
                 <p>Idosos</p>
-                <label class="toggle-switch">
-                    <input type="checkbox">
+                <label [ngClass]="{'toggle-switch': true, 'disabled': !isEditing}">
+                    <input type="checkbox" [disabled]="!isEditing">
                     <div class="toggle-switch-background">
                     <div class="toggle-switch-handle"></div>
                     </div>
