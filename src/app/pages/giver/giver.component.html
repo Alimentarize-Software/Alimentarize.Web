@@ -6,10 +6,10 @@
     <ng-container *ngIf="donationHistory.data; else skeleton">
       <p-carousel
         [value]="donationHistory.data.donations"
-        [numVisible]="3"
-        [numScroll]="3"
+        [numVisible]="4"
+        [numScroll]="4"
         [circular]="false"
-        [autoplayInterval]="5000"
+        [showNavigators]="false"
       >
         <ng-template let-donation pTemplate="item">
           <app-card-institution
