@@ -7,127 +7,41 @@
           <th>N° Doação</th>
           <th>Alim. doado</th>
           <th>Data</th>
-          <th>Coletor</th>
-          <th>Moedas ganhas</th>
-          <!-- <th>Destino</th> -->
+          <th>Peso</th>
           <th>Contato</th>
-          <th>{{showActions ? 'Ações' : 'Status'}}</th>
+          <th>{{ showActions ? 'Ações' : 'Status' }}</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>#1</td>
-          <td>Frutas</td>
-          <td>08/05/2023</td>
-          <td>Gabriel Castro</td>
-          <td>$5</td>
-          <!-- <td>Comunidade do Lagamar</td> -->
+        <tr *ngFor="let donation of data">
+          <td>#{{ donation.id }}</td>
+          <td>{{ donation.foodType }}</td>
+          <td>{{ donation.createdAt | date }}</td>
+          <td>{{ donation.weight }} Kg</td>
           <td>
-            <img
-              class="whatsapp"
-              src="assets/icons/whatsapp.svg"
-              alt=""
-              (click)="redirect('0')"
-            />
+            <img class="whatsapp" src="assets/icons/whatsapp.svg" alt="" (click)="redirect('0')" />
           </td>
           <td>
             <ng-container *ngIf="showActions">
               <app-dropdown></app-dropdown>
             </ng-container>
             <ng-container *ngIf="!showActions">
-              <app-status status="Aprovado"></app-status>
+              <app-status [status]="donation.status"></app-status>
             </ng-container>
           </td>
         </tr>
         <tr>
-          <td>#1</td>
-          <td>Frutas</td>
-          <td>08/05/2023</td>
-          <td>Gabriel Castro</td>
-          <td>$5</td>
-          <!-- <td>Comunidade do Lagamar</td> -->
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
           <td>
-            <img
-              class="whatsapp"
-              src="assets/icons/whatsapp.svg"
-              alt=""
-              (click)="redirect('0')"
-            />
-          </td>
-          <td>
-            <ng-container *ngIf="showActions">
-              <app-dropdown></app-dropdown>
-            </ng-container>
-            <ng-container *ngIf="!showActions">
-              <app-status status="Aprovado"></app-status>
-            </ng-container>
-          </td>
-        </tr>
-        <tr>
-          <td>#1</td>
-          <td>Frutas</td>
-          <td>08/05/2023</td>
-          <td>Gabriel Castro</td>
-          <td>$5</td>
-          <!-- <td>Comunidade do Lagamar</td> -->
-          <td>
-            <img
-              class="whatsapp"
-              src="assets/icons/whatsapp.svg"
-              alt=""
-              (click)="redirect('0')"
-            />
-          </td>
-          <td>
-            <ng-container *ngIf="showActions">
-              <app-dropdown></app-dropdown>
-            </ng-container>
-            <ng-container *ngIf="!showActions">
-              <app-status status="Recusado"></app-status>
-            </ng-container>
-          </td>
-        </tr>
-        <tr>
-          <td>#1</td>
-          <td>Frutas</td>
-          <td>08/05/2023</td>
-          <td>Gabriel Castro</td>
-          <td>$5</td>
-          <!-- <td>Comunidade do Lagamar</td> -->
-          <td>
-            <img
-              class="whatsapp"
-              src="assets/icons/whatsapp.svg"
-              alt=""
-              (click)="redirect('0')"
-            />
-          </td>
-          <td>
-            <ng-container *ngIf="showActions">
-              <app-dropdown></app-dropdown>
-            </ng-container>
-            <ng-container *ngIf="!showActions">
-              <app-status status="Recusado"></app-status>
-            </ng-container>
-          </td>
-        </tr>
-        <tr>
-          <td>#1</td>
-          <td>Frutas</td>
-          <td>08/05/2023</td>
-          <td>Gabriel Castro</td>
-          <td>$5</td>
-          <!-- <td>Comunidade do Lagamar</td> -->
-          <td>
-            <img class="whatsapp" src="assets/icons/whatsapp.svg" alt="" />
-          </td>
-          <td>
-            <ng-container *ngIf="showActions">
-              <app-dropdown></app-dropdown>
-            </ng-container>
-            <ng-container *ngIf="!showActions">
-              <app-status status=""></app-status>
-            </ng-container>
+            <app-pagination 
+            [currentPage]="currentPage" 
+            [totalPages]="totalPages" 
+            (pageChange)="onPageChange($event)">
+            </app-pagination>
           </td>
         </tr>
       </tbody>

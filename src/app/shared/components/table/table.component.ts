@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,12 +8,16 @@ import { Router } from '@angular/router';
 })
 export class TableComponent {
   showActions: boolean = false;
+  @Input() data: any[] = [];
+  @Input() currentPage: number = 1;
+  @Input() totalPages: number = 1;
+  @Output() pageChange = new EventEmitter<number>();
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     const userType = localStorage.getItem('typeUser');
-    console.log('user: ', userType);
+    // console.log('user: ', userType);
 
     if (userType === 'receiver') {
       this.showActions = true;
@@ -23,5 +27,9 @@ export class TableComponent {
   redirect(phone: string) {
     const url = `https://api.whatsapp.com/send?phone=${phone}`;
     window.open(url, '_blank');
+  }
+
+  onPageChange(page: number) {
+    this.pageChange.emit(page); 
   }
 }

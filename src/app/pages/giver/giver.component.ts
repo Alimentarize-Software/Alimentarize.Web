@@ -11,6 +11,7 @@ import {
 import { OwlOptions, CarouselComponent } from 'ngx-owl-carousel-o';
 
 declare var $: any;
+import { DonationItem, PaginationResponse } from 'src/app/core/model/paginationResponse.interface';
 
 @Component({
   selector: 'app-giver',
@@ -46,7 +47,56 @@ export class GiverComponent implements OnInit {
 
   constructor(private giverService: GiverService, private renderer: Renderer2) {}
   donationHistory: HistoryDonationResponse = {} as HistoryDonationResponse;
+  institutions: InstitutionResponse = {} as InstitutionResponse;
+  donations: DonationItem[] = [];
+  userID: number;
+  currentPage: number = 1;
+  totalPages: number;
+
+  ngAfterViewInit(): void {
+    this.renderer.listen('document', 'DOMContentLoaded', () => {
+      console.log('ready');
+    });
+  }
+  
   ngOnInit(): void {
+    const user = localStorage.getItem('user');
+
+    if (user) {
+      const parsedUser = JSON.parse(user);
+
+      if (parsedUser && parsedUser.id) {
+        this.userID = parsedUser.id;
+      } else {
+        console.error('O usuário no localStorage não tem um ID válido.');
+      }
+    } else {
+      console.error('Não há usuário armazenado no localStorage.');
+    }
+
+    this.latestInstitution();
+
+    this.allDonations();
+  }
+
+  allDonations(page: number = 1) {
+    this.giverService.getAllDonations(this.userID, page).subscribe({
+      next: (response: PaginationResponse) => {
+        const { data } = response;
+        console.log('DATA: ', data);
+        console.log('RESPONSE: ', response);
+        this.donations = data.donations;
+        this.currentPage = page;
+        this.totalPages = data.totalPages;
+      }
+    });
+  }
+
+  onPageChange(page: number): void {
+    this.allDonations(page);
+  }
+
+  latestInstitution() {
     const object = localStorage.getItem('user');
     if (object) {
       const user: Institution = JSON.parse(object);
@@ -56,16 +106,6 @@ export class GiverComponent implements OnInit {
           // console.log('donationHistory: ', this.donationHistory);
         },
       });
-    }
-  }
-
-  ngAfterViewInit(): void {
-    this.renderer.listen('document', 'DOMContentLoaded', () => {
-      console.log('ready');
-    });
-    console.log('owlCarousel: ', this.owlCarousel);
-    if (this.owlCarousel) {
-      // this.owlCarousel.refresh();
     }
   }
 }

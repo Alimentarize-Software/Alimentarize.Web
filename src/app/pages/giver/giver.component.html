@@ -28,6 +28,6 @@
     <!-- <app-card title="Moedas adquiridas" number="$20"></app-card> -->
   </div>
   <div class="box-table">
-    <app-table></app-table>
+    <app-table [data]="donations" (pageChange)="onPageChange($event)" [currentPage]="currentPage" [totalPages]="totalPages"></app-table>
   </div>
 </div>

@@ -13,7 +13,6 @@ import { PageNotFoundModule } from './pages/page-not-found/page-not-found.module
 import { RememberPasswordModule } from './pages/remember-password/remember-password.module';
 import { RedefinePasswordModule } from './pages/redefine-password/redefine-password.module';
 import { GiverModule } from './pages/giver/giver.module';
-import { HomeModule } from './pages/home/home.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptor/interpcetor.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -35,7 +34,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RedefinePasswordModule,
     GiverModule,
     HttpClientModule,
-    HomeModule,
     BrowserAnimationsModule,
   ],
   providers: [

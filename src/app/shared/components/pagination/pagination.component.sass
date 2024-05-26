@@ -1,0 +1,35 @@
+.pagination
+    display: inline-block
+
+
+.pagination button 
+    float: left
+    padding: 8px 12px
+    text-decoration: none
+    transition: background-color .3s
+    margin: 0 4px
+    border: none
+    border-radius: 5px
+    cursor: pointer
+
+    &:disabled
+        cursor: not-allowed
+        background-color: rgba(33, 150, 243, 0.4)
+
+
+.pagination button.active
+    color: black
+    border: 1px solid #2196F3
+    background-color: white
+
+
+.pagination button:hover:not(.active)
+    opacity: 0.8
+
+.changePage
+    color: white
+    background-color: #2196F3
+
+.pages
+    color: black
+    background-color: white
