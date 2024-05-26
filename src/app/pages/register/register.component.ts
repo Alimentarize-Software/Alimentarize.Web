@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
 
   control: FormGroup;
   cpf = '';
+  loadingButton = false;
 
   constructor(
     private cepService: CepService,
@@ -77,6 +78,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    this.loadingButton = true;
     this.control.removeControl('confirmPassword');
     const typeReceiver = this.control.get('typeInstitution')?.value;
     this.control.removeControl('typeInstitution');
@@ -90,11 +92,17 @@ export class RegisterComponent implements OnInit {
           console.log('Res donor: ', res);
           this.router.navigateByUrl('login');
         },
+        error: () => {
+          this.loadingButton = false;
+        },
       });
     } else {
       this.userService.createUser(object, 'receiver').subscribe({
         next: (res) => {
           console.log('Res receiver: ', res);
+        },
+        error: () => {
+          this.loadingButton = false;
         },
       });
     }

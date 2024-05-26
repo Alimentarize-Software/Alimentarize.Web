@@ -7,8 +7,8 @@ import { TableModule } from 'src/app/shared/components/table/table.module';
 import { CardInstitutionModule } from 'src/app/shared/components/card-institution/card-institution.module';
 import { GiverComponent } from './giver.component';
 import { MyProfileModule } from '../my-profile/my-profile.module';
-import { CarouselModule } from 'ngx-owl-carousel-o';
 import { SkeletonModule } from 'src/app/shared/components/skeleton/skeleton.module';
+import { CarouselModule } from 'primeng/carousel';
 
 @NgModule({
   declarations: [GiverComponent],
@@ -22,6 +22,7 @@ import { SkeletonModule } from 'src/app/shared/components/skeleton/skeleton.modu
     MyProfileModule,
     CarouselModule,
     SkeletonModule,
+    CarouselModule,
   ],
   exports: [GiverComponent],
 })

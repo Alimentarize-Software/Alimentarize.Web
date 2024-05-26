@@ -8,6 +8,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { HistoryDonationResponse } from 'src/app/core/model/historyDonation';
 import { PaginationResponse } from 'src/app/core/model/paginationResponse.interface';
+import { TotalDonation } from 'src/app/core/model/totalDonation';
 @Injectable({
   providedIn: 'root',
 })
@@ -49,8 +50,19 @@ export class GiverService {
       }
     );
   }
-  getAllDonations(id: number, page: number = 1, limit: number = 6): Observable<PaginationResponse> {
+  getAllDonations(
+    id: number,
+    page: number = 1,
+    limit: number = 6
+  ): Observable<PaginationResponse> {
     return this.httpClient.get<PaginationResponse>(
-      `${this.baseUrl}/donation/history/donor/${id}?page=${page}&limit=${limit}`);
+      `${this.baseUrl}/donation/history/donor/${id}?page=${page}&limit=${limit}`
+    );
+  }
+
+  getTotalDonations(id: number) {
+    return this.httpClient.get<TotalDonation>(
+      `${this.baseUrl}/donation/total-donations/${id}`
+    );
   }
 }

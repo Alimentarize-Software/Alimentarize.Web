@@ -4,13 +4,19 @@
   </div>
   <div class="cards">
     <ng-container *ngIf="donationHistory.data; else skeleton">
-      <owl-carousel-o [options]="customOptions" style="width: 100%;">
-        <ng-container *ngFor="let donation of donationHistory.data.donations">
-          <ng-template carouselSlide>
-            <app-card-institution [card]="donation.receiver"></app-card-institution>
-          </ng-template>
-        </ng-container>
-      </owl-carousel-o>
+      <p-carousel
+        [value]="donationHistory.data.donations"
+        [numVisible]="3"
+        [numScroll]="3"
+        [circular]="false"
+        [autoplayInterval]="5000"
+      >
+        <ng-template let-donation pTemplate="item">
+          <app-card-institution
+            [card]="donation.receiver"
+          ></app-card-institution>
+        </ng-template>
+      </p-carousel>
     </ng-container>
     <ng-template #skeleton>
       <ng-container *ngFor="let skeleton of skeletons">
@@ -28,6 +34,11 @@
     <!-- <app-card title="Moedas adquiridas" number="$20"></app-card> -->
   </div>
   <div class="box-table">
-    <app-table [data]="donations" (pageChange)="onPageChange($event)" [currentPage]="currentPage" [totalPages]="totalPages"></app-table>
+    <app-table
+      [data]="donations"
+      (pageChange)="onPageChange($event)"
+      [currentPage]="currentPage"
+      [totalPages]="totalPages"
+    ></app-table>
   </div>
 </div>

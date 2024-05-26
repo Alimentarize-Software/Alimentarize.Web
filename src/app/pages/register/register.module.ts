@@ -6,9 +6,12 @@ import { RouterModule } from '@angular/router';
 import { RegisterComponent } from './register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutImageFormsModule } from 'src/app/shared/layout/layout-image-forms/layout-image-forms.module';
+import { DateMaskPipe } from 'src/app/utils/date-mask.pipe';
+import { PhonePipe } from 'src/app/utils/phone.pipe';
+import { CnpjPipe } from 'src/app/utils/cnpj.pipe';
 
 @NgModule({
-  declarations: [RegisterComponent],
+  declarations: [RegisterComponent, CnpjPipe, PhonePipe, DateMaskPipe],
   imports: [
     CommonModule,
     InputModule,

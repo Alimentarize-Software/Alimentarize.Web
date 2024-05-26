@@ -79,7 +79,7 @@
             name="phoneNumber"
             ngDefaultControl
             formControlName="phoneNumber"
-            [model]="control.get('phoneNumber')?.value"
+            [model]="control.get('phoneNumber')?.value | phone"
           ></app-input>
           <app-input
             type="Email"
@@ -191,7 +191,7 @@
                   ngDefaultControl
                   formControlName="legalPurpose"
                   (onBlur)="onBlur($event)"
-                  [model]="cpf"
+                  [model]="control.get('legalPurpose')?.value"
                 ></app-input>
               </div>
             </div>
@@ -204,7 +204,7 @@
                   name="cnpj"
                   ngDefaultControl
                   formControlName="cnpj"
-                  [model]="control.get('cnpj')?.value"
+                  [model]="control.get('cnpj')?.value | cnpj"
                 ></app-input>
               </div>
               <div class="box-item">
@@ -215,7 +215,7 @@
                   name="legalDateCreate"
                   ngDefaultControl
                   formControlName="legalDateCreate"
-                  [model]="control.get('legalDateCreate')?.value"
+                  [model]="control.get('legalDateCreate')?.value | dateMask"
                 ></app-input>
               </div>
             </div>
@@ -241,6 +241,7 @@
           width="360px"
           (click)="register()"
           [disabled]="!formIsValid"
+          [loading]="loadingButton"
           >Criar conta</app-button
         >
         <app-button tipo="secondary" width="360px" [routerLink]="['/']"
