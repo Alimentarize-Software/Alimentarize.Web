@@ -49,7 +49,7 @@ export class BreadcrumbComponent implements OnInit {
             }
           });
         } while (currentRoute);
-        console.log(this.breadcrumbs)
+        // console.log(this.breadcrumbs)
 
       }
     });

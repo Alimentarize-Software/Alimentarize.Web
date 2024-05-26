@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import mock from './mock.json';
-import mock2 from './mock2.json';
 import {
   Institution,
   InstitutionResponse,
 } from 'src/app/core/model/institution';
-import { Router } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { PaginationResponse } from 'src/app/core/model/paginationResponse.interface';
 @Injectable({
   providedIn: 'root',
 })
@@ -17,7 +16,7 @@ export class GiverService {
   $mock2 = new BehaviorSubject<InstitutionResponse>({ data: [] });
   baseUrl = environment.baseUrl;
 
-  constructor(private router: Router, private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {}
 
   getLatestInstitution() {
     this.$mock.next(mock);
@@ -32,10 +31,6 @@ export class GiverService {
   }
 
   getInstitutions(page: number, limit: number) {
-    // this.$mock.next(mock2);
-
-    // return this.$mock;
-
     const params = new HttpParams()
       .set('page', page.toString())
       .set('limit', limit.toString());
@@ -46,5 +41,10 @@ export class GiverService {
         params,
       }
     );
+  }
+
+  getAllDonations(id: number, page: number = 1, limit: number = 6): Observable<PaginationResponse> {
+    return this.httpClient.get<PaginationResponse>(
+      `${this.baseUrl}/donation/history/donor/${id}?page=${page}&limit=${limit}`);
   }
 }
