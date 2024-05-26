@@ -48,3 +48,35 @@
 .whatsapp
   width: 20px
   cursor: pointer
+
+.tooltip-container 
+  position: relative
+  display: inline-block
+  cursor: pointer
+  max-width: 250px
+
+  .tooltip 
+    visibility: hidden
+    background-color: #555
+    color: #fff
+    text-align: left
+    border-radius: 5px
+    padding: 10px
+    position: absolute
+    z-index: 1
+    bottom: 100%
+    left: 50%
+    transform: translateX(-50%)
+    opacity: 0
+    transition: opacity 0.3s
+    white-space: normal
+    width: fit-content
+    overflow-y: auto
+    max-height: 150px
+    word-wrap: break-word
+
+
+  &:hover .tooltip 
+    visibility: visible
+    opacity: 1
+  

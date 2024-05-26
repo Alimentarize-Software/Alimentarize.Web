@@ -1,14 +1,14 @@
 @import './../../core/styles/variables'
 
 .main
-  width: 80%
+  width: 100%
   padding: 46px 60px 40px 48px
   box-sizing: border-box
 
-  .title-and-button
-    width: 100%
-    display: flex
-    justify-content: space-between
+  h3
+    font-size: 24px
+    font-weight: bold
+    color: #252525
 
     .box-button
       width: 174px
@@ -22,9 +22,62 @@
   .box-table
     margin-top: 90px
 
+.tabs
+  display: flex
+  margin-top: 26px
+  border-bottom: 1px solid #292D32
 
+.tab
+  font-size: 20px
+  font-weight: bold
+  color: #6F7482
+  cursor: pointer
+  width: 186px
+  text-align: center
 
+  &:hover
+    color: #2196F3
+    background-color: rgba(33, 150, 243, 0.2)
+    border-top-left-radius: 10px
+    border-top-right-radius: 10px
 
+.tab.hover-active
+  color: #2196F3
+  background-color: rgba(33, 150, 243, 0.2)
+  border-top-left-radius: 10px
+  border-top-right-radius: 10px
 
+.filter-subtitles
+    display: flex
+    width: 100%
+    // border: 1px solid #2196F3
+    justify-content: flex-end
 
+.subtitles
+    display: flex
+    background-color: white
+    padding: 0.5rem 1rem
+    border-radius: 12px
+    margin-top: 1rem
+    height: 2.5rem
+    width:30rem
+    align-items: center
 
+    p
+        width: 30%
+
+.subtitles-options
+    display: flex
+    flex-wrap: wrap
+    justify-content: flex-end
+    align-items: center
+    width: 100%
+    font-size: 0.9rem
+    gap: 12px
+
+.subtitles-option
+    display: flex
+    align-items: center
+
+    label
+        margin-left: 0.5rem

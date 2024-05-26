@@ -31,7 +31,8 @@ export class MainComponent {
       this.activePath === '/doador/meu-perfil' ||
       this.activePath === '/instituicao/meu-perfil' ||
       this.activePath === '/doador/configuracoes' ||
-      this.activePath === '/instituicao/configuracoes'
+      this.activePath === '/instituicao/configuracoes' ||
+      this.activePath === '/instituicao/home'
     );
   }
 }

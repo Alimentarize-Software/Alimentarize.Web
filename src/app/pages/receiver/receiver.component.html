@@ -1,18 +1,64 @@
 <div class="main">
-  <div class="title-and-button">
-    <h1>Histórico de doações</h1>
-    <div class="box-button">
-      <app-button pathIcon="assets/icons/add.svg" theme="primary"
-        >Agendar doação</app-button
-      >
+  <h3>Histórico de doações</h3>
+  <div class="tabs">
+    <div class="tab" (click)="handleTabClick($event)">
+        Histórico
     </div>
-  </div>
-  <div class="cards">
-    <app-card title="Quantidade de doações" number="16"></app-card>
-    <app-card title="Pessoas alimentadas" number="120"></app-card>
-    <app-card title="Moedas adquiridas" number="$20"></app-card>
-  </div>
+    <div class="tab" (click)="handleTabClick($event)">
+        Agendamentos
+    </div>
+    <div class="border"></div>
+</div>
   <div class="box-table">
     <app-table></app-table>
+  </div>
+  <div class="filter-subtitles">
+    <div class="subtitles">
+      <p>Legenda</p>
+      <div class="subtitles-options">
+        <div class="subtitles-option">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="#A9320C"
+          >
+            <path
+              d="M480-280q83 0 141.5-58.5T680-480q0-83-58.5-141.5T480-680q-83 0-141.5 58.5T280-480q0 83 58.5 141.5T480-280Zm0 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+            />
+          </svg>
+          <label for="option1">Recusado</label>
+        </div>
+        <div class="subtitles-option">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="#FFC107"
+          >
+            <path
+              d="M480-280q83 0 141.5-58.5T680-480q0-83-58.5-141.5T480-680q-83 0-141.5 58.5T280-480q0 83 58.5 141.5T480-280Zm0 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+            />
+          </svg>
+          <label for="option1">Pendente</label>
+        </div>
+        <div class="subtitles-option">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="#4CAF50"
+          >
+            <path
+              d="M480-280q83 0 141.5-58.5T680-480q0-83-58.5-141.5T480-680q-83 0-141.5 58.5T280-480q0 83 58.5 141.5T480-280Zm0 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+            />
+          </svg>
+          <label for="option1">Aprovado</label>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
