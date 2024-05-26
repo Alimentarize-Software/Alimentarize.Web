@@ -1,3 +1,3 @@
 export const environment = {
-  baseUrl: 'https://software-alimentarize.koyeb.app',
+  baseUrl: 'https://alimentarize-api.onrender.com',
 };
