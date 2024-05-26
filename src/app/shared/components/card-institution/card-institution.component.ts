@@ -27,6 +27,8 @@ export class CardInstitutionComponent {
   }
 
   convertBase64ToImageUrl(base64Data: string): string {
-    return `data:image/jpeg;base64,${base64Data}`;
+    return base64Data !== undefined
+      ? `data:image/jpeg;base64,${base64Data}`
+      : '';
   }
 }

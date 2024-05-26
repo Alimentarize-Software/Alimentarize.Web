@@ -19,14 +19,14 @@ const routes: Routes = [
           ),
         data: { breadcrumb: 'Instituição' },
       },
-      {
-        path: 'instituicao/:id/doacao',
-        loadChildren: () =>
-          import('./components/donation/donation.module').then(
-            (m) => m.DonationModule
-          ),
-        data: { breadcrumb: 'Doação' },
-      },
+      // {
+      //   path: 'instituicao/:id/doacao',
+      //   loadChildren: () =>
+      //     import('./components/donation/donation.module').then(
+      //       (m) => m.DonationModule
+      //     ),
+      //   data: { breadcrumb: 'Doação' },
+      // },
     ],
   },
 ];

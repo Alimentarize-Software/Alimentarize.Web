@@ -116,6 +116,6 @@ export class InstitutionComponent implements OnInit {
 
   handleImage(image: string) {
     console.log('Image: ', image);
-    this.currentId = image;
+    this.currentImage = image;
   }
 }

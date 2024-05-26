@@ -6,7 +6,18 @@ import { InstitutionComponent } from './institution.component';
 const routes: Routes = [
   {
     path: '',
-    component: InstitutionComponent,
+    children: [
+      {
+        path: '',
+        component: InstitutionComponent,
+      },
+      {
+        path: 'doacao',
+        loadChildren: () =>
+          import('../donation/donation.module').then((m) => m.DonationModule),
+        data: { breadcrumb: 'Doação' },
+      },
+    ],
   },
 ];
 
