@@ -15,7 +15,7 @@ import { CustomColor } from './button';
   styleUrls: ['./button.component.sass'],
 })
 export class ButtonComponent implements OnInit, OnChanges {
-  @Output() click = new EventEmitter();
+  @Output() onClick = new EventEmitter();
   @Input() loading = false;
   @Input() disabled = false;
   @Input() exibeEmBloco = false;
@@ -34,9 +34,9 @@ export class ButtonComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     // console.log('Mudou', changes);
   }
-  public onClick(): void {
+  public emitClick(): void {
     if (!this.disabled) {
-      this.click.emit({});
+      this.onClick.emit({});
     }
   }
 
