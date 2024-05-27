@@ -20,7 +20,7 @@ export class GiverService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getInstitution(receiverId: string) {
+  getInstitution(receiverId: string | number) {
     return this.httpClient.get<Institution>(
       `${this.baseUrl}/receiver/get-about/${receiverId}`
     );

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 import { Institution } from 'src/app/core/model/institution';
-import { MyProfileService } from './my-profile.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReceiverService } from '../receiver/receiver.service';
 import { GiverService } from '../giver/giver.service';
@@ -25,37 +23,12 @@ export class MyProfileComponent implements OnInit {
     private receiverService: ReceiverService, 
     private giverService: GiverService,
     private route: ActivatedRoute,
-    private myProfileService: MyProfileService
   ) {
     
   }
 
   ngOnInit(): void {
-    this.route.params.pipe(
-      switchMap((params: Params) => this.myProfileService.getInstitution(params['receiverId']))
-    ).subscribe((data: Institution) => {
-      if (data && data.profileImage) {
-        this.currentImage = this.convertBase64ToImageUrl(data.profileImage);
-      } else {
-        this.currentImage = this.defaultImage;
-      }
-    }, (error) => {
-      this.currentImage = this.defaultImage;
-    });
-
     const user = localStorage.getItem('user');
-
-    if (user) {
-      const parsedUser = JSON.parse(user);
-
-      if (parsedUser && parsedUser.id) {
-        this.userID = parsedUser.id;
-      } else {
-        console.error('O usuário no localStorage não tem um ID válido.');
-      }
-    } else {
-      console.error('Não há usuário armazenado no localStorage.');
-    }
 
     this.profileForm = this.formBuilder.group({
       name: [''],
@@ -69,6 +42,28 @@ export class MyProfileComponent implements OnInit {
       email: ['']
     });
 
+    if (user) {
+      const parsedUser = JSON.parse(user);
+
+      if (parsedUser && parsedUser.id) {
+        this.userID = parsedUser.id;
+        this.loadUserProfile();
+        this.giverService.getInstitution(this.userID).subscribe((data: Institution) => {
+          if (data && data.profileImage) {
+            this.currentImage = this.convertBase64ToImageUrl(data.profileImage);
+          } else {
+            this.currentImage = this.defaultImage;
+          }
+        }, (error) => {
+          this.currentImage = this.defaultImage;
+        });
+      } else {
+        console.error('O usuário no localStorage não tem um ID válido.');
+      }
+    } else {
+      console.error('Não há usuário armazenado no localStorage.');
+    }
+
     // const userType = localStorage.getItem('typeUser');
 
     // if (userType === 'donor') {
@@ -76,8 +71,6 @@ export class MyProfileComponent implements OnInit {
     // } else if (userType === 'receiver') {
     //   // colocar compos do receiver
     // }
-
-    this.loadUserProfile();
   }
 
   convertBase64ToImageUrl(base64Data: string): string {
@@ -107,12 +100,15 @@ export class MyProfileComponent implements OnInit {
   }
 
   populateForm(profileData: any) {
+    console.log('Dados do perfil recebidos:', profileData); 
     this.initialData = profileData;
     for (let key in profileData) {
       if (this.profileForm.controls[key]) {
         this.profileForm.controls[key].setValue(profileData[key]);
+        console.log(`Campo ${key} atualizado com valor: ${profileData[key]}`);  // Adicione este log
       }
     }
+    console.log('Formulário após preenchimento:', this.profileForm.getRawValue());  // Adicione este log
   }
 
 
