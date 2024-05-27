@@ -11,23 +11,21 @@
     </div>
     <div class="profile-content">
         <div class="profile-image">
-            <img style="width: 120px; height: 120px;" src="assets/icons/logo.svg" alt="" />
+            <img style="width: 120px; height: 120px;" [src]="currentImage" alt="" />
             <div class="image-buttons">
                 <div style="width: 130px;">
                     <app-button
                         theme="primary"
                         width="130px"
                         data-cy="button-editar-perfil"
-                        >Alterar Imagem</app-button
-                    >
+                        >Alterar Imagem</app-button>
                 </div>
                 <app-button
                     theme="tertiary"
                     width="80px"
                     data-cy="button-editar-perfil"
                     style="width: 80px;"
-                    >Remover</app-button
-                >
+                    >Remover</app-button>
             </div>
         </div>
         <div class="profile-inputs">
@@ -130,5 +128,6 @@
                     style="width: 366px;"
                 ></app-input>
             </div>
+        </div>
     </div>
 </div>
