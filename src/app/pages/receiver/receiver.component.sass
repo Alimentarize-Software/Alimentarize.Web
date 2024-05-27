@@ -81,3 +81,94 @@
 
     label
         margin-left: 0.5rem
+
+.modal
+  display: flex
+  justify-content: center
+  align-items: center
+  position: fixed
+  z-index: 1
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  overflow: auto
+  background-color: rgba(0, 0, 0, 0.5)
+
+.modal-content
+  background-color: #fff
+  margin: auto
+  padding: 30px
+  border: none
+  width: 80%
+  max-width: 500px
+  border-radius: 20px
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
+  font-family: Arial, sans-serif
+  color: #333
+
+  h2
+    font-size: 24px
+    font-weight: bold
+    margin-bottom: 20px
+
+  p
+    font-size: 16px
+    margin: 10px 0
+
+  .warning
+    background-color: rgba(192, 71, 32, 0.2)
+    color: rgba(192, 71, 32, 1)
+    padding: 10px
+    border-left: 5px solid $color-button-red
+    border-radius: 5px
+    font-size: 14px
+    margin: 20px 0
+
+  .success
+    background-color: #e8f5e9
+    color: #388e3c
+    padding: 10px
+    border-left: 5px solid #388e3c
+    border-radius: 5px
+    font-size: 14px
+    margin: 20px 0
+
+  .modal-actions
+    display: flex
+    justify-content: end
+    gap: 15px 
+    margin-top: 30px
+
+  .back-btn
+    background-color: #fff
+    border: none
+    color: #333
+    padding: 10px 20px
+    cursor: pointer
+    transition: background-color 0.3s
+    font-weight: bold
+
+  .accept-btn
+    background-color: #4caf50
+    color: white
+    border: none
+    padding: 10px 20px
+    border-radius: 5px
+    cursor: pointer
+    transition: background-color 0.3s
+
+    &:hover
+      background-color: #388e3c
+
+  .cancel-btn
+    background-color: $color-button-red
+    color: white
+    border: none
+    padding: 10px 20px
+    border-radius: 5px
+    cursor: pointer
+    transition: background-color 0.3s
+
+    &:hover
+      background-color: #b71c1c

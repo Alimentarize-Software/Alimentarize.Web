@@ -9,6 +9,7 @@ import { ReceiverRoutingModule } from './receiver-routing.module';
 import { ConfigurationComponent } from './pages/configuration/configuration.component';
 import { ConfigurationModule } from './pages/configuration/configuration.module';
 import { TableModule } from 'src/app/shared/components/table/table.module';
+import { SkeletonModule } from 'src/app/shared/components/skeleton/skeleton.module';
 
 @NgModule({
   declarations: [ReceiverComponent],
@@ -21,6 +22,7 @@ import { TableModule } from 'src/app/shared/components/table/table.module';
     ReceiverRoutingModule,
     ConfigurationModule,
     TableModule,
+    SkeletonModule,
   ],
   exports: [ReceiverComponent],
 })

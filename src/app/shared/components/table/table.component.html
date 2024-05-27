@@ -9,39 +9,71 @@
           <th>Data</th>
           <th>Peso</th>
           <th>Contato</th>
-          <th>{{ showActions ? 'Ações' : 'Status' }}</th>
+          <th>{{ showActions ? "Ações" : "Status" }}</th>
         </tr>
       </thead>
+
       <tbody>
-        <ng-container *ngFor="let donation of data">
-          <tr *ngIf="showRow(donation)">
-            <td>#{{ donation.id }}</td>
-            <td class="tooltip-container">
-              <span *ngIf="donation.foodNames.length > 5" (mouseover)="showTooltip($event)" (mouseout)="hideTooltip($event)">
-                {{ getFoodNamesSummary(donation.foodNames).summary }}
-                <div class="tooltip">
-                  <div *ngFor="let item of getFoodNamesSummary(donation.foodNames).tooltip">{{ item }}</div>
-                </div>
-              </span>
-              <span *ngIf="donation.foodNames.length <= 5">
-                {{ getFoodNamesSummary(donation.foodNames).summary }}
-              </span>
-            </td>
-            <td>{{ donation.createdAt | date }}</td>
-            <td>{{ donation.weight }} Kg</td>
-            <td>
-              <img class="whatsapp" src="assets/icons/whatsapp.svg" alt="" (click)="redirect('0')" />
-            </td>
-            <td class="actions-status">
-              <ng-container *ngIf="showActions">
-                <app-dropdown></app-dropdown>
-              </ng-container>
-              <ng-container *ngIf="!showActions">
-                <app-status [status]="donation.status"></app-status>
-              </ng-container>
-            </td>
-          </tr>
+        <ng-container *ngIf="loadingData; else dataContent">
+          <ng-container *ngFor="let skeleton of skeletons">
+            <tr>
+              <td colspan="6">
+                <app-skeleton [width]="'100%'" [height]="'10px'"></app-skeleton>
+              </td>
+            </tr>
+          </ng-container>
         </ng-container>
+
+        <ng-template #dataContent>
+          <ng-container *ngFor="let donation of data">
+            <tr *ngIf="showRow(donation)">
+              <td>#{{ donation.id }}</td>
+              <td class="tooltip-container">
+                <span
+                  *ngIf="donation.foodNames.length > 5"
+                  (mouseover)="showTooltip($event)"
+                  (mouseout)="hideTooltip($event)"
+                >
+                  {{ getFoodNamesSummary(donation.foodNames).summary }}
+                  <div class="tooltip">
+                    <div
+                      *ngFor="
+                        let item of getFoodNamesSummary(donation.foodNames)
+                          .tooltip
+                      "
+                    >
+                      {{ item }}
+                    </div>
+                  </div>
+                </span>
+                <span *ngIf="donation.foodNames.length <= 5">
+                  {{ getFoodNamesSummary(donation.foodNames).summary }}
+                </span>
+              </td>
+              <td>{{ donation.createdAt | date }}</td>
+              <td>{{ donation.weight }} Kg</td>
+              <td>
+                <img
+                  class="whatsapp"
+                  src="assets/icons/whatsapp.svg"
+                  alt=""
+                  (click)="redirect('0')"
+                />
+              </td>
+              <td class="actions-status">
+                <ng-container *ngIf="showActions">
+                  <app-dropdown
+                    (actionSelected)="handleData($event, donation)"
+                  ></app-dropdown>
+                </ng-container>
+                <ng-container *ngIf="!showActions">
+                  <app-status [status]="donation.status"></app-status>
+                </ng-container>
+              </td>
+            </tr>
+          </ng-container>
+        </ng-template>
+
         <tr *ngIf="totalPages > 1">
           <td></td>
           <td></td>
@@ -49,10 +81,11 @@
           <td></td>
           <td></td>
           <td>
-            <app-pagination 
-            [currentPage]="currentPage" 
-            [totalPages]="totalPages" 
-            (pageChange)="onPageChange($event)">
+            <app-pagination
+              [currentPage]="currentPage"
+              [totalPages]="totalPages"
+              (pageChange)="onPageChange($event)"
+            >
             </app-pagination>
           </td>
         </tr>
