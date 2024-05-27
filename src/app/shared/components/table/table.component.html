@@ -50,7 +50,7 @@
                   {{ getFoodNamesSummary(donation.foodNames).summary }}
                 </span>
               </td>
-              <td>{{ donation.createdAt | date }}</td>
+              <td>{{ donation.createdAt | date : "dd/MM/yyyy" }}</td>
               <td>{{ donation.weight }} Kg</td>
               <td class="zapzap">
                 <img

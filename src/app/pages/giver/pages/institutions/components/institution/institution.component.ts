@@ -77,12 +77,6 @@ export class InstitutionComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.currentId = params['id'];
-      // this.institution$ = this.giverService.getInstitution(this.currentId).subscribe((data) => {
-      //   console.log('Deu certo');
-      //   this.institution = data;
-      //   this.banners = this.getBanners(data.AboutProjects);
-      //   this.currentImage = this.banners[0];
-      // });
       this.institution$ = this.giverService.getInstitution(this.currentId);
       this.institution$.subscribe((data) => {
         console.log('DAAAAAAAAAAAAAAATA: ', data);
