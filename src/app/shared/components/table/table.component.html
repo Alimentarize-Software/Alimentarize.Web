@@ -74,7 +74,15 @@
           </ng-container>
         </ng-template>
 
-        <tr *ngIf="totalPages > 1">
+        <ng-container *ngIf="!hasContent && !loadingData">
+          <tr>
+            <td colspan="6">
+              <span>Nenhuma doação pendente encontrada</span>
+            </td>
+          </tr>
+        </ng-container>
+
+        <tr *ngIf="totalPages > 1 && hasContent">
           <td></td>
           <td></td>
           <td></td>

@@ -5,6 +5,7 @@ import {
   Output,
   OnChanges,
   SimpleChanges,
+  ChangeDetectorRef
 } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -23,8 +24,9 @@ export class TableComponent implements OnChanges {
   @Output() pageChange = new EventEmitter<number>();
   @Output() donationModal = new EventEmitter<any>();
   skeletons: any[] = new Array(6);
+  hasContent: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.updateActions();
@@ -53,6 +55,7 @@ export class TableComponent implements OnChanges {
     } else {
       this.showActions = false;
     }
+    this.cdr.detectChanges(); // Marcar detecção de mudanças
   }
 
   showRow(donation: any): boolean {
@@ -65,10 +68,14 @@ export class TableComponent implements OnChanges {
 
     const receiverAndHistoryPage =
       userType === 'receiver' &&
-      this.scheduling === false &&
+      !this.scheduling &&
       donation.status !== 'PENDENTE';
 
-    const giverUser = userType !== 'receiver' && donation.status !== 'PENDENTE';
+    const giverUser = userType !== 'receiver';
+
+    console.log(receiverAndSchedulePage, receiverAndHistoryPage, giverUser);
+
+    this.hasContent = receiverAndSchedulePage || receiverAndHistoryPage || giverUser;
 
     return receiverAndHistoryPage || receiverAndSchedulePage || giverUser;
   }

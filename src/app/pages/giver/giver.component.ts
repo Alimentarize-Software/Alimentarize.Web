@@ -58,6 +58,7 @@ export class GiverComponent implements OnInit {
   currentPage: number = 1;
   totalPages: number;
   totalDonation$: Observable<TotalDonation>;
+  loading = true;
   // responsiveOptions: CarouselResponsiveOptions[] = {}
 
   ngAfterViewInit(): void {
@@ -97,6 +98,8 @@ export class GiverComponent implements OnInit {
         this.donations = data.donations;
         this.currentPage = page;
         this.totalPages = data.totalPages;
+
+        this.loading = false;
       },
     });
   }
