@@ -48,7 +48,7 @@
           </div>
           <app-input
             type="food-weight"
-            placeholder="Digite o peso em kg ou unidade"
+            placeholder="Digite o peso"
             name="food-weight"
             [(ngModel)]="item.weight"
             ngDefaultControl
@@ -79,7 +79,7 @@
           <div class="food-item">
             <p class="item-name">{{ donation.food }}</p>
             <div class="item">
-              <p>{{ donation.weight }}</p>
+              <p>{{ donation.weight }}Kg</p>
               <button (click)="deleteFoodItem(i)">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -135,6 +135,8 @@
       A instituição irá analisar sua doação e entrar em contato para mais
       detalhes.
     </p>
+
+    <h2 [routerLink]="'/doador/home'">Voltar para o início</h2>
   </div>
   <div class="filter-subtitles">
     <div class="subtitles">

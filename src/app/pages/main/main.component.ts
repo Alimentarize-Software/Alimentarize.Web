@@ -4,7 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.sass']
+  styleUrls: ['./main.component.sass'],
 })
 export class MainComponent {
   activePath: string;
@@ -30,10 +30,8 @@ export class MainComponent {
     return !(
       this.activePath === '/doador/meu-perfil' ||
       this.activePath === '/instituicao/meu-perfil' ||
-      this.activePath === '/doador/configuracoes' ||
       this.activePath === '/instituicao/configuracoes' ||
-      this.activePath === '/instituicao/home' ||
-      this.activePath === '/doador/home'
+      this.activePath === '/instituicao/home'
     );
   }
 }
