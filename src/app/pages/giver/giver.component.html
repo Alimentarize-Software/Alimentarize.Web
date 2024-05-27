@@ -44,6 +44,7 @@
   <div class="box-table">
     <app-table
       [data]="donations"
+      [loadingData]="loading"
       (pageChange)="onPageChange($event)"
       [currentPage]="currentPage"
       [totalPages]="totalPages"

@@ -4,6 +4,7 @@ import {
   PaginationResponse,
 } from 'src/app/core/model/paginationResponse.interface';
 import { ReceiverService } from './receiver.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-receiver',
@@ -25,11 +26,12 @@ export class ReceiverComponent {
   constructor(
     private renderer: Renderer2,
     private el: ElementRef,
-    private receiverService: ReceiverService
+    private receiverService: ReceiverService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
-    console.log(this.loading);
+    // console.log(this.loading);
     const firstTab = this.el.nativeElement.querySelector('.tabs .tab');
     if (firstTab) {
       this.renderer.addClass(firstTab, this.hoverClass);
@@ -111,6 +113,7 @@ export class ReceiverComponent {
         },
       });
     this.closeModal();
+    this.toastr.success('Doação recusada com sucesso!');
   }
 
   openSuccessModal(): void {
@@ -131,6 +134,7 @@ export class ReceiverComponent {
         },
       });
     this.closeSuccessModal();
+    this.toastr.success('Doação aprovada com sucesso!');
   }
 
   handleAction(event: any): void {

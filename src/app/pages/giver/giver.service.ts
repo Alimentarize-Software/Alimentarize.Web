@@ -20,7 +20,7 @@ export class GiverService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getInstitution(receiverId: string) {
+  getInstitution(receiverId: string | number) {
     return this.httpClient.get<Institution>(
       `${this.baseUrl}/receiver/get-about/${receiverId}`
     );
@@ -68,10 +68,10 @@ export class GiverService {
   }
 
   updateMyProfile(data: any) {
-    return this.httpClient.post(`${this.baseUrl}/donor/update-receiver-infos`, data);
+    return this.httpClient.post(`${this.baseUrl}/donor/update-donor-infos`, data);
   }
 
   getDonorInfo(id: number) {
-    return this.httpClient.get(`${this.baseUrl}/receiver/${id}`);
+    return this.httpClient.get(`${this.baseUrl}/donor/${id}`);
   }
 }

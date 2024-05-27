@@ -1,39 +1,32 @@
-import { style } from '@angular/animations';
-import {
-  Component,
-  OnInit,
-  Input,
-  AfterViewInit,
-  ViewChild,
-  ElementRef,
-  Renderer2,
-  NgModule,
-  Output,
-  EventEmitter,
-} from '@angular/core';
-import { NgModel } from '@angular/forms';
+import { Component, OnInit, Input, ViewChild, ElementRef, Renderer2, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.sass'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputComponent),
+      multi: true,
+    },
+  ],
 })
-export class InputComponent implements OnInit {
+export class InputComponent implements OnInit, ControlValueAccessor {
   @ViewChild('icon') asIcon: ElementRef;
   @Input() type = 'email';
-  @Input() model: any;
   @Input() name = '';
-  @Input() chooseType = '';
   @Input() placeholder = '';
   @Input() errorMensagem = '';
-  @Input() value = '';
 
-  @Output() modelChange = new EventEmitter<any>();
-  @Output() onKeyPress = new EventEmitter<any>();
-  @Output() onBlur = new EventEmitter<any>();
-
+  chooseType = '';
+  value = '';
   iconPath = 'assets/icons/eye.svg';
   focus = false;
+
+  private onChange: (value: any) => void;
+  private onTouched: () => void;
 
   constructor(private _renderer2: Renderer2) {}
 
@@ -42,8 +35,8 @@ export class InputComponent implements OnInit {
   }
 
   public handleChangeModel(event: any) {
-    this.modelChange.emit(event.target.value);
-    this.onKeyPress.emit();
+    this.value = event.target.value;
+    this.onChange(this.value);
   }
 
   public get showIcon() {
@@ -87,10 +80,26 @@ export class InputComponent implements OnInit {
 
   onBlurEmit(event: any) {
     this.focus = !this.focus;
-    this.onBlur.emit(event.value);
+    this.onTouched();
   }
 
   public get activeFocus() {
     return this.focus ? 'focus-div' : '';
+  }
+
+  writeValue(value: any): void {
+    this.value = value;
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState?(isDisabled: boolean): void {
+    // Optional: Handle the disabled state if needed
   }
 }

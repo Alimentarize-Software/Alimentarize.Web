@@ -71,7 +71,7 @@
             name="name"
             ngDefaultControl
             formControlName="name"
-            [model]="control.get('name')?.value"
+            [ngModel]="control.get('name')?.value"
           ></app-input>
           <app-input
             type="text"
@@ -79,7 +79,7 @@
             name="phoneNumber"
             ngDefaultControl
             formControlName="phoneNumber"
-            [model]="control.get('phoneNumber')?.value | phone"
+            [ngModel]="control.get('phoneNumber')?.value | phone"
           ></app-input>
           <app-input
             type="Email"
@@ -87,7 +87,7 @@
             name="email"
             ngDefaultControl
             formControlName="email"
-            [model]="control.get('email')?.value"
+            [ngModel]="control.get('email')?.value"
           ></app-input>
           <app-input
             type="password"
@@ -95,7 +95,7 @@
             name="password"
             ngDefaultControl
             formControlName="password"
-            [model]="control.get('password')?.value"
+            [ngModel]="control.get('password')?.value"
           ></app-input>
           <app-input
             type="password"
@@ -103,7 +103,7 @@
             name="confirmPassword"
             ngDefaultControl
             formControlName="confirmPassword"
-            [model]="control.get('confirmPassword')?.value"
+            [ngModel]="control.get('confirmPassword')?.value"
           ></app-input>
         </ng-container>
         <ng-container *ngIf="currentTab === 'tab3'">
@@ -117,7 +117,7 @@
                   ngDefaultControl
                   formControlName="cep"
                   (onBlur)="onBlur($event)"
-                  [model]="control.get('cep')?.value"
+                  [ngModel]="control.get('cep')?.value"
                 ></app-input>
               </div>
             </div>
@@ -129,7 +129,7 @@
                   name="city"
                   ngDefaultControl
                   formControlName="city"
-                  [model]="control.get('city')?.value"
+                  [ngModel]="control.get('city')?.value"
                 ></app-input>
               </div>
               <div class="box-item three-itens">
@@ -139,7 +139,7 @@
                   name="state"
                   ngDefaultControl
                   formControlName="state"
-                  [model]="control.get('state')?.value"
+                  [ngModel]="control.get('state')?.value"
                 ></app-input>
               </div>
               <div class="box-item three-itens">
@@ -149,7 +149,7 @@
                   name="neighborhood"
                   ngDefaultControl
                   formControlName="neighborhood"
-                  [model]="control.get('neighborhood')?.value"
+                  [ngModel]="control.get('neighborhood')?.value"
                 ></app-input>
               </div>
             </div>
@@ -162,7 +162,7 @@
                   name="address"
                   ngDefaultControl
                   formControlName="address"
-                  [model]="control.get('address')?.value"
+                  [ngModel]="control.get('address')?.value"
                 ></app-input>
               </div>
             </div>
@@ -174,7 +174,7 @@
                 name="addressAlias"
                 ngDefaultControl
                 formControlName="addressAlias"
-                [model]="control.get('addressAlias')?.value"
+                [ngModel]="control.get('addressAlias')?.value"
               ></app-input>
             </div>
           </div>
@@ -191,7 +191,7 @@
                   ngDefaultControl
                   formControlName="legalPurpose"
                   (onBlur)="onBlur($event)"
-                  [model]="control.get('legalPurpose')?.value"
+                  [ngModel]="control.get('legalPurpose')?.value"
                 ></app-input>
               </div>
             </div>
@@ -204,7 +204,7 @@
                   name="cnpj"
                   ngDefaultControl
                   formControlName="cnpj"
-                  [model]="control.get('cnpj')?.value | cnpj"
+                  [ngModel]="control.get('cnpj')?.value | cnpj"
                 ></app-input>
               </div>
               <div class="box-item">
@@ -215,7 +215,7 @@
                   name="legalDateCreate"
                   ngDefaultControl
                   formControlName="legalDateCreate"
-                  [model]="control.get('legalDateCreate')?.value | dateMask"
+                  [ngModel]="control.get('legalDateCreate')?.value | dateMask"
                 ></app-input>
               </div>
             </div>
@@ -228,7 +228,7 @@
                   name="legalNature"
                   ngDefaultControl
                   formControlName="legalNature"
-                  [model]="control.get('legalNature')?.value"
+                  [ngModel]="control.get('legalNature')?.value"
                 ></app-input>
               </div>
             </div>
