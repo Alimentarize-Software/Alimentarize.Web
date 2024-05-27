@@ -52,7 +52,7 @@
               </td>
               <td>{{ donation.createdAt | date }}</td>
               <td>{{ donation.weight }} Kg</td>
-              <td>
+              <td class="zapzap">
                 <img
                   class="whatsapp"
                   src="assets/icons/whatsapp.svg"
@@ -76,7 +76,7 @@
 
         <ng-container *ngIf="!hasContent && !loadingData">
           <tr>
-            <td colspan="6">
+            <td colspan="6" class="not-found">
               <span>Nenhuma doação pendente encontrada</span>
             </td>
           </tr>

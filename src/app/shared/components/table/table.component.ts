@@ -73,7 +73,7 @@ export class TableComponent implements OnChanges {
 
     const giverUser = userType !== 'receiver';
 
-    console.log(receiverAndSchedulePage, receiverAndHistoryPage, giverUser);
+    // console.log(receiverAndSchedulePage, receiverAndHistoryPage, giverUser);
 
     this.hasContent = receiverAndSchedulePage || receiverAndHistoryPage || giverUser;
 
