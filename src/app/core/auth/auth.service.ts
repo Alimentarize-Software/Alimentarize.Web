@@ -33,9 +33,9 @@ export class AuthService {
     return this.isLogin();
   }
 
-  getInfoUser(type: string, email: string) {
+  getInfoUser(type: string, id: number) {
     const endpoint = type === 'receiver' ? 'receiver' : 'donor';
-    return this.httpClient.get(`${environment.baseUrl}/${endpoint}/${email}`);
+    return this.httpClient.get(`${environment.baseUrl}/${endpoint}/${id}`);
   }
 
   logout() {

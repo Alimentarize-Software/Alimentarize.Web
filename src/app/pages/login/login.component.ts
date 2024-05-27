@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', data.token);
 
         if (data.type === 'donor') {
-          this.authService.getInfoUser('donor', this.user.email).subscribe({
+          this.authService.getInfoUser('donor', data.id).subscribe({
             next: (data) => {
               console.log('Dados do doador: ', data);
               localStorage.setItem('typeUser', 'donor');
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
             },
           });
         } else if (data.type === 'receiver') {
-          this.authService.getInfoUser('receiver', this.user.email).subscribe({
+          this.authService.getInfoUser('receiver', data.id).subscribe({
             next: (data) => {
               console.log('Dados da instituição: ', data);
               localStorage.setItem('typeUser', 'receiver');
