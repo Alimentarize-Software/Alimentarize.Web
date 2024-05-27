@@ -4,6 +4,7 @@ import { Institution } from 'src/app/core/model/institution';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReceiverService } from '../receiver/receiver.service';
 import { GiverService } from '../giver/giver.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-my-profile',
@@ -23,6 +24,7 @@ export class MyProfileComponent implements OnInit {
     private receiverService: ReceiverService, 
     private giverService: GiverService,
     private route: ActivatedRoute,
+    private toastr: ToastrService
   ) {
     
   }
@@ -105,10 +107,10 @@ export class MyProfileComponent implements OnInit {
     for (let key in profileData) {
       if (this.profileForm.controls[key]) {
         this.profileForm.controls[key].setValue(profileData[key]);
-        console.log(`Campo ${key} atualizado com valor: ${profileData[key]}`);  // Adicione este log
+        // console.log(`Campo ${key} atualizado com valor: ${profileData[key]}`);  // Adicione este log
       }
     }
-    console.log('Formulário após preenchimento:', this.profileForm.getRawValue());  // Adicione este log
+    // console.log('Formulário após preenchimento:', this.profileForm.getRawValue());  // Adicione este log
   }
 
 
@@ -117,25 +119,28 @@ export class MyProfileComponent implements OnInit {
     const userType = localStorage.getItem('typeUser');
     // const clone = this.profileForm.pristine;
     const object = this.profileForm.getRawValue();
-    console.log('Formulário tá válido? ', this.profileForm.valid);
-    console.log('Forms: ', object);
+    // console.log('Formulário tá válido? ', this.profileForm.valid);
+    // console.log('Forms: ', object);
     if (userType === 'donor') {
       this.giverService.updateMyProfile(object).subscribe({
         next: (res) => {
-          console.log('Dados perfil donor: ', res);
-          // colocar toast de salvo com sucesso
+          this.toastr.success('Perfil salvo com sucesso!');
+          // console.log('Dados perfil donor: ', res);
         },
         error: () => {
+          this.toastr.error('Erro ao salvar perfil. Tente novamente.');
           this.loading = false;
-          // colocar toast de erro
         },
       });
     } else {
       this.receiverService.updateMyProfile(object).subscribe({
         next: (res) => {
+          this.toastr.success('Perfil salvo com sucesso!');
           console.log('Dados perfil receiver: ', res);
+          this.loading = false;
         },
         error: () => {
+          this.toastr.error('Erro ao salvar perfil. Tente novamente.');
           this.loading = false;
         },
       });
