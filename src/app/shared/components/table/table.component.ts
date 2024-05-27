@@ -5,7 +5,7 @@ import {
   Output,
   OnChanges,
   SimpleChanges,
-  ChangeDetectorRef
+  ChangeDetectorRef,
 } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -25,11 +25,16 @@ export class TableComponent implements OnChanges {
   @Output() donationModal = new EventEmitter<any>();
   skeletons: any[] = new Array(6);
   hasContent: boolean = false;
+  isReceiver = false;
 
   constructor(private router: Router, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.updateActions();
+    const user = localStorage.getItem('typeUser');
+    if (user && user === 'receiver') {
+      this.isReceiver = true;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -75,7 +80,8 @@ export class TableComponent implements OnChanges {
 
     // console.log(receiverAndSchedulePage, receiverAndHistoryPage, giverUser);
 
-    this.hasContent = receiverAndSchedulePage || receiverAndHistoryPage || giverUser;
+    this.hasContent =
+      receiverAndSchedulePage || receiverAndHistoryPage || giverUser;
 
     return receiverAndHistoryPage || receiverAndSchedulePage || giverUser;
   }

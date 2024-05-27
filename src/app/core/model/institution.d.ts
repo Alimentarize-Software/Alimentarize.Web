@@ -53,3 +53,26 @@ export interface AboutProject {
   title: string;
   receiverId: number;
 }
+
+export interface Donor {
+  id: number;
+  email: string;
+  name: string;
+  password: string;
+  isActive: boolean;
+  cep: string;
+  numberAddress: number;
+  city: string;
+  state: string;
+  neighborhood: string;
+  address: string;
+  phoneNumber: string;
+  addressAlias: string;
+  legalPurpose: string;
+  legalDateCreate: string; // poderia usar Date, dependendo de como é utilizado
+  legalNature: string;
+  complement?: string; // opcional, caso não esteja sempre presente
+  cnpj: string;
+  createdAt: string; // poderia usar Date, dependendo de como é utilizado
+  aboutId?: number | null; // opcional, pois pode ser null ou não estar presente
+}
