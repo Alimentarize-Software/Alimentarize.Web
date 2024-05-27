@@ -35,4 +35,12 @@ export class ReceiverService {
       body
     );
   }
+  
+  updateMyProfile(data: any) {
+    return this.httpClient.post(`${this.baseUrl}/receiver/update-receiver-infos`, data);
+  }
+
+  getReceiverInfo(id: number) {
+    return this.httpClient.get(`${this.baseUrl}/receiver/${id}`);
+  }
 }

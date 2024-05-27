@@ -66,4 +66,12 @@ export class GiverService {
       `${this.baseUrl}/donation/total-donations/${id}`
     );
   }
+
+  updateMyProfile(data: any) {
+    return this.httpClient.post(`${this.baseUrl}/donor/update-receiver-infos`, data);
+  }
+
+  getDonorInfo(id: number) {
+    return this.httpClient.get(`${this.baseUrl}/receiver/${id}`);
+  }
 }
