@@ -41,9 +41,10 @@ export class LoginComponent implements OnInit {
           this.authService.getInfoUser('receiver', this.user.email).subscribe({
             next: (data) => {
               console.log('Dados da instituição: ', data);
-              this.router.navigateByUrl('instituicao');
               localStorage.setItem('typeUser', 'receiver');
-              console.log('Dveria ter chamado');
+              localStorage.setItem('user', JSON.stringify(data));
+              // console.log('Dveria ter chamado');
+              this.router.navigateByUrl('instituicao/home');
             },
           });
         }

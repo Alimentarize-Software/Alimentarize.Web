@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,22 +6,48 @@ import { Router } from '@angular/router';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.sass'],
 })
-export class TableComponent {
+export class TableComponent implements OnChanges {
   showActions: boolean = false;
   @Input() data: any[] = [];
   @Input() currentPage: number = 1;
   @Input() totalPages: number = 1;
+  private _scheduling: boolean = false;
   @Output() pageChange = new EventEmitter<number>();
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    const userType = localStorage.getItem('typeUser');
-    // console.log('user: ', userType);
+    this.updateActions();
+  }
 
-    if (userType === 'receiver') {
-      this.showActions = true;
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['scheduling'] || changes['data']) {
+      this.updateActions();
     }
+  }
+
+  @Input()
+  set scheduling(value: boolean) {
+    this._scheduling = value;
+    this.updateActions();
+  }
+
+  get scheduling(): boolean {
+    return this._scheduling;
+  }
+
+  private updateActions(): void {
+    const userType = localStorage.getItem('typeUser');
+    if (userType === 'receiver' && this.scheduling) {
+      this.showActions = true;
+    } else {
+      this.showActions = false;
+    }
+  }
+
+  showRow(donation: any): boolean {
+    const userType = localStorage.getItem('typeUser');
+    return this.scheduling || userType !== 'receiver' || donation.status !== 'PENDENTE';
   }
 
   redirect(phone: string) {

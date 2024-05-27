@@ -13,33 +13,35 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let donation of data">
-          <td>#{{ donation.id }}</td>
-          <td class="tooltip-container">
-            <span *ngIf="donation.foodNames.length > 5" (mouseover)="showTooltip($event)" (mouseout)="hideTooltip($event)">
-              {{ getFoodNamesSummary(donation.foodNames).summary }}
-              <div class="tooltip">
-                <div *ngFor="let item of getFoodNamesSummary(donation.foodNames).tooltip">{{ item }}</div>
-              </div>
-            </span>
-            <span *ngIf="donation.foodNames.length <= 5">
-              {{ getFoodNamesSummary(donation.foodNames).summary }}
-            </span>
-          </td>
-          <td>{{ donation.createdAt | date }}</td>
-          <td>{{ donation.weight }} Kg</td>
-          <td>
-            <img class="whatsapp" src="assets/icons/whatsapp.svg" alt="" (click)="redirect('0')" />
-          </td>
-          <td>
-            <ng-container *ngIf="showActions">
-              <app-dropdown></app-dropdown>
-            </ng-container>
-            <ng-container *ngIf="!showActions">
-              <app-status [status]="donation.status"></app-status>
-            </ng-container>
-          </td>
-        </tr>
+        <ng-container *ngFor="let donation of data">
+          <tr *ngIf="showRow(donation)">
+            <td>#{{ donation.id }}</td>
+            <td class="tooltip-container">
+              <span *ngIf="donation.foodNames.length > 5" (mouseover)="showTooltip($event)" (mouseout)="hideTooltip($event)">
+                {{ getFoodNamesSummary(donation.foodNames).summary }}
+                <div class="tooltip">
+                  <div *ngFor="let item of getFoodNamesSummary(donation.foodNames).tooltip">{{ item }}</div>
+                </div>
+              </span>
+              <span *ngIf="donation.foodNames.length <= 5">
+                {{ getFoodNamesSummary(donation.foodNames).summary }}
+              </span>
+            </td>
+            <td>{{ donation.createdAt | date }}</td>
+            <td>{{ donation.weight }} Kg</td>
+            <td>
+              <img class="whatsapp" src="assets/icons/whatsapp.svg" alt="" (click)="redirect('0')" />
+            </td>
+            <td class="actions-status">
+              <ng-container *ngIf="showActions">
+                <app-dropdown></app-dropdown>
+              </ng-container>
+              <ng-container *ngIf="!showActions">
+                <app-status [status]="donation.status"></app-status>
+              </ng-container>
+            </td>
+          </tr>
+        </ng-container>
         <tr *ngIf="totalPages > 1">
           <td></td>
           <td></td>

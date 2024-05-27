@@ -1,0 +1,29 @@
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+
+import { PaginationResponse } from 'src/app/core/model/paginationResponse.interface';
+
+@Injectable({
+  providedIn: 'root',
+})
+
+export class ReceiverService {
+  $mock = new BehaviorSubject<any>({ data: [] });
+  $mock2 = new BehaviorSubject<any>({ data: [] });
+  baseUrl = environment.baseUrl;
+
+  constructor(private httpClient: HttpClient) {}
+
+  getAllDonations(
+    id: number,
+    page: number = 1,
+    limit: number = 6
+  ): Observable<PaginationResponse> {
+    return this.httpClient.get<PaginationResponse>(
+      `${this.baseUrl}/donation/history/receiver/${id}?page=${page}&limit=${limit}`
+    );
+  }
+
+}
