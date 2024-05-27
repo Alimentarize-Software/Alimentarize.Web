@@ -1,6 +1,6 @@
 export interface TotalDonation {
   donorId: number;
-  total: Total;
+  totalDonations: Total;
 }
 
 export interface Total {

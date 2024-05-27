@@ -25,14 +25,22 @@
     </ng-template>
   </div>
 
-  <div class="title">
-    <h1>Histórico de doações</h1>
-  </div>
-  <div class="cards-donation">
-    <app-card title="Quantidade de doações" number="16"></app-card>
-    <app-card title="Kgs doados" number="120kg"></app-card>
-    <!-- <app-card title="Moedas adquiridas" number="$20"></app-card> -->
-  </div>
+  <ng-container *ngIf="totalDonation$ | async as totalDonation">
+    <div class="title">
+      <h1>Histórico de doações</h1>
+    </div>
+    <div class="cards-donation">
+      <app-card
+        title="Quantidade de doações"
+        [number]="totalDonation.totalDonations.count"
+      ></app-card>
+      <app-card
+        title="Kgs doados"
+        [number]="totalDonation.totalDonations.sum"
+      ></app-card>
+    </div>
+  </ng-container>
+
   <div class="box-table">
     <app-table
       [data]="donations"

@@ -4,10 +4,7 @@ import {
   Institution,
   InstitutionResponse,
 } from 'src/app/core/model/institution';
-import {
-  HistoryDonation,
-  HistoryDonationResponse,
-} from 'src/app/core/model/historyDonation';
+import { HistoryDonationResponse } from 'src/app/core/model/historyDonation';
 import { OwlOptions, CarouselComponent } from 'ngx-owl-carousel-o';
 
 declare var $: any;
@@ -16,7 +13,7 @@ import {
   PaginationResponse,
 } from 'src/app/core/model/paginationResponse.interface';
 import { TotalDonation } from 'src/app/core/model/totalDonation';
-import { CarouselResponsiveOptions } from 'primeng/carousel';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-giver',
@@ -60,7 +57,7 @@ export class GiverComponent implements OnInit {
   userID: number;
   currentPage: number = 1;
   totalPages: number;
-  totalDonation: TotalDonation = {} as TotalDonation;
+  totalDonation$: Observable<TotalDonation>;
   // responsiveOptions: CarouselResponsiveOptions[] = {}
 
   ngAfterViewInit(): void {
@@ -88,9 +85,7 @@ export class GiverComponent implements OnInit {
 
     this.allDonations();
 
-    this.giverService.getTotalDonations(this.userID).subscribe((data) => {
-      this.totalDonation = data;
-    });
+    this.totalDonation$ = this.giverService.getTotalDonations(this.userID);
   }
 
   allDonations(page: number = 1) {
