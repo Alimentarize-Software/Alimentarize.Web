@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { InstitutionsRoutingModule } from './institutions-routing.module';
 import { InstitutionsComponent } from './institutions.component';
 import { LeftBarModule } from 'src/app/shared/components/left-bar/left-bar.module';

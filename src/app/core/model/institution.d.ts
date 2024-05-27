@@ -10,11 +10,9 @@ export interface InstitutionCard {
 }
 
 export interface Categories {
+  name: string;
   categoryAlias: string;
   color: string;
-  createdAt: string;
-  id: number;
-  name: string;
 }
 
 export interface Institution {
