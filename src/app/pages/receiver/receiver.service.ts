@@ -8,7 +8,6 @@ import { PaginationResponse } from 'src/app/core/model/paginationResponse.interf
 @Injectable({
   providedIn: 'root',
 })
-
 export class ReceiverService {
   $mock = new BehaviorSubject<any>({ data: [] });
   $mock2 = new BehaviorSubject<any>({ data: [] });
@@ -26,4 +25,14 @@ export class ReceiverService {
     );
   }
 
+  updateDonationStatus(id: number, status: string): Observable<void> {
+    const body = {
+      donationId: id,
+      status,
+    };
+    return this.httpClient.post<void>(
+      `${environment.baseUrl}/donation/update-status`,
+      body
+    );
+  }
 }

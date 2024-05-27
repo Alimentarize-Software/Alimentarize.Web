@@ -1,17 +1,50 @@
+<!-- Modal de Sucesso -->
+<div id="successModal" class="modal" *ngIf="showSuccessModal">
+  <div class="modal-content">
+    <h2>Agendamento</h2>
+    <p>Você deseja aceitar a doação do {{ currentDonation.receiver.name }}?</p>
+    <p class="success">
+      Ao aceitar esta doação, você não poderá realizar outra ação.
+    </p>
+    <div class="modal-actions">
+      <button class="back-btn" (click)="closeSuccessModal()">Voltar</button>
+      <button class="accept-btn" (click)="acceptDonation()">Aceitar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Warning -->
+<div id="cancelDonationModal" class="modal" *ngIf="showModal">
+  <div class="modal-content">
+    <h2>Agendamento</h2>
+    <p>
+      Tem certeza que deseja cancelar a doação do
+      {{ currentDonation.receiver.name }}?
+    </p>
+    <p class="warning">
+      Ao cancelar esta doação, você não poderá realizar outra ação.
+    </p>
+    <div class="modal-actions">
+      <button class="back-btn" (click)="closeModal()">Voltar</button>
+      <button class="cancel-btn" (click)="cancelDonation()">
+        Cancelar doação
+      </button>
+    </div>
+  </div>
+</div>
+
 <div class="main">
   <h3>Histórico de doações</h3>
   <div class="tabs">
-    <div class="tab" (click)="handleTabClick($event)">
-        Histórico
-    </div>
-    <div class="tab" (click)="handleTabClick($event)">
-        Agendamentos
-    </div>
+    <div class="tab" (click)="handleTabClick($event)">Histórico</div>
+    <div class="tab" (click)="handleTabClick($event)">Agendamentos</div>
     <div class="border"></div>
-</div>
+  </div>
   <div class="box-table">
     <app-table
       [data]="donations"
+      [loadingData]="loading"
+      (donationModal)="handleAction($event)"
       (pageChange)="onPageChange($event)"
       [currentPage]="currentPage"
       [totalPages]="totalPages"

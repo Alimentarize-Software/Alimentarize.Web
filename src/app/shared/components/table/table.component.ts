@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,9 +17,12 @@ export class TableComponent implements OnChanges {
   showActions: boolean = false;
   @Input() data: any[] = [];
   @Input() currentPage: number = 1;
+  @Input() loadingData: boolean = true;
   @Input() totalPages: number = 1;
   private _scheduling: boolean = false;
   @Output() pageChange = new EventEmitter<number>();
+  @Output() donationModal = new EventEmitter<any>();
+  skeletons: any[] = new Array(6);
 
   constructor(private router: Router) {}
 
@@ -47,7 +57,20 @@ export class TableComponent implements OnChanges {
 
   showRow(donation: any): boolean {
     const userType = localStorage.getItem('typeUser');
-    return this.scheduling || userType !== 'receiver' || donation.status !== 'PENDENTE';
+
+    const receiverAndSchedulePage =
+      userType === 'receiver' &&
+      this.scheduling &&
+      donation.status === 'PENDENTE';
+
+    const receiverAndHistoryPage =
+      userType === 'receiver' &&
+      this.scheduling === false &&
+      donation.status !== 'PENDENTE';
+
+    const giverUser = userType !== 'receiver' && donation.status !== 'PENDENTE';
+
+    return receiverAndHistoryPage || receiverAndSchedulePage || giverUser;
   }
 
   redirect(phone: string) {
@@ -56,10 +79,13 @@ export class TableComponent implements OnChanges {
   }
 
   onPageChange(page: number) {
-    this.pageChange.emit(page); 
+    this.pageChange.emit(page);
   }
 
-  getFoodNamesSummary(foodNames: string[]): { summary: string, tooltip: string[] } {
+  getFoodNamesSummary(foodNames: string[]): {
+    summary: string;
+    tooltip: string[];
+  } {
     if (foodNames.length > 5) {
       const summary = foodNames.slice(0, 5).join(', ') + ', ...';
       const tooltip = foodNames.slice(5);
@@ -89,5 +115,9 @@ export class TableComponent implements OnChanges {
         tooltip.style.opacity = '0';
       }
     }
+  }
+
+  handleData(action: string, donation: any) {
+    this.donationModal.emit({ action, donation });
   }
 }
