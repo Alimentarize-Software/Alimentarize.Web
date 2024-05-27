@@ -32,7 +32,8 @@ export class MainComponent {
       this.activePath === '/instituicao/meu-perfil' ||
       this.activePath === '/doador/configuracoes' ||
       this.activePath === '/instituicao/configuracoes' ||
-      this.activePath === '/instituicao/home'
+      this.activePath === '/instituicao/home' ||
+      this.activePath === '/doador/home'
     );
   }
 }
