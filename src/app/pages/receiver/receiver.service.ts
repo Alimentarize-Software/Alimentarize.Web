@@ -56,4 +56,24 @@ export class ReceiverService {
   getReceiverInfo(id: number) {
     return this.httpClient.get(`${this.baseUrl}/receiver/${id}`);
   }
+
+  updateReceiverAbout(data: any) {
+    return this.httpClient.post(`${this.baseUrl}/receiver/create-update-about`, data);
+  }
+
+  updateReceiverCategories(data: any) {
+    return this.httpClient.post(`${this.baseUrl}/receiver/update-categories`, data);
+  }
+
+  updateProject(data: any) {
+    return this.httpClient.post(`${this.baseUrl}/receiver/update-create-about-project`, data);
+  }
+
+  getAllCategories() {
+    return this.httpClient.get(`${this.baseUrl}/category/get-all-categories`);
+  }
+
+  getAllAbout(id: number) {
+    return this.httpClient.get(`${this.baseUrl}/receiver/get-about/${id}`);
+  }
 }

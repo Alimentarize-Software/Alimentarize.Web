@@ -3,18 +3,18 @@
         <h3>Configurações</h3>
         <div class="edit-button" *ngIf="isAboutSelected()">
             <app-button
-                *ngIf="!isEditing"
+                *ngIf="!isEditingAbout"
                 theme="primary"
                 width="230px"
                 data-cy="button-editar-perfil"
                 (click)="handleEditClick()"
             >Editar Configurações</app-button>
             <app-button
-                *ngIf="isEditing"
+                *ngIf="isEditingAbout"
                 theme="primary"
                 width="230px"
                 data-cy="button-editar-perfil"
-                (click)="handleEditClick()"
+                (click)="saveAll()"
             >Salvar</app-button>
         </div>
     </div>
@@ -28,75 +28,52 @@
         <div class="border"></div>
     </div>
     <div class="about-content" *ngIf="isAboutSelected()">
-        <div class="text">
-            <h4>Nosso impacto</h4>
-            <textarea name="" id="" [disabled]="!isEditing">
-
-            </textarea>
-        </div>
-        <div class="filters">
-            <div class="filter-title">
-                <h4>Nossas causas</h4>
+        <form [formGroup]="aboutForm">
+            <div class="text">
+                <h4>Nosso impacto</h4>
+                <textarea formControlName="text"></textarea>
+                </div>
+        </form>
+        <form [formGroup]="categoriesForm">
+            <div class="filters">
+                <div class="filter-title">
+                    <h4>Nossas causas</h4>
+                </div>
+                <div class="option" *ngFor="let category of categoriesOptions">
+                    <p>{{ category.name }}</p>
+                    <label [ngClass]="{'toggle-switch': true, 'disabled': !isEditingAbout}">
+                        <input type="checkbox" [checked]="categoriesForm.get('categoryId')?.value.includes(category.id)" (change)="toggleCategory(category.id)" [disabled]="!isEditingAbout">
+                        <div class="toggle-switch-background">
+                            <div class="toggle-switch-handle"></div>
+                        </div>
+                    </label>
+                </div>
             </div>
-            <div class="option">
-                <p>Adolescentes</p>
-                <label [ngClass]="{'toggle-switch': true, 'disabled': !isEditing}">
-                    <input type="checkbox" [disabled]="!isEditing">
-                    <div class="toggle-switch-background">
-                    <div class="toggle-switch-handle"></div>
-                    </div>
-                </label>
-            </div>
-            <div class="option">
-                <p>Mulheres</p>
-                <label [ngClass]="{'toggle-switch': true, 'disabled': !isEditing}">
-                    <input type="checkbox" [disabled]="!isEditing">
-                    <div class="toggle-switch-background">
-                    <div class="toggle-switch-handle"></div>
-                    </div>
-                </label>
-            </div>
-            <div class="option">
-                <p>Crianças</p>
-                <label [ngClass]="{'toggle-switch': true, 'disabled': !isEditing}">
-                    <input type="checkbox" [disabled]="!isEditing">
-                    <div class="toggle-switch-background">
-                    <div class="toggle-switch-handle"></div>
-                    </div>
-                </label>
-            </div>
-            <div class="option">
-                <p>Idosos</p>
-                <label [ngClass]="{'toggle-switch': true, 'disabled': !isEditing}">
-                    <input type="checkbox" [disabled]="!isEditing">
-                    <div class="toggle-switch-background">
-                    <div class="toggle-switch-handle"></div>
-                    </div>
-                </label>
-            </div>
-        </div>
+        </form>
     </div>
     <div class="project-content" *ngIf="!isAboutSelected()">
-        <div class="card">
+        <div *ngFor="let projectFormGroup of projectFormGroups; let i = index" [formGroup]="projectFormGroup" class="card">
             <img style="width: 210px; height: 210px;" src="assets/icons/logo.svg" alt="" />
             <div class="card-content">
                 <div class="card-left">
-                    <h4>Prato Cheio</h4>
-                    <p>Só a solidariedade nos une. Desta troca, nasce o projeto, a Instituição, a ação, a casa que acolhe e cuida, que dá esperança. Para as barrigas vazias e mãos estendidas, queremos dar o pão, o circo, a escola, o brinquedo, o afeto, o livro, a canção, a dança, a vida, a esperança – viver bem a vida, desde a primeira infância.Nossa missão é acolher e cuidar do desenvolvimento da primeira infância com os conhecimentos da neurociência, oferecendo saúde de excelência, arte, cultura e educação para nossas crianças.</p>
+                    <app-input formControlName="title" />
+                    <textarea formControlName="text"></textarea>
                 </div>
                 <div class="card-right">
                     <div class="link-instagram">
                         <p>Link para Instagram</p>
-                        <a href="">https://www.instagram.com/ipredeoficial/</a>
+                        <app-input formControlName="instagram" />
                     </div>
                     <div class="link-whatsapp">
                         <p>Link para Whatsapp</p>
-                        <a href="">https://wa.me/5585996096744</a>
+                        <app-input formControlName="whatsapp" />
                     </div>
-                </div>          
+                    <app-button theme="primary" *ngIf="projectFormGroup.dirty" (click)="saveProject(i)">Salvar</app-button>
+                    <app-button [customColor]="customColor" *ngIf="!projectFormGroup.dirty" (click)="removeProject(i)">Excluir</app-button>
+                </div>
             </div>
         </div>
-        <button class="add-card">
+        <button class="add-card" (click)="addNewProject()">
             <img style="width: 24px; height: 24px;" src="assets/icons/add-circle.svg" alt="" />
             <p>Adicionar novo projeto</p>
         </button>
