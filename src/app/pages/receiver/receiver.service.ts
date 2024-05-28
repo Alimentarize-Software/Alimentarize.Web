@@ -15,13 +15,23 @@ export class ReceiverService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getAllDonations(
+  getAllDonationsSchedulePage(
     id: number,
     page: number = 1,
     limit: number = 6
   ): Observable<PaginationResponse> {
     return this.httpClient.get<PaginationResponse>(
-      `${this.baseUrl}/donation/history/receiver/${id}?page=${page}&limit=${limit}`
+      `${this.baseUrl}/donation/history/receiver/${id}?page=${page}&limit=${limit}&status=PENDENTE`
+    );
+  }
+
+  getAllDonationsHistoryPage(
+    id: number,
+    page: number = 1,
+    limit: number = 6
+  ): Observable<PaginationResponse> {
+    return this.httpClient.get<PaginationResponse>(
+      `${this.baseUrl}/donation/history/receiver/${id}?page=${page}&limit=${limit}&status=APROVADO&status=REPROVADO`
     );
   }
 
@@ -35,9 +45,12 @@ export class ReceiverService {
       body
     );
   }
-  
+
   updateMyProfile(data: any) {
-    return this.httpClient.post(`${this.baseUrl}/receiver/update-receiver-infos`, data);
+    return this.httpClient.post(
+      `${this.baseUrl}/receiver/update-receiver-infos`,
+      data
+    );
   }
 
   getReceiverInfo(id: number) {

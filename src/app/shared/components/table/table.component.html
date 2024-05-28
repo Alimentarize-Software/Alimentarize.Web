@@ -27,7 +27,7 @@
 
         <ng-template #dataContent>
           <ng-container *ngFor="let donation of data">
-            <tr *ngIf="showRow(donation)">
+            <tr *ngIf="donation">
               <td>#{{ donation.id }}</td>
               <td *ngIf="isReceiver">{{ donation.donor.name }}</td>
               <td class="tooltip-container">
@@ -88,6 +88,7 @@
           <td></td>
           <td></td>
           <td *ngIf="isReceiver"></td>
+          <td></td>
           <td></td>
           <td></td>
           <td></td>

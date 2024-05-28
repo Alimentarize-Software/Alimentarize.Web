@@ -60,6 +60,8 @@ export class TableComponent implements OnChanges {
     } else {
       this.showActions = false;
     }
+
+    this.hasContent = this.data.length > 0;
     this.cdr.detectChanges(); // Marcar detecção de mudanças
   }
 
@@ -77,11 +79,6 @@ export class TableComponent implements OnChanges {
       donation.status !== 'PENDENTE';
 
     const giverUser = userType !== 'receiver';
-
-    // console.log(receiverAndSchedulePage, receiverAndHistoryPage, giverUser);
-
-    this.hasContent =
-      receiverAndSchedulePage || receiverAndHistoryPage || giverUser;
 
     return receiverAndHistoryPage || receiverAndSchedulePage || giverUser;
   }
