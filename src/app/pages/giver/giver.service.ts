@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {
+  Categories,
   Institution,
   InstitutionResponse,
 } from 'src/app/core/model/institution';
@@ -26,10 +27,17 @@ export class GiverService {
     );
   }
 
-  getInstitutions(page: number, limit: number) {
-    const params = new HttpParams()
+  getInstitutions(page: number, limit: number, categorias?: string[]) {
+    let params = new HttpParams()
       .set('page', page.toString())
       .set('limit', limit.toString());
+    if (categorias && categorias.length > 0) {
+      const array = categorias.join(',');
+      // categorias.forEach((categorias) => {
+      //   params = params.append('categories', array);
+      // });
+      params = params.append('categories', array);
+    }
 
     return this.httpClient.get<InstitutionResponse>(
       `${this.baseUrl}/receiver/get-receivers/`,
@@ -51,6 +59,7 @@ export class GiverService {
       }
     );
   }
+
   getAllDonations(
     id: number,
     page: number = 1,
@@ -68,10 +77,19 @@ export class GiverService {
   }
 
   updateMyProfile(data: any) {
-    return this.httpClient.post(`${this.baseUrl}/donor/update-donor-infos`, data);
+    return this.httpClient.post(
+      `${this.baseUrl}/donor/update-donor-infos`,
+      data
+    );
   }
 
   getDonorInfo(id: number) {
     return this.httpClient.get(`${this.baseUrl}/donor/${id}`);
+  }
+
+  getAllCategories() {
+    return this.httpClient.get<Categories[]>(
+      `${this.baseUrl}/category/get-all-categories`
+    );
   }
 }
