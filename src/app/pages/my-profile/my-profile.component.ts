@@ -12,29 +12,27 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./my-profile.component.sass']
 })
 export class MyProfileComponent implements OnInit {
-  currentImage = '';
+  currentImage: File;
   defaultImage = 'assets/images/account-profile.png';
   profileForm: FormGroup;
   loading = false;
-  userID: number;
+  userID: number | null = null;
   initialData: any = {};
 
   constructor(
-    private formBuilder: FormBuilder, 
-    private receiverService: ReceiverService, 
+    private formBuilder: FormBuilder,
+    private receiverService: ReceiverService,
     private giverService: GiverService,
     private route: ActivatedRoute,
     private toastr: ToastrService
-  ) {
-    
-  }
+  ) {}
 
   ngOnInit(): void {
     const user = localStorage.getItem('user');
 
     this.profileForm = this.formBuilder.group({
       name: [''],
-      id: this.userID,
+      id: [null],
       cep: [''],
       neighborhood: [''],
       address: [''],
@@ -50,38 +48,17 @@ export class MyProfileComponent implements OnInit {
       if (parsedUser && parsedUser.id) {
         this.userID = parsedUser.id;
         this.loadUserProfile();
-        this.giverService.getInstitution(this.userID).subscribe((data: Institution) => {
-          if (data && data.profileImage) {
-            this.currentImage = this.convertBase64ToImageUrl(data.profileImage);
-          } else {
-            this.currentImage = this.defaultImage;
-          }
-        }, (error) => {
-          this.currentImage = this.defaultImage;
-        });
       } else {
         console.error('O usuário no localStorage não tem um ID válido.');
       }
     } else {
       console.error('Não há usuário armazenado no localStorage.');
     }
-
-    // const userType = localStorage.getItem('typeUser');
-
-    // if (userType === 'donor') {
-    //   // colocar campos do donor
-    // } else if (userType === 'receiver') {
-    //   // colocar compos do receiver
-    // }
-  }
-
-  convertBase64ToImageUrl(base64Data: string): string {
-    return `data:image/jpeg;base64,${base64Data}`;
   }
 
   isFormEmpty(): boolean {
     const formValues = this.profileForm.getRawValue();
-
+  
     return Object.keys(formValues).every(key => key === 'id' || !formValues[key] || formValues[key] === this.initialData[key]);
   }
 
@@ -89,12 +66,12 @@ export class MyProfileComponent implements OnInit {
     const userType = localStorage.getItem('typeUser');
 
     if (userType === 'donor') {
-      this.giverService.getDonorInfo(this.userID).subscribe({
+      this.giverService.getDonorInfo(this.userID!).subscribe({
         next: (profileData) => this.populateForm(profileData),
         error: (err) => console.error('Erro ao carregar perfil do doador:', err)
       });
     } else {
-      this.receiverService.getReceiverInfo(this.userID).subscribe({
+      this.receiverService.getReceiverInfo(this.userID!).subscribe({
         next: (profileData) => this.populateForm(profileData),
         error: (err) => console.error('Erro ao carregar perfil do receptor:', err)
       });
@@ -102,48 +79,61 @@ export class MyProfileComponent implements OnInit {
   }
 
   populateForm(profileData: any) {
-    console.log('Dados do perfil recebidos:', profileData); 
     this.initialData = profileData;
     for (let key in profileData) {
       if (this.profileForm.controls[key]) {
         this.profileForm.controls[key].setValue(profileData[key]);
-        // console.log(`Campo ${key} atualizado com valor: ${profileData[key]}`);  // Adicione este log
       }
     }
-    // console.log('Formulário após preenchimento:', this.profileForm.getRawValue());  // Adicione este log
   }
-
 
   register() {
     this.loading = true;
     const userType = localStorage.getItem('typeUser');
-    // const clone = this.profileForm.pristine;
-    const object = this.profileForm.getRawValue();
-    // console.log('Formulário tá válido? ', this.profileForm.valid);
-    // console.log('Forms: ', object);
+    const formData = new FormData();
+    const formValues = this.profileForm.getRawValue();
+
+    for (let key in formValues) {
+      if (formValues.hasOwnProperty(key)) {
+        formData.append(key, formValues[key]);
+      }
+    }
+
+    if (this.currentImage) {
+      formData.append('profileImage', this.currentImage);
+    }
+
+    let updateProfileObservable;
     if (userType === 'donor') {
-      this.giverService.updateMyProfile(object).subscribe({
-        next: (res) => {
-          this.toastr.success('Perfil salvo com sucesso!');
-          // console.log('Dados perfil donor: ', res);
-        },
-        error: () => {
-          this.toastr.error('Erro ao salvar perfil. Tente novamente.');
-          this.loading = false;
-        },
-      });
+      updateProfileObservable = this.giverService.updateMyProfile(formData);
     } else {
-      this.receiverService.updateMyProfile(object).subscribe({
-        next: (res) => {
-          this.toastr.success('Perfil salvo com sucesso!');
-          console.log('Dados perfil receiver: ', res);
-          this.loading = false;
-        },
-        error: () => {
-          this.toastr.error('Erro ao salvar perfil. Tente novamente.');
-          this.loading = false;
-        },
-      });
+      updateProfileObservable = this.receiverService.updateMyProfile(formData);
+    }
+
+    updateProfileObservable.subscribe({
+      next: () => {
+        this.toastr.success('Perfil salvo com sucesso!');
+        this.loading = false;
+      },
+      error: (err) => {
+        this.toastr.error('Erro ao salvar perfil. Tente novamente.');
+        this.loading = false;
+        console.error('Erro ao salvar perfil:', err);
+      }
+    });
+  }
+
+  onImageSelected(event: any) {
+    const file: File = event.target.files[0];
+    this.currentImage = file;
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      this.currentImage = reader.result as unknown as File;
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
     }
   }
 }

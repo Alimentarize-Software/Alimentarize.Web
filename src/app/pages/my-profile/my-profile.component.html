@@ -2,132 +2,69 @@
     <div class="my-profile-header">
         <h3>Meu Perfil</h3>
         <div class="edit-button">
-            <app-button
-                theme="primary"
-                width="230px"
-                data-cy="button-editar-perfil"
-                (click)="register()"
-                [disabled]="isFormEmpty()"
-            >Salvar</app-button>
+            <app-button theme="primary" width="230px" data-cy="button-editar-perfil" (click)="register()"
+                [disabled]="isFormEmpty()">Salvar</app-button>
         </div>
     </div>
     <div class="profile-content">
         <div class="profile-image">
-            <img style="width: 120px; height: 120px;" [src]="currentImage" alt="" />
+             <img *ngIf="currentImage" [src]="currentImage" alt="Selected Image" style="width: 120px; height: 120px;">
+             <img *ngIf="!currentImage" [src]="defaultImage" alt="Default Image" style="width: 120px; height: 120px;">
             <div class="image-buttons">
                 <div style="width: 130px;">
-                    <app-button
-                        theme="primary"
-                        width="130px"
-                        data-cy="button-editar-perfil"
-                        >Alterar Imagem</app-button>
+                    <input type="file" (change)="onImageSelected($event)" accept="image/*" style="display: none;"
+                        #fileInput />
+                    <app-button theme="primary" width="130px" (click)="fileInput.click()"
+                        data-cy="button-editar-perfil">Alterar Imagem</app-button>
                 </div>
-                <app-button
-                    theme="tertiary"
-                    width="80px"
-                    data-cy="button-editar-perfil"
-                    style="width: 80px;"
-                    >Remover</app-button>
+                <app-button theme="tertiary" width="80px" data-cy="button-editar-perfil"
+                    style="width: 80px;">Remover</app-button>
             </div>
         </div>
         <form [formGroup]="profileForm">
             <div class="profile-inputs">
                 <div class="large-input-item">
                     <label for="nome-da-instituicao">Nome da Instituição</label>
-                    <app-input
-                        formControlName="name"
-                        type="nome-instituicao"
-                        placeholder="Nome da Instituição"
-                        name="nome-instituicao"
-                        ngDefaultControl
-                        data-cy="nome-instituicao"
-                        style="width: 366px;"
-                    ></app-input>
+                    <app-input formControlName="name" type="nome-instituicao" placeholder="Nome da Instituição"
+                        name="nome-instituicao" ngDefaultControl data-cy="nome-instituicao"
+                        style="width: 366px;"></app-input>
                 </div>
                 <div class="input-item">
                     <label for="cep">CEP</label>
-                    <app-input
-                        formControlName="cep"
-                        type="cep"
-                        placeholder="Cep"
-                        name="cep"
-                        ngDefaultControl
-                        data-cy="cep"
-                        style="width: 366px;"
-                    ></app-input>
+                    <app-input formControlName="cep" type="cep" placeholder="Cep" name="cep" ngDefaultControl
+                        data-cy="cep" style="width: 366px;"></app-input>
                 </div>
                 <div class="input-item">
                     <label for="bairros">Bairro</label>
-                    <app-input
-                        formControlName="neighborhood"
-                        type="bairro"
-                        placeholder="Bairro"
-                        name="bairro"
-                        ngDefaultControl
-                        data-cy="bairro"
-                        style="width: 366px;"
-                    ></app-input>
+                    <app-input formControlName="neighborhood" type="bairro" placeholder="Bairro" name="bairro"
+                        ngDefaultControl data-cy="bairro" style="width: 366px;"></app-input>
                 </div>
             </div>
             <div class="large-input-item">
                 <label for="endereco">Endereço</label>
-                <app-input
-                    formControlName="address"
-                    type="endereco"
-                    placeholder="Endereço"
-                    name="endereco"
-                    ngDefaultControl
-                    data-cy="endereco"
-                ></app-input>
+                <app-input formControlName="address" type="endereco" placeholder="Endereço" name="endereco"
+                    ngDefaultControl data-cy="endereco"></app-input>
             </div>
             <div class="profile-inputs">
                 <div class="input-item">
                     <label for="cidade">Cidade</label>
-                    <app-input
-                        formControlName="city"
-                        type="cidade"
-                        placeholder="Cidade"
-                        name="cidade"
-                        ngDefaultControl
-                        data-cy="cidade"
-                        style="width: 366px;"
-                    ></app-input>
+                    <app-input formControlName="city" type="cidade" placeholder="Cidade" name="cidade" ngDefaultControl
+                        data-cy="cidade" style="width: 366px;"></app-input>
                 </div>
                 <div class="input-item">
                     <label for="estado">Estado</label>
-                    <app-input
-                        formControlName="state"
-                        type="estado"
-                        placeholder="Estado"
-                        name="estado"
-                        ngDefaultControl
-                        data-cy="estado"
-                        style="width: 366px;"
-                    ></app-input>
+                    <app-input formControlName="state" type="estado" placeholder="Estado" name="estado" ngDefaultControl
+                        data-cy="estado" style="width: 366px;"></app-input>
                 </div>
                 <div class="input-item">
                     <label for="telefone">Telefone</label>
-                    <app-input
-                        formControlName="phoneNumber"
-                        type="telefone"
-                        placeholder="Telefone"
-                        name="telefone"
-                        ngDefaultControl
-                        data-cy="telefone"
-                        style="width: 366px;"
-                    ></app-input>
+                    <app-input formControlName="phoneNumber" type="telefone" placeholder="Telefone" name="telefone"
+                        ngDefaultControl data-cy="telefone" style="width: 366px;"></app-input>
                 </div>
                 <div class="input-item">
                     <label for="email">E-mail</label>
-                    <app-input
-                        formControlName="email"
-                        type="email"
-                        placeholder="E-mail"
-                        name="email"
-                        ngDefaultControl
-                        data-cy="email"
-                        style="width: 366px;"
-                    ></app-input>
+                    <app-input formControlName="email" type="email" placeholder="E-mail" name="email" ngDefaultControl
+                        data-cy="email" style="width: 366px;"></app-input>
                 </div>
             </div>
         </form>
