@@ -13,11 +13,17 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ReceiverComponent {
   hoverClass = 'hover-active';
-  donations: DonationItem[] = [];
+  donationsSchedule: DonationItem[] = [];
+  donationsHistory: DonationItem[] = [];
   userID: number;
-  currentPage: number = 1;
-  totalPages: number;
+  currentPageSchedule: number = 1;
+  currentPageHistory: number = 1;
+
+  totalPagesSchedule: number;
+  totalPagesHistory: number;
+
   isScheduling: boolean = false;
+
   showModal = false;
   showSuccessModal = false;
   currentDonation: DonationItem;
@@ -31,7 +37,6 @@ export class ReceiverComponent {
   ) {}
 
   ngOnInit(): void {
-    // console.log(this.loading);
     const firstTab = this.el.nativeElement.querySelector('.tabs .tab');
     if (firstTab) {
       this.renderer.addClass(firstTab, this.hoverClass);
@@ -51,26 +56,57 @@ export class ReceiverComponent {
       console.error('Não há usuário armazenado no localStorage.');
     }
 
-    this.allDonations();
+    this.makeRequest();
   }
 
-  allDonations(page: number = 1) {
-    this.receiverService.getAllDonations(this.userID, page).subscribe({
-      next: (response: PaginationResponse) => {
-        const { data } = response;
-        this.donations = data.donations;
-        this.currentPage = page;
-        this.totalPages = data.totalPages;
-        this.loading = false;
-      },
-    });
+  allDonationsSchedulePage(page: number = 1) {
+    this.receiverService
+      .getAllDonationsSchedulePage(this.userID, page)
+      .subscribe({
+        next: (response: PaginationResponse) => {
+          const { data } = response;
+          this.donationsSchedule = data.donations;
+          this.currentPageSchedule = page;
+          this.totalPagesSchedule = data.totalPages;
+          this.loading = false;
+        },
+      });
+  }
+
+  allDonationsHistoryPage(page: number = 1) {
+    this.receiverService
+      .getAllDonationsHistoryPage(this.userID, page)
+      .subscribe({
+        next: (response: PaginationResponse) => {
+          const { data } = response;
+          this.donationsHistory = data.donations;
+          this.currentPageHistory = page;
+          this.totalPagesHistory = data.totalPages;
+          this.loading = false;
+        },
+      });
+  }
+
+  makeRequest(page: number = 1) {
+    if (this.isScheduling) {
+      this.allDonationsSchedulePage(page);
+    } else {
+      this.allDonationsHistoryPage(page);
+    }
   }
 
   onPageChange(page: number): void {
-    this.allDonations(page);
+    if (this.isScheduling) {
+      this.currentPageSchedule = page;
+    } else {
+      this.currentPageHistory = page;
+    }
+    this.loading = true;
+    this.makeRequest(page);
   }
 
   public handleTabClick(event: MouseEvent): void {
+    this.loading = true;
     const clickedTab = event.currentTarget as HTMLElement;
 
     const tabs = document.querySelectorAll('.tabs .tab');
@@ -83,8 +119,10 @@ export class ReceiverComponent {
 
     if (clickedTab.textContent?.trim() === 'Agendamentos') {
       this.isScheduling = true;
+      this.makeRequest();
     } else if (clickedTab.textContent?.trim() === 'Histórico') {
       this.isScheduling = false;
+      this.makeRequest();
     }
   }
 
@@ -100,7 +138,9 @@ export class ReceiverComponent {
   }
 
   closeModal(): void {
-    this.allDonations(this.currentPage);
+    this.makeRequest(
+      this.isScheduling ? this.currentPageSchedule : this.currentPageHistory
+    );
     this.showModal = false;
   }
 
@@ -121,8 +161,34 @@ export class ReceiverComponent {
   }
 
   closeSuccessModal(): void {
-    this.allDonations(this.currentPage);
+    this.makeRequest(
+      this.isScheduling ? this.currentPageSchedule : this.currentPageHistory
+    );
     this.showSuccessModal = false;
+  }
+
+  getData(): DonationItem[] {
+    if (this.isScheduling) {
+      return this.donationsSchedule;
+    }
+
+    return this.donationsHistory;
+  }
+
+  getTotalPages(): number {
+    if (this.isScheduling) {
+      return this.totalPagesSchedule;
+    }
+
+    return this.totalPagesHistory;
+  }
+
+  getCurrentPage(): number {
+    if (this.isScheduling) {
+      return this.currentPageSchedule;
+    }
+
+    return this.currentPageHistory;
   }
 
   acceptDonation(): void {

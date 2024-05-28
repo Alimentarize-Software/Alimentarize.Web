@@ -42,12 +42,12 @@
   </div>
   <div class="box-table">
     <app-table
-      [data]="donations"
+      [data]="getData()"
       [loadingData]="loading"
       (donationModal)="handleAction($event)"
       (pageChange)="onPageChange($event)"
-      [currentPage]="currentPage"
-      [totalPages]="totalPages"
+      [currentPage]="getCurrentPage()"
+      [totalPages]="getTotalPages()"
       [scheduling]="isScheduling"
     ></app-table>
   </div>
