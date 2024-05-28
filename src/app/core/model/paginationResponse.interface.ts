@@ -1,3 +1,5 @@
+import { Donor } from './institution';
+
 export interface Receiver {
   id: number;
   email: string;
@@ -23,6 +25,7 @@ export interface DonationItem {
   createdAt: string;
   weight: number;
   status: string;
+  donor: Donor;
   foodType: string;
   receiver: Receiver;
   receiverCategories: ReceiverCategory[];

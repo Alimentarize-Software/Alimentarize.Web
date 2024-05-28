@@ -3,28 +3,18 @@
     <h3 class="title">Filtros</h3>
     <div class="filter">
       <div class="filter-options">
-        <div class="option">
-          <input type="checkbox" />
-          <span>Crianças</span>
-        </div>
-        <div class="option">
-          <input type="checkbox" />
-          <span>Adolescentes</span>
-        </div>
-        <div class="option">
-          <input type="checkbox" />
-          <span>Mulheres</span>
-        </div>
-        <div class="option">
-          <input type="checkbox" />
-          <span>Idosos</span>
-        </div>
-        <div class="option">
-          <input type="checkbox" />
-          <span>Autistas</span>
-        </div>
+        <ng-container *ngFor="let category of categories">
+          <div class="option">
+            <input
+              type="checkbox"
+              [value]="category.name"
+              (change)="onCategoryChange($event, category.name)"
+            />
+            <span>{{ category.name }}</span>
+          </div>
+        </ng-container>
       </div>
-      <div class="show-more">
+      <!-- <div class="show-more">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           x="0px"
@@ -39,21 +29,58 @@
           ></path>
         </svg>
         <button>Mostrar mais</button>
-      </div>
+      </div> -->
     </div>
   </div>
-  <div class="cards">
-    <ng-container *ngIf="loading; else content">
-      <ng-container *ngFor="let skeleton of skeletons">
-        <app-skeleton></app-skeleton>
+  <ng-container *ngIf="institutions.data.length > 0; else withoutInstitution">
+    <div class="cards">
+      <ng-container *ngIf="loading; else content">
+        <ng-container *ngFor="let skeleton of skeletons">
+          <app-skeleton></app-skeleton>
+        </ng-container>
       </ng-container>
-    </ng-container>
-    <ng-template #content>
-      <ng-container *ngFor="let institution of institutions.data">
-        <div class="card">
-          <app-card-institution [card]="institution"></app-card-institution>
-        </div>
-      </ng-container>
-    </ng-template>
-  </div>
+      <ng-template #content>
+        <ng-container *ngFor="let institution of institutions.data">
+          <div class="card">
+            <app-card-institution [card]="institution"></app-card-institution>
+          </div>
+        </ng-container>
+      </ng-template>
+    </div>
+  </ng-container>
+  <ng-template #withoutInstitution>
+    <div class="donation-completed-box">
+      <svg
+        width="150"
+        height="150"
+        viewBox="0 0 12 12"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g clip-path="url(#clip0_460_2521)">
+          <path
+            d="M6 0.750244C3.075 0.750244 0.75 3.07524 0.75 6.00024C0.75 8.92524 3.075 11.2502 6 11.2502C8.925 11.2502 11.25 8.92524 11.25 6.00024C11.25 3.07524 8.925 0.750244 6 0.750244ZM6 10.5002C3.525 10.5002 1.5 8.47524 1.5 6.00024C1.5 3.52524 3.525 1.50024 6 1.50024C8.475 1.50024 10.5 3.52524 10.5 6.00024C10.5 8.47524 8.475 10.5002 6 10.5002Z"
+            fill="#fff"
+          />
+          <path
+            d="M8.025 8.62524L6 6.60024L3.975 8.62524L3.375 8.02524L5.4 6.00024L3.375 3.97524L3.975 3.37524L6 5.40024L8.025 3.37524L8.625 3.97524L6.6 6.00024L8.625 8.02524L8.025 8.62524Z"
+            fill="#fff"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_460_2521">
+            <rect
+              width="12"
+              height="12"
+              fill="white"
+              transform="translate(0 0.000244141)"
+            />
+          </clipPath>
+        </defs>
+      </svg>
+
+      <h2>Nenhuma instituição encontrada!</h2>
+      <p>Tente novos filtros</p>
+    </div>
+  </ng-template>
 </div>

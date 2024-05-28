@@ -5,6 +5,7 @@
       <thead>
         <tr>
           <th>N° Doação</th>
+          <th *ngIf="isReceiver">Doador</th>
           <th>Alim. doado</th>
           <th>Data</th>
           <th>Peso</th>
@@ -17,7 +18,7 @@
         <ng-container *ngIf="loadingData; else dataContent">
           <ng-container *ngFor="let skeleton of skeletons">
             <tr>
-              <td colspan="6">
+              <td [attr.colspan]="isReceiver ? 7 : 6">
                 <app-skeleton [width]="'100%'" [height]="'10px'"></app-skeleton>
               </td>
             </tr>
@@ -28,6 +29,7 @@
           <ng-container *ngFor="let donation of data">
             <tr *ngIf="showRow(donation)">
               <td>#{{ donation.id }}</td>
+              <td *ngIf="isReceiver">{{ donation.donor.name }}</td>
               <td class="tooltip-container">
                 <span
                   *ngIf="donation.foodNames.length > 5"
@@ -85,6 +87,7 @@
         <tr *ngIf="totalPages > 1 && hasContent">
           <td></td>
           <td></td>
+          <td *ngIf="isReceiver"></td>
           <td></td>
           <td></td>
           <td></td>

@@ -2,7 +2,7 @@
 <div id="successModal" class="modal" *ngIf="showSuccessModal">
   <div class="modal-content">
     <h2>Agendamento</h2>
-    <p>Você deseja aceitar a doação do {{ currentDonation.receiver.name }}?</p>
+    <p>Você deseja aceitar a doação do {{ currentDonation.donor.name }}?</p>
     <p class="success">
       Ao aceitar esta doação, você não poderá realizar outra ação.
     </p>
@@ -19,7 +19,7 @@
     <h2>Agendamento</h2>
     <p>
       Tem certeza que deseja cancelar a doação do
-      {{ currentDonation.receiver.name }}?
+      {{ currentDonation.donor.name }}?
     </p>
     <p class="warning">
       Ao cancelar esta doação, você não poderá realizar outra ação.
