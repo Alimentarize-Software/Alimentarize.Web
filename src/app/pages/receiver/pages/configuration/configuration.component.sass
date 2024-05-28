@@ -167,16 +167,16 @@
 .project-content
     display: flex
     flex-direction: column
+    gap: 20px
 
 .card
     display: flex
     background-color: white
     border-radius: 10px
-    width: 947px
-    height: 244px
     align-items: center
     padding: 18px
-    border-sizing: border-box
+    gap: 10px
+    box-sizing: border-box
 
     img
         // border: 3px solid #2196F3
@@ -184,16 +184,33 @@
 .card-content
     display: flex
     align-items: center
-
-    h4
-        margin-bottom: 10px
+    gap: 60px
 
 .card-left
     margin-left: 20px
     margin-right: 20px
+    overflow-y: auto
+    display: flex
+    flex-direction: column
+    gap: 10px
 
-    p
+    textarea
+        width: 350px
+        height: 150px
+        border: 1px solid #ccc
+        box-sizing: border-box
+        border-radius: 5px
+        outline: none
+        padding: 7px
         font-size: 14px
+
+        &:focus
+            box-shadow: 0px 0px 5px #2196F3
+        
+        &:disabled
+            background-color: white
+            cursor: not-allowed
+            box-shadow: none
 
 .card-right
     a
