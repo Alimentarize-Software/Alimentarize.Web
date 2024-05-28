@@ -115,11 +115,11 @@ export class ConfigurationComponent {
 
   createProjectFormGroup(project: any): FormGroup {
     return this.formBuilder.group({
-      id: [project.id],
-      title: [project.title],
-      text: [project.text],
-      instagram: [''],
-      whatsapp: [''],
+      id: [project.id || ''],
+      title: [project.title || ''],
+      text: [project.text || ''],
+      instagram: [project.instagram || ''],
+      whatsapp: [project.whatsapp || ''],
       receiverId: [this.userID]
     });
   }
