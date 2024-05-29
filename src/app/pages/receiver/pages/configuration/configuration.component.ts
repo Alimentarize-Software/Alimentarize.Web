@@ -7,7 +7,7 @@ import { CustomColor } from 'src/app/shared/components/button/button';
 @Component({
   selector: 'app-configuration',
   templateUrl: './configuration.component.html',
-  styleUrls: ['./configuration.component.sass']
+  styleUrls: ['./configuration.component.sass'],
 })
 export class ConfigurationComponent {
   hoverClass = 'hover-active';
@@ -59,12 +59,12 @@ export class ConfigurationComponent {
 
     this.aboutForm = this.formBuilder.group({
       text: [''],
-      receiverId: [this.userID]
+      receiverId: [this.userID],
     });
 
     this.categoriesForm = this.formBuilder.group({
       receiverId: [this.userID],
-      categoryId: [[]]
+      categoryId: [[]],
     });
 
     this.projectsForm = this.formBuilder.group({});
@@ -87,14 +87,16 @@ export class ConfigurationComponent {
         if (receiverInfo) {
           this.aboutForm.patchValue({
             text: receiverInfo.about.text,
-            receiverId: receiverInfo.about.receiverId
+            receiverId: receiverInfo.about.receiverId,
           });
 
-          const selectedCategories: number[] = receiverInfo.categories.map((category: { id: string }) => parseInt(category.id));
+          const selectedCategories: number[] = receiverInfo.categories.map(
+            (category: { id: string }) => parseInt(category.id)
+          );
 
           this.categoriesForm.patchValue({
             receiverId: receiverInfo.id,
-            categoryId: selectedCategories
+            categoryId: selectedCategories,
           });
 
           this.projects = receiverInfo.aboutProjects;
@@ -109,8 +111,10 @@ export class ConfigurationComponent {
         }
       },
       error: () => {
-        this.toastr.error('Erro ao buscar informações do receptor. Tente novamente.');
-      }
+        this.toastr.error(
+          'Erro ao buscar informações do receptor. Tente novamente.'
+        );
+      },
     });
   }
 
@@ -122,7 +126,7 @@ export class ConfigurationComponent {
       text: [project.text || ''],
       instagram: [project.instagram || ''],
       whatsapp: [project.whatsapp || ''],
-      receiverId: [this.userID]
+      receiverId: [this.userID],
     });
   }
 
@@ -135,7 +139,7 @@ export class ConfigurationComponent {
       text: [''],
       instagram: [''],
       whatsapp: [''],
-      receiverId: [this.userID]
+      receiverId: [this.userID],
     });
 
     newProjectFormGroup.valueChanges.subscribe(() => {
@@ -151,31 +155,31 @@ export class ConfigurationComponent {
       console.error('A string Base64 está vazia.');
       return null;
     }
-  
+
     // Remove qualquer espaço em branco ou quebra de linha extras da string Base64
     base64String = base64String.trim().replace(/\s/g, '');
-  
+
     try {
       // Decodifica a string Base64
       const byteCharacters = atob(base64String);
-  
+
       // Converte os dados base64 em um array de bytes
       const byteNumbers = new Array(byteCharacters.length);
       for (let i = 0; i < byteCharacters.length; i++) {
         byteNumbers[i] = byteCharacters.charCodeAt(i);
       }
       const byteArray = new Uint8Array(byteNumbers);
-  
+
       // Obtém o tipo de arquivo da string Base64
       const fileTypeMatch = base64String.match(/^data:(.*);base64,/);
       const fileType = fileTypeMatch ? fileTypeMatch[1] : '';
-  
+
       // Cria um Blob com os dados e o tipo de arquivo
       const blob = new Blob([byteArray], { type: fileType });
-  
+
       // Cria um arquivo a partir do Blob
       const file = new File([blob], fileName, { type: fileType });
-  
+
       return file;
     } catch (error) {
       console.error('Erro ao decodificar a string Base64:', error);
@@ -185,22 +189,24 @@ export class ConfigurationComponent {
 
   onFileChange($event: any) {
     this.file = $event.target.files[0]; // <--- File Object for future use.
-}
-  
+  }
 
   saveProject(index: number) {
     const updatedProjects = this.projectsForm.value;
 
     for (const key in updatedProjects) {
       if (updatedProjects.hasOwnProperty(key)) {
-        if( this.file && updatedProjects[key].image === null){
+        console.log('Antes do IF: ', this.file);
+        console.log('Antes do IF: ', updatedProjects[key].image);
+        if (this.file && updatedProjects[key].image === null) {
           updatedProjects[key].image = this.file;
-          delete updatedProjects[key].id
+          delete updatedProjects[key].id;
+        } else {
+          updatedProjects[key].image = this.base64ToFile(
+            updatedProjects[key].image,
+            `project_${index}.png`
+          );
         }
-        else{
-          updatedProjects[key].image = this.base64ToFile(updatedProjects[key].image,  `project_${index}.png`);
-        }
-        
       }
     }
     const project = updatedProjects[`project_${index}`];
@@ -222,7 +228,9 @@ export class ConfigurationComponent {
   }
 
   toggleCategory(categoryId: number) {
-    const categoryIdControl = this.categoriesForm.get('categoryId') as FormControl;
+    const categoryIdControl = this.categoriesForm.get(
+      'categoryId'
+    ) as FormControl;
     const currentValue = categoryIdControl.value as number[];
 
     if (currentValue.includes(categoryId)) {
@@ -237,8 +245,7 @@ export class ConfigurationComponent {
 
   updateAbout() {
     this.aboutForm.get('receiverId')?.setValue(this.userID);
-    this.projectFormGroups.forEach((el)=>{
-    })
+    this.projectFormGroups.forEach((el) => {});
 
     this.receiverService.updateReceiverAbout(this.aboutForm.value).subscribe({
       next: () => {
@@ -253,14 +260,16 @@ export class ConfigurationComponent {
   updateCategories() {
     this.categoriesForm.get('receiverId')?.setValue(this.userID);
 
-    this.receiverService.updateReceiverCategories(this.categoriesForm.value).subscribe({
-      next: () => {
-        this.toastr.success('Categorias atualizadas com sucesso.');
-      },
-      error: () => {
-        this.toastr.error('Erro ao atualizar categorias. Tente novamente.');
-      },
-    });
+    this.receiverService
+      .updateReceiverCategories(this.categoriesForm.value)
+      .subscribe({
+        next: () => {
+          this.toastr.success('Categorias atualizadas com sucesso.');
+        },
+        error: () => {
+          this.toastr.error('Erro ao atualizar categorias. Tente novamente.');
+        },
+      });
   }
 
   saveAll() {
@@ -281,7 +290,7 @@ export class ConfigurationComponent {
 
     const tabs = document.querySelectorAll('.tabs .tab');
 
-    tabs.forEach(tab => {
+    tabs.forEach((tab) => {
       this.renderer.removeClass(tab, this.hoverClass);
     });
 
@@ -289,7 +298,9 @@ export class ConfigurationComponent {
   }
 
   public isAboutSelected(): boolean {
-    const sobreTab = this.el.nativeElement.querySelector('.tabs .tab:nth-child(1)');
+    const sobreTab = this.el.nativeElement.querySelector(
+      '.tabs .tab:nth-child(1)'
+    );
     return sobreTab ? sobreTab.classList.contains(this.hoverClass) : false;
   }
 
