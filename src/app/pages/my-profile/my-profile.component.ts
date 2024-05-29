@@ -60,9 +60,7 @@ export class MyProfileComponent implements OnInit {
   isFormEmpty(): boolean {
     const formValues = this.profileForm.getRawValue();
     formValues['image'] = this.file;
-    // console.log("formValues", formValues);
     return Object.keys(formValues).every(key => key === 'id' || !formValues[key] || formValues[key] === this.initialData[key]);
-    // return Object.keys(formValues).every(key => key !== '' || key === null);
   }
 
   loadUserProfile() {
@@ -70,14 +68,19 @@ export class MyProfileComponent implements OnInit {
 
     if (userType === 'donor') {
       this.giverService.getDonorInfo(this.userID!).subscribe({
-        next: (profileData) => this.populateForm(profileData),
+        next: (profileData) => {
+          this.populateForm(profileData)
+          if(profileData.profileImage){
+            this.currentImage = this.convertBase64ToImageUrl(profileData.profileImage)
+
+          }
+        },
         error: (err) => console.error('Erro ao carregar perfil do doador:', err)
       });
     } else {
       this.receiverService.getReceiverInfo(this.userID!).subscribe({
         next: (profileData) => {
           this.populateForm(profileData)
-          console.log("ProfileDAta: ", profileData)
           if(profileData.profileImage){
             this.currentImage = this.convertBase64ToImageUrl(profileData.profileImage)
 
@@ -92,7 +95,6 @@ export class MyProfileComponent implements OnInit {
     this.initialData = profileData;
     for (let key in profileData) {
       if (this.profileForm.controls[key]) {
-        console.log("Entrou perfil: ", key)
 
         if(key === 'image'){
           this.profileForm.controls[key].setValue(this.convertBase64ToImageUrl(profileData[key]));
@@ -110,10 +112,8 @@ export class MyProfileComponent implements OnInit {
 
     for (let key in formValues) {
       if (formValues.hasOwnProperty(key)) {
-        console.log("formValues[key]: ", formValues)
         if(key === 'image'){
           if(this.file){
-            console.log("Entrou: ")
             formData.append('image', this.file, this.file.name);
           }
         }

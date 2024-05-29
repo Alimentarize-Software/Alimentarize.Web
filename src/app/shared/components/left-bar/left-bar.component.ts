@@ -26,7 +26,6 @@ export class LeftBarComponent implements OnInit {
   ngOnInit(): void {
     this.activePath = this.getActiveRootPath(this.router.url);
     const userType = localStorage.getItem('typeUser');
-    // console.log('user: ', userType);
 
     if (userType === 'donor') {
       this.menuOptions = DonorMenu;
@@ -40,7 +39,6 @@ export class LeftBarComponent implements OnInit {
   }
 
   isActiveOption(path: string): boolean {
-    // console.log(`${this.activePath} === ${path}: `, this.activePath === path);
     return this.activePath === path;
   }
 

@@ -63,7 +63,6 @@ export class GiverComponent implements OnInit {
 
   ngAfterViewInit(): void {
     this.renderer.listen('document', 'DOMContentLoaded', () => {
-      console.log('ready');
     });
   }
 
@@ -93,8 +92,6 @@ export class GiverComponent implements OnInit {
     this.giverService.getAllDonations(this.userID, page).subscribe({
       next: (response: PaginationResponse) => {
         const { data } = response;
-        // console.log('DATA: ', data);
-        // console.log('RESPONSE: ', response);
         this.donations = data.donations;
         this.currentPage = page;
         this.totalPages = data.totalPages;
@@ -115,7 +112,6 @@ export class GiverComponent implements OnInit {
       this.giverService.getLatestInstitution(user?.id, 1, 10).subscribe({
         next: (data: HistoryDonationResponse) => {
           this.donationHistory = data;
-          // console.log('donationHistory: ', this.donationHistory);
         },
       });
     }

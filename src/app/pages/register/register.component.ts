@@ -57,7 +57,6 @@ export class RegisterComponent implements OnInit {
     this.cpf = this.cpf.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
     this.cpf = this.cpf.replace(/\.(\d{3})(\d)/, '.$1-$2');
 
-    console.log('this.CPF: ', this.cpf);
   }
 
   setCurrentTab(tab: string) {
@@ -84,12 +83,9 @@ export class RegisterComponent implements OnInit {
     this.control.removeControl('typeInstitution');
     const clone = this.control.pristine;
     const object = this.control.getRawValue();
-    console.log('Formulário tá válido? ', this.control.valid);
-    console.log('Forms: ', object);
     if (typeReceiver === 'donor') {
       this.userService.createUser(object, 'donor').subscribe({
         next: (res) => {
-          console.log('Res donor: ', res);
           this.router.navigateByUrl('login');
         },
         error: () => {
@@ -99,7 +95,6 @@ export class RegisterComponent implements OnInit {
     } else {
       this.userService.createUser(object, 'receiver').subscribe({
         next: (res) => {
-          console.log('Res receiver: ', res);
         },
         error: () => {
           this.loadingButton = false;
@@ -109,7 +104,6 @@ export class RegisterComponent implements OnInit {
   }
 
   public get formIsValid() {
-    console.log('Verificando estado: ', this.control.valid);
     return this.control.valid;
   }
 }

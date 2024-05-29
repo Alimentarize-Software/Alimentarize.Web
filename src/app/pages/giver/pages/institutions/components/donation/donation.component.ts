@@ -59,7 +59,6 @@ export class DonationComponent implements OnInit {
       (total, currentValue) => total + Number(currentValue.weight),
       initialValue
     );
-    console.log('Total: ', totalWeight);
     this.donationList.forEach((el) => {
       foods.push(el.food);
     });

@@ -14,7 +14,6 @@ export class RememberPasswordComponent {
   constructor(private rememberPasswordService: RememberPasswordService){  }
 
   rememberPassword(){
-    console.log(this.email)
     this.loadingButton = true;
     this.rememberPasswordService.postRememberPassword(this.email).subscribe({
       next: (data) => {

@@ -77,7 +77,6 @@ export class GiverService {
   }
 
   updateMyProfile(data: any) {
-    console.log("REcebendo no service: ", data)
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("id", data.id);
@@ -97,7 +96,7 @@ export class GiverService {
   }
 
   getDonorInfo(id: number) {
-    return this.httpClient.get(`${this.baseUrl}/donor/${id}`);
+    return this.httpClient.get<any>(`${this.baseUrl}/donor/${id}`);
   }
 
   getAllCategories() {

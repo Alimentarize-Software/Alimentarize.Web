@@ -237,7 +237,6 @@ export class ConfigurationComponent {
   updateAbout() {
     this.aboutForm.get('receiverId')?.setValue(this.userID);
     this.projectFormGroups.forEach((el)=>{
-      console.log("projetos: ", el.value)
     })
 
     this.receiverService.updateReceiverAbout(this.aboutForm.value).subscribe({

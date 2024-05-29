@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
         if (data.type === 'donor') {
           this.authService.getInfoUser('donor', data.id).subscribe({
             next: (data) => {
-              console.log('Dados do doador: ', data);
               localStorage.setItem('typeUser', 'donor');
               localStorage.setItem('user', JSON.stringify(data));
               this.router.navigateByUrl('doador/home');
@@ -40,10 +39,8 @@ export class LoginComponent implements OnInit {
         } else if (data.type === 'receiver') {
           this.authService.getInfoUser('receiver', data.id).subscribe({
             next: (data) => {
-              console.log('Dados da instituição: ', data);
               localStorage.setItem('typeUser', 'receiver');
               localStorage.setItem('user', JSON.stringify(data));
-              // console.log('Dveria ter chamado');
               this.router.navigateByUrl('instituicao/home');
             },
           });

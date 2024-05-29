@@ -79,7 +79,6 @@ export class InstitutionComponent implements OnInit {
       this.currentId = params['id'];
       this.institution$ = this.giverService.getInstitution(this.currentId);
       this.institution$.subscribe((data) => {
-        console.log('DAAAAAAAAAAAAAAATA: ', data);
         this.banners = this.getBanners(data.aboutProjects);
         this.currentImage = this.banners[0];
       });
@@ -109,7 +108,6 @@ export class InstitutionComponent implements OnInit {
   }
 
   handleImage(image: string) {
-    console.log('Image: ', image);
     this.currentImage = image;
   }
 }

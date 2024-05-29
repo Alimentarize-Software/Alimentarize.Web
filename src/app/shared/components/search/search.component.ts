@@ -36,7 +36,6 @@ export class SearchComponent implements OnChanges, OnInit {
         institution.name.toLowerCase().includes(query.toLowerCase())
       );
       this.showResults = true;
-      console.log('Query: ', this.filteredResults);
     } else {
       this.filteredResults = [];
       this.showResults = false;
@@ -53,11 +52,9 @@ export class SearchComponent implements OnChanges, OnInit {
   }
 
   changeValueInput(event: any) {
-    console.log('Valores: ', event.target);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('Changes: ', changes);
   }
 
   redirect(id: number) {
