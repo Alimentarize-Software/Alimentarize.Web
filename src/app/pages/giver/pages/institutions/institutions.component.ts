@@ -26,6 +26,7 @@ export class InstitutionsComponent implements OnInit {
   }
 
   getAllInstitutions() {
+    this.loading = true;
     this.giverService.getInstitutions(1, 10, this.categoriesFilter).subscribe({
       next: (data: InstitutionResponse) => {
         this.institutions = data;

@@ -1,14 +1,29 @@
-<div class="tag" [ngClass]="{'background-approved': status === 'APROVADO', 'background-denied': status === 'REPROVADO', 'background-pending': status === 'PENDENTE'}">
-    <ng-container *ngIf="status === 'APROVADO'">
-        <img width="15px" src="../../../../assets/icons/approved-status.svg" alt="">
-    </ng-container>
-    <ng-container *ngIf="status === 'REPROVADO'">
-        <img width="15px" src="../../../../assets/icons/denied-status.svg" alt="">
-    </ng-container>
-    <ng-container *ngIf="status === 'PENDENTE'">
-        <img width="15px" src="../../../../assets/icons/pending-status.png" alt="">
-    </ng-container>
-    <div class="tag-text">
-        {{ status }}
-    </div>
+<div
+  class="tag"
+  [ngClass]="{
+    'background-approved': status === 'APROVADO',
+    'background-denied': status === 'REPROVADO',
+    'background-pending': status === 'PENDENTE'
+  }"
+>
+  <ng-container *ngIf="status === 'APROVADO'">
+    <img
+      width="15px"
+      src="../../../../assets/icons/approved-status.svg"
+      alt=""
+    />
+  </ng-container>
+  <ng-container *ngIf="status === 'REPROVADO'">
+    <img width="15px" src="../../../../assets/icons/denied-status.svg" alt="" />
+  </ng-container>
+  <ng-container *ngIf="status === 'PENDENTE'">
+    <img
+      width="15px"
+      src="../../../../assets/icons/pending-status.png"
+      alt=""
+    />
+  </ng-container>
+  <div class="tag-text">
+    {{ status === "REPROVADO" ? "RECUSADO" : status }}
+  </div>
 </div>

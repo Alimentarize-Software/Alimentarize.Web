@@ -1,86 +1,115 @@
 <div class="configuration-box-about">
-    <div class="configuration-header">
-        <h3>Configurações</h3>
-        <div class="edit-button" *ngIf="isAboutSelected()">
-            <app-button
-                *ngIf="!isEditingAbout"
-                theme="primary"
-                width="230px"
-                data-cy="button-editar-perfil"
-                (click)="handleEditClick()"
-            >Editar Configurações</app-button>
-            <app-button
-                *ngIf="isEditingAbout"
-                theme="primary"
-                width="230px"
-                data-cy="button-editar-perfil"
-                (click)="saveAll()"
-            >Salvar</app-button>
-        </div>
+  <div class="configuration-header">
+    <h3>Configurações</h3>
+    <div class="edit-button" *ngIf="isAboutSelected()">
+      <app-button
+        *ngIf="!isEditingAbout"
+        theme="primary"
+        width="230px"
+        data-cy="button-editar-perfil"
+        (click)="handleEditClick()"
+        >Editar Configurações</app-button
+      >
+      <app-button
+        *ngIf="isEditingAbout"
+        theme="primary"
+        width="230px"
+        data-cy="button-editar-perfil"
+        (click)="saveAll()"
+        >Salvar</app-button
+      >
     </div>
-    <div class="tabs">
-        <div class="tab" (click)="handleTabClick($event)">
-            Sobre
+  </div>
+  <div class="tabs">
+    <div class="tab" (click)="handleTabClick($event)">Sobre</div>
+    <div class="tab" (click)="handleTabClick($event)">Projetos</div>
+    <div class="border"></div>
+  </div>
+  <div class="about-content" *ngIf="isAboutSelected()">
+    <form [formGroup]="aboutForm">
+      <div class="text">
+        <h4>Nosso impacto</h4>
+        <textarea formControlName="text"></textarea>
+      </div>
+    </form>
+    <form [formGroup]="categoriesForm">
+      <div class="filters">
+        <div class="filter-title">
+          <h4>Nossas causas</h4>
         </div>
-        <div class="tab" (click)="handleTabClick($event)">
-            Projetos
-        </div>
-        <div class="border"></div>
-    </div>
-    <div class="about-content" *ngIf="isAboutSelected()">
-        <form [formGroup]="aboutForm">
-            <div class="text">
-                <h4>Nosso impacto</h4>
-                <textarea formControlName="text"></textarea>
-                </div>
-        </form>
-        <form [formGroup]="categoriesForm">
-            <div class="filters">
-                <div class="filter-title">
-                    <h4>Nossas causas</h4>
-                </div>
-                <div class="option" *ngFor="let category of categoriesOptions">
-                    <p>{{ category.name }}</p>
-                    <label [ngClass]="{'toggle-switch': true, 'disabled': !isEditingAbout}">
-                        <input type="checkbox" [checked]="categoriesForm.get('categoryId')?.value.includes(category.id)" (change)="toggleCategory(category.id)" [disabled]="!isEditingAbout">
-                        <div class="toggle-switch-background">
-                            <div class="toggle-switch-handle"></div>
-                        </div>
-                    </label>
-                </div>
+        <div class="option" *ngFor="let category of categoriesOptions">
+          <p>{{ category.name }}</p>
+          <label
+            [ngClass]="{ 'toggle-switch': true, disabled: !isEditingAbout }"
+          >
+            <input
+              type="checkbox"
+              [checked]="
+                categoriesForm.get('categoryId')?.value.includes(category.id)
+              "
+              (change)="toggleCategory(category.id)"
+              [disabled]="!isEditingAbout"
+            />
+            <div class="toggle-switch-background">
+              <div class="toggle-switch-handle"></div>
             </div>
-        </form>
-    </div>
-    <div class="project-content" *ngIf="!isAboutSelected()">
-        <div *ngFor="let projectFormGroup of projectFormGroups; let i = index" [formGroup]="projectFormGroup" class="card">
-            <ng-container *ngIf="(projectFormGroup.get('image')?.value) !== null; else upload">
-                <img style="width: 210px; height: 210px;" [src]="convertBase64ToImageUrl(projectFormGroup.get('image')?.value)" alt="" />
-            </ng-container>
-            <ng-template #upload>
-                <input type="file" name="image" id="image" (change)="onFileChange($event)">
-            </ng-template>
-            <div class="card-content">
-                <div class="card-left">
-                    <app-input formControlName="title" />
-                    <textarea formControlName="text"></textarea>
-                </div>
-                <div class="card-right">
-                    <div class="link-instagram">
-                        <p>Link para Instagram</p>
-                        <app-input formControlName="instagram" />
-                    </div>
-                    <div class="link-whatsapp">
-                        <p>Link para Whatsapp</p>
-                        <app-input formControlName="whatsapp" />
-                    </div>
-                    <app-button theme="primary" *ngIf="projectFormGroup.dirty" (click)="saveProject(i)">Salvar</app-button>
-                    <app-button [customColor]="customColor" *ngIf="!projectFormGroup.dirty" (click)="removeProject(i)">Excluir</app-button>
-                </div>
-            </div>
+          </label>
         </div>
-        <button class="add-card" (click)="addNewProject()">
-            <img style="width: 24px; height: 24px;" src="assets/icons/add-circle.svg" alt="" />
-            <p>Adicionar novo projeto</p>
-        </button>
+      </div>
+    </form>
+  </div>
+  <div class="project-content" *ngIf="!isAboutSelected()">
+    <div
+      *ngFor="let projectFormGroup of projectFormGroups; let i = index"
+      [formGroup]="projectFormGroup"
+      class="card"
+    >
+      <ng-container *ngIf="projectFormGroup.get('image')?.value; else file">
+        <img
+          [src]="convertBase64ToImageUrl(projectFormGroup.get('image')?.value)"
+          alt=""
+        />
+      </ng-container>
+      <ng-template #file>
+        <input type="file" name="" id="" />
+      </ng-template>
+
+      <div class="card-content">
+        <div class="card-left">
+          <app-input formControlName="title" />
+          <textarea formControlName="text"></textarea>
+        </div>
+        <div class="card-right">
+          <div class="link-instagram">
+            <p>Link para Instagram</p>
+            <app-input formControlName="instagram" />
+          </div>
+          <div class="link-whatsapp">
+            <p>Link para Whatsapp</p>
+            <app-input formControlName="whatsapp" />
+          </div>
+          <app-button
+            theme="primary"
+            *ngIf="projectFormGroup.dirty"
+            (click)="saveProject(i)"
+            >Salvar</app-button
+          >
+          <app-button
+            [customColor]="customColor"
+            *ngIf="!projectFormGroup.dirty"
+            (click)="removeProject(i)"
+            >Excluir</app-button
+          >
+        </div>
+      </div>
     </div>
+    <button class="add-card" (click)="addNewProject()">
+      <img
+        style="width: 24px; height: 24px"
+        src="assets/icons/add-circle.svg"
+        alt=""
+      />
+      <p>Adicionar novo projeto</p>
+    </button>
+  </div>
 </div>

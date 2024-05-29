@@ -8,7 +8,7 @@ import { CardInstitutionModule } from 'src/app/shared/components/card-institutio
 import { GiverComponent } from './giver.component';
 import { MyProfileModule } from '../my-profile/my-profile.module';
 import { SkeletonModule } from 'src/app/shared/components/skeleton/skeleton.module';
-import { CarouselModule } from 'primeng/carousel';
+import { CarouselModule } from 'src/app/shared/components/carousel/carousel.module';
 
 @NgModule({
   declarations: [GiverComponent],
@@ -20,7 +20,6 @@ import { CarouselModule } from 'primeng/carousel';
     TableModule,
     CardInstitutionModule,
     MyProfileModule,
-    CarouselModule,
     SkeletonModule,
     CarouselModule,
   ],

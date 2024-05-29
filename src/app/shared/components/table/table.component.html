@@ -5,11 +5,12 @@
       <thead>
         <tr>
           <th>N° Doação</th>
-          <ng-container  *ngIf="isReceiver; else columnDonor">
-            <th>Doador</th></ng-container>          
+          <ng-container *ngIf="isReceiver; else columnDonor">
+            <th>Doador</th></ng-container
+          >
           <ng-template #columnDonor>
             <th>Instituição</th>
-           </ng-template>
+          </ng-template>
           <th>Alim. doado</th>
           <th>Data</th>
           <th>Peso</th>
@@ -22,7 +23,7 @@
         <ng-container *ngIf="loadingData; else dataContent">
           <ng-container *ngFor="let skeleton of skeletons">
             <tr>
-              <td [attr.colspan]="isReceiver ? 7 : 6">
+              <td colspan="7">
                 <app-skeleton [width]="'100%'" [height]="'10px'"></app-skeleton>
               </td>
             </tr>
@@ -34,11 +35,10 @@
             <tr *ngIf="donation">
               <td>#{{ donation.id }}</td>
               <ng-container *ngIf="isReceiver; else isDonor">
-                <td >{{ donation.donor.name }}</td>
-
+                <td>{{ donation.donor.name }}</td>
               </ng-container>
               <ng-template #isDonor>
-                <td > {{ donation.receiver.name }}</td>
+                <td>{{ donation.receiver.name }}</td>
               </ng-template>
               <td class="tooltip-container">
                 <span
@@ -64,7 +64,7 @@
               </td>
               <td>{{ donation.createdAt | date : "dd/MM/yyyy" }}</td>
               <td>{{ donation.weight }} Kg</td>
-              <td class="zapzap">
+              <td>
                 <img
                   class="whatsapp"
                   src="assets/icons/whatsapp.svg"
@@ -94,9 +94,9 @@
           </tr>
         </ng-container>
 
-        <tr *ngIf="totalPages > 1 && hasContent">
+        <!-- <tr *ngIf="totalPages > 1 && hasContent">
           <td></td>
-          <td *ngIf="isReceiver"></td>
+          <td></td>
           <td></td>
           <td></td>
           <td></td>
@@ -109,8 +109,16 @@
             >
             </app-pagination>
           </td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
+    <div class="box-pagination" *ngIf="totalPages > 1 && hasContent">
+      <app-pagination
+        [currentPage]="currentPage"
+        [totalPages]="totalPages"
+        (pageChange)="onPageChange($event)"
+      >
+      </app-pagination>
+    </div>
   </div>
 </div>

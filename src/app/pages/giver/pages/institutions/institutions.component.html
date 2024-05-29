@@ -14,41 +14,38 @@
           </div>
         </ng-container>
       </div>
-      <!-- <div class="show-more">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          x="0px"
-          y="0px"
-          width="15"
-          height="15"
-          viewBox="0 0 24 24"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M 11 2 L 11 11 L 2 11 L 2 13 L 11 13 L 11 22 L 13 22 L 13 13 L 22 13 L 22 11 L 13 11 L 13 2 Z"
-          ></path>
-        </svg>
-        <button>Mostrar mais</button>
-      </div> -->
     </div>
   </div>
-  <ng-container *ngIf="institutions.data.length > 0; else withoutInstitution">
-    <div class="cards">
-      <ng-container *ngIf="loading; else content">
+  <div class="cards">
+    <ng-container *ngIf="loading; else content">
+      <ng-container>
         <ng-container *ngFor="let skeleton of skeletons">
           <app-skeleton></app-skeleton>
         </ng-container>
       </ng-container>
-      <ng-template #content>
-        <ng-container *ngFor="let institution of institutions.data">
-          <div class="card">
-            <app-card-institution [card]="institution"></app-card-institution>
-          </div>
-        </ng-container>
-      </ng-template>
-    </div>
-  </ng-container>
-  <ng-template #withoutInstitution>
+    </ng-container>
+  </div>
+
+  <ng-template #content>
+    <ng-container
+      *ngIf="institutions && institutions.data && institutions.data.length > 0"
+    >
+      <ng-container *ngFor="let institution of institutions.data">
+        <div class="card">
+          <app-card-institution [card]="institution"></app-card-institution>
+        </div>
+      </ng-container>
+    </ng-container>
+  </ng-template>
+
+  <ng-container
+    *ngIf="
+      institutions &&
+      institutions.data &&
+      institutions.data.length === 0 &&
+      !loading
+    "
+  >
     <div class="donation-completed-box">
       <svg
         width="150"
@@ -82,5 +79,5 @@
       <h2>Nenhuma instituição encontrada!</h2>
       <p>Tente novos filtros</p>
     </div>
-  </ng-template>
+  </ng-container>
 </div>
