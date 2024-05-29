@@ -9,6 +9,7 @@ import { GiverComponent } from './giver.component';
 import { MyProfileModule } from '../my-profile/my-profile.module';
 import { SkeletonModule } from 'src/app/shared/components/skeleton/skeleton.module';
 import { CarouselModule } from 'src/app/shared/components/carousel/carousel.module';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   declarations: [GiverComponent],
@@ -22,6 +23,7 @@ import { CarouselModule } from 'src/app/shared/components/carousel/carousel.modu
     MyProfileModule,
     SkeletonModule,
     CarouselModule,
+    SwiperModule,
   ],
   exports: [GiverComponent],
 })

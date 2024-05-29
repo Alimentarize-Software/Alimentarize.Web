@@ -14,6 +14,7 @@ import {
 } from 'src/app/core/model/paginationResponse.interface';
 import { TotalDonation } from 'src/app/core/model/totalDonation';
 import { Observable } from 'rxjs';
+import { SwiperOptions } from 'swiper';
 
 @Component({
   selector: 'app-giver',
@@ -59,11 +60,17 @@ export class GiverComponent implements OnInit {
   totalPages: number;
   totalDonation$: Observable<TotalDonation>;
   loading = true;
-  // responsiveOptions: CarouselResponsiveOptions[] = {}
+
+  config: SwiperOptions = {
+    slidesPerView: 4,
+    spaceBetween: 30,
+    navigation: false,
+    pagination: { clickable: true },
+    scrollbar: { draggable: true },
+  };
 
   ngAfterViewInit(): void {
-    this.renderer.listen('document', 'DOMContentLoaded', () => {
-    });
+    this.renderer.listen('document', 'DOMContentLoaded', () => {});
   }
 
   ngOnInit(): void {
@@ -112,7 +119,7 @@ export class GiverComponent implements OnInit {
       this.giverService.getLatestInstitution(user?.id, 1, 10).subscribe({
         next: (data: HistoryDonationResponse) => {
           this.donationHistory = data;
-          console.log("Histórico de doações: ", data)
+          console.log('Histórico de doações: ', data);
         },
       });
     }

@@ -25,13 +25,15 @@
         donationHistory.data.donations
       "
     >
-      <app-carousel>
+      <swiper [config]="config">
         <ng-container *ngFor="let donation of donationHistory.data.donations">
-          <app-card-institution
-            [card]="donation.receiver"
-          ></app-card-institution>
+          <ng-template swiperSlide>
+            <app-card-institution
+              [card]="donation.receiver"
+            ></app-card-institution
+          ></ng-template>
         </ng-container>
-      </app-carousel>
+      </swiper>
       <ng-template #skeleton>
         <ng-container *ngFor="let skeleton of skeletons">
           <app-skeleton></app-skeleton>
