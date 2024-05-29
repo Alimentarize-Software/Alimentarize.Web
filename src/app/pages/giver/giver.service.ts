@@ -77,6 +77,19 @@ export class GiverService {
   }
 
   updateMyProfile(data: any) {
+    console.log("REcebendo no service: ", data)
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("id", data.id);
+    formData.append("cep", data.cep);
+    formData.append("receiverId", data.receiverId);
+    formData.append("neighborhood", data.neighborhood);
+    formData.append("address", data.address);
+    formData.append("city", data.city);
+    formData.append("state", data.state);
+    formData.append("phoneNumber", data.phoneNumber);
+    formData.append("email", data.email);
+    formData.append("image", data.image);
     return this.httpClient.post(
       `${this.baseUrl}/donor/update-donor-infos`,
       data

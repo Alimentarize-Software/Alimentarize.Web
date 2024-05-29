@@ -12,12 +12,13 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./my-profile.component.sass']
 })
 export class MyProfileComponent implements OnInit {
-  currentImage: File;
+  currentImage: File | string  = '';
   defaultImage = 'assets/images/account-profile.png';
   profileForm: FormGroup;
   loading = false;
   userID: number | null = null;
   initialData: any = {};
+  file: File | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,19 +29,7 @@ export class MyProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const user = localStorage.getItem('user');
-
-    this.profileForm = this.formBuilder.group({
-      name: [''],
-      id: [null],
-      cep: [''],
-      neighborhood: [''],
-      address: [''],
-      city: [''],
-      state: [''],
-      phoneNumber: [''],
-      email: ['']
-    });
+    const user = localStorage.getItem('user');    
 
     if (user) {
       const parsedUser = JSON.parse(user);
@@ -54,12 +43,26 @@ export class MyProfileComponent implements OnInit {
     } else {
       console.error('Não há usuário armazenado no localStorage.');
     }
+    this.profileForm = this.formBuilder.group({
+      name: [''],
+      id: [this.userID],
+      cep: [''],
+      neighborhood: [''],
+      address: [''],
+      city: [''],
+      state: [''],
+      phoneNumber: [''],
+      email: [''],
+      image: [null]
+    });
   }
 
   isFormEmpty(): boolean {
     const formValues = this.profileForm.getRawValue();
-  
+    formValues['image'] = this.file;
+    // console.log("formValues", formValues);
     return Object.keys(formValues).every(key => key === 'id' || !formValues[key] || formValues[key] === this.initialData[key]);
+    // return Object.keys(formValues).every(key => key !== '' || key === null);
   }
 
   loadUserProfile() {
@@ -72,7 +75,14 @@ export class MyProfileComponent implements OnInit {
       });
     } else {
       this.receiverService.getReceiverInfo(this.userID!).subscribe({
-        next: (profileData) => this.populateForm(profileData),
+        next: (profileData) => {
+          this.populateForm(profileData)
+          console.log("ProfileDAta: ", profileData)
+          if(profileData.profileImage){
+            this.currentImage = this.convertBase64ToImageUrl(profileData.profileImage)
+
+          }
+        },
         error: (err) => console.error('Erro ao carregar perfil do receptor:', err)
       });
     }
@@ -82,6 +92,11 @@ export class MyProfileComponent implements OnInit {
     this.initialData = profileData;
     for (let key in profileData) {
       if (this.profileForm.controls[key]) {
+        console.log("Entrou perfil: ", key)
+
+        if(key === 'image'){
+          this.profileForm.controls[key].setValue(this.convertBase64ToImageUrl(profileData[key]));
+        }
         this.profileForm.controls[key].setValue(profileData[key]);
       }
     }
@@ -95,12 +110,18 @@ export class MyProfileComponent implements OnInit {
 
     for (let key in formValues) {
       if (formValues.hasOwnProperty(key)) {
-        formData.append(key, formValues[key]);
-      }
-    }
+        console.log("formValues[key]: ", formValues)
+        if(key === 'image'){
+          if(this.file){
+            console.log("Entrou: ")
+            formData.append('image', this.file, this.file.name);
+          }
+        }
+        else{
+          formData.append(key, formValues[key]);
 
-    if (this.currentImage) {
-      formData.append('profileImage', this.currentImage);
+        }
+      }
     }
 
     let updateProfileObservable;
@@ -124,16 +145,24 @@ export class MyProfileComponent implements OnInit {
   }
 
   onImageSelected(event: any) {
-    const file: File = event.target.files[0];
-    this.currentImage = file;
+    this.file = event.target.files[0];
+    if(this.file) {
+      this.currentImage = this.file;
+    } 
     const reader = new FileReader();
 
     reader.onloadend = () => {
       this.currentImage = reader.result as unknown as File;
     };
 
-    if (file) {
-      reader.readAsDataURL(file);
+    if (this.file) {
+      reader.readAsDataURL(this.file);
     }
+  }
+
+  convertBase64ToImageUrl(base64Data: string): string {
+    return base64Data !== undefined
+      ? `data:image/jpeg;base64,${base64Data}`
+      : '';
   }
 }

@@ -18,6 +18,7 @@ export class ConfigurationComponent {
   categoriesOptions: any;
   userID: number;
   projects: any;
+  file: File | null = null;
 
   get projectFormGroups() {
     return Object.values(this.projectsForm.controls) as FormGroup[];
@@ -116,6 +117,7 @@ export class ConfigurationComponent {
   createProjectFormGroup(project: any): FormGroup {
     return this.formBuilder.group({
       id: [project.id || ''],
+      image: [project.image || ''],
       title: [project.title || ''],
       text: [project.text || ''],
       instagram: [project.instagram || ''],
@@ -128,6 +130,7 @@ export class ConfigurationComponent {
     const newIndex = Object.keys(this.projectsForm.controls).length;
     const newProjectFormGroup = this.formBuilder.group({
       id: [null],
+      image: [null],
       title: [''],
       text: [''],
       instagram: [''],
@@ -142,9 +145,64 @@ export class ConfigurationComponent {
     this.projectsForm.addControl(`project_${newIndex}`, newProjectFormGroup);
   }
 
+  base64ToFile(base64String: string, fileName: string): File | null {
+    // Verifica se a string Base64 está vazia
+    if (!base64String.trim()) {
+      console.error('A string Base64 está vazia.');
+      return null;
+    }
+  
+    // Remove qualquer espaço em branco ou quebra de linha extras da string Base64
+    base64String = base64String.trim().replace(/\s/g, '');
+  
+    try {
+      // Decodifica a string Base64
+      const byteCharacters = atob(base64String);
+  
+      // Converte os dados base64 em um array de bytes
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+  
+      // Obtém o tipo de arquivo da string Base64
+      const fileTypeMatch = base64String.match(/^data:(.*);base64,/);
+      const fileType = fileTypeMatch ? fileTypeMatch[1] : '';
+  
+      // Cria um Blob com os dados e o tipo de arquivo
+      const blob = new Blob([byteArray], { type: fileType });
+  
+      // Cria um arquivo a partir do Blob
+      const file = new File([blob], fileName, { type: fileType });
+  
+      return file;
+    } catch (error) {
+      console.error('Erro ao decodificar a string Base64:', error);
+      return null;
+    }
+  }
+
+  onFileChange($event: any) {
+    this.file = $event.target.files[0]; // <--- File Object for future use.
+}
+  
+
   saveProject(index: number) {
     const updatedProjects = this.projectsForm.value;
-    
+
+    for (const key in updatedProjects) {
+      if (updatedProjects.hasOwnProperty(key)) {
+        if( this.file && updatedProjects[key].image === null){
+          updatedProjects[key].image = this.file;
+          delete updatedProjects[key].id
+        }
+        else{
+          updatedProjects[key].image = this.base64ToFile(updatedProjects[key].image,  `project_${index}.png`);
+        }
+        
+      }
+    }
     const project = updatedProjects[`project_${index}`];
 
     this.receiverService.updateProject(project).subscribe({
@@ -178,6 +236,9 @@ export class ConfigurationComponent {
 
   updateAbout() {
     this.aboutForm.get('receiverId')?.setValue(this.userID);
+    this.projectFormGroups.forEach((el)=>{
+      console.log("projetos: ", el.value)
+    })
 
     this.receiverService.updateReceiverAbout(this.aboutForm.value).subscribe({
       next: () => {
@@ -243,5 +304,11 @@ export class ConfigurationComponent {
         textControl.disable();
       }
     }
+  }
+
+  convertBase64ToImageUrl(base64Data: string): string {
+    return base64Data !== undefined
+      ? `data:image/jpeg;base64,${base64Data}`
+      : '';
   }
 }

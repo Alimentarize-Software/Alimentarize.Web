@@ -54,7 +54,7 @@ export class ReceiverService {
   }
 
   getReceiverInfo(id: number) {
-    return this.httpClient.get(`${this.baseUrl}/receiver/${id}`);
+    return this.httpClient.get<any>(`${this.baseUrl}/receiver/${id}`);
   }
 
   updateReceiverAbout(data: any) {
@@ -66,7 +66,15 @@ export class ReceiverService {
   }
 
   updateProject(data: any) {
-    return this.httpClient.post(`${this.baseUrl}/receiver/update-create-about-project`, data);
+    const formData = new FormData();
+    formData.append("id", data.id);
+    formData.append("image", data.image);
+    formData.append("instagram", data.instagram);
+    formData.append("receiverId", data.receiverId);
+    formData.append("text", data.text);
+    formData.append("title", data.title);
+    formData.append("whatsapp", data.whatsapp);
+    return this.httpClient.post(`${this.baseUrl}/receiver/update-create-about-project`, formData);
   }
 
   getAllCategories() {
