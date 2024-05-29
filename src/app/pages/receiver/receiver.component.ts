@@ -68,6 +68,7 @@ export class ReceiverComponent {
           this.donationsSchedule = data.donations;
           this.currentPageSchedule = page;
           this.totalPagesSchedule = data.totalPages;
+
           this.loading = false;
         },
       });
@@ -82,6 +83,7 @@ export class ReceiverComponent {
           this.donationsHistory = data.donations;
           this.currentPageHistory = page;
           this.totalPagesHistory = data.totalPages;
+
           this.loading = false;
         },
       });

@@ -109,6 +109,7 @@ export class GiverComponent implements OnInit {
   }
 
   onPageChange(page: number): void {
+    this.loading = true;
     this.allDonations(page);
   }
 
