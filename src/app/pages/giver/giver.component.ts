@@ -112,6 +112,7 @@ export class GiverComponent implements OnInit {
       this.giverService.getLatestInstitution(user?.id, 1, 10).subscribe({
         next: (data: HistoryDonationResponse) => {
           this.donationHistory = data;
+          console.log("Histórico de doações: ", data)
         },
       });
     }

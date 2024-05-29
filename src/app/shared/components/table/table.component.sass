@@ -16,13 +16,16 @@
       thead
         background: $color-primary
         height: 52px
-        padding-left: 44px
+        // padding-left: 44px
         box-sizing: border-box
 
         th
-          text-align: start
+          text-align: center
           color: $color-white
-          padding-left: 44px
+          // padding-left: 44px
+
+          &:first-child            
+            text-align: start
 
       tbody
         width: 100%
@@ -34,13 +37,17 @@
           background: $color-white
           margin-top: 16px
           border-bottom: 0.5px solid rgba(41, 45, 50, 0.5)
+          text-align: sta
 
           &:first-child
             margin-top: 16px
 
           td
             color: $color-black
-            padding-left: 44px
+            // padding-left: 44px
+
+            &:first-child 
+              text-align: start
           
           .not-found
             text-align: center
@@ -49,9 +56,10 @@
 
           .zapzap
             text-align: center
+            width: 20px
 
           .actions-status
-            padding-right: 44px
+            // padding-right: 44px
 
           &:last-child
             border: none
@@ -64,7 +72,7 @@
   position: relative
   display: inline-block
   cursor: pointer
-  max-width: 250px
+  max-width: 120px
 
   .tooltip 
     visibility: hidden

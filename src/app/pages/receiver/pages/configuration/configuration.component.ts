@@ -208,6 +208,7 @@ export class ConfigurationComponent {
     this.receiverService.updateProject(project).subscribe({
       next: () => {
         this.toastr.success('Projeto atualizado com sucesso.');
+        window.location.reload();
       },
       error: () => {
         this.toastr.error('Erro ao atualizar projeto. Tente novamente.');

@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class CardComponent {
   @Input() title: string = '';
   @Input() number: number = 0;
+  @Input() hasWeight: boolean = false;
 }
