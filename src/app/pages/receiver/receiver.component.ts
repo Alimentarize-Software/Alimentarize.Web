@@ -155,6 +155,7 @@ export class ReceiverComponent {
         },
       });
     this.closeModal();
+    this.loading = false;
     this.toastr.success('Doação recusada com sucesso!');
   }
 
@@ -202,6 +203,7 @@ export class ReceiverComponent {
         },
       });
     this.closeSuccessModal();
+    this.loading = false;
     this.toastr.success('Doação aprovada com sucesso!');
   }
 
